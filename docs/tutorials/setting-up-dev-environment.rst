@@ -160,6 +160,14 @@ Note the `requires` lines::
 Each of these refers to a package that our `RecipeWebsite` applications depends on.
 When the `python setup.py develop` command is invoked the required dependencies are installed. 
 
+Where the code lives
+------------------------
+
+Throughout this project, most of your code and customizations will be done 
+in the `recipewebsite` subdirectory.
+Note that the subdirectory is all lowercase, even though the package 
+directory is `RecipeWebsite`.
+
 Discussion
 -----------
 

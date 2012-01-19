@@ -61,7 +61,7 @@ $ python helloworld.py
 <p>When you visit <tt class="docutils literal"><span class="pre">http://localhost:8080/hello/world</span></tt> in a browser, you will
 see the text <tt class="docutils literal"><span class="pre">Hello,</span> <span class="pre">world!</span></tt>.</p>
 <p>See <a class="reference internal" href="tutorials/planning-and-mockups.html#planning-mockups-chapter"><em>Planning and Mockups</em></a> for a full explanation of how this application
-works. Read the <a class="reference internal" href="#html-narrative-documentation"><em>Tutorials</em></a> to understand how
+works. Read the <em class="xref std std-ref">html_narrative_documentation</em> to understand how
 <a href="#id3"><span class="problematic" id="id4">:app:`Pyramid`</span></a> is designed to scale from simple applications like this to
 very large web applications.</p>
 <div class="section" id="front-matter">
@@ -71,15 +71,8 @@ very large web applications.</p>
 </ul>
 </div>
 </div>
-<div class="section" id="what-s-new-documents">
-<h2>&#8220;What&#8217;s New&#8221; Documents<a class="headerlink" href="#what-s-new-documents" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
-</div>
-</div>
 <div class="section" id="tutorials">
-<span id="html-narrative-documentation"></span><h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h2>
+<span id="html-tutorial"></span><h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h2>
 <p>It should be possible to complete each tutorial within 30 - 40 minutes.</p>
 <div class="toctree-wrapper compound">
 <ul>
@@ -98,12 +91,22 @@ very large web applications.</p>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#quick-tour-of-common-pyramid-commands">Quick Tour of common Pyramid commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#creating-the-scaffolds-for-our-project">Creating the scaffolds for our project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#requirements-and-setup-py">Requirements and setup.py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#where-the-code-lives">Where the code lives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#discussion">Discussion</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/ajax-json.html">Adding Ajax and JSON views</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/ajax-json.html#heading">Heading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/ajax-json.html#another-heading">Another Heading</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/views.html">Adding Custom Views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/views.html#key-concepts">Key concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/views.html#configuring-the-root">Configuring the root</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/views.html#replacing-the-default-template">Replacing the default template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/views.html#try-it-out">Try it out</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/views.html#the-supporting-static-resources">The supporting static resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/views.html#discussion">Discussion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/views.html#lab-exercises">Lab Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/ajax-json.html">Building out additional views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/ajax-json.html#views-for-our-application">Views for our application</a></li>
 </ul>
 </li>
 </ul>
@@ -116,85 +119,6 @@ very large web applications.</p>
 <ul class="simple">
 </ul>
 </div>
-</div>
-<div class="section" id="detailed-change-history">
-<h2>Detailed Change History<a class="headerlink" href="#detailed-change-history" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
-</div>
-</div>
-<div class="section" id="design-documentation">
-<h2>Design Documentation<a class="headerlink" href="#design-documentation" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
-</div>
-</div>
-<div class="section" id="sample-applications">
-<h2>Sample Applications<a class="headerlink" href="#sample-applications" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/Pylons/cluegun">cluegun</a> is a simple pastebin
-application based on Rocky Burt&#8217;s <a class="reference external" href="http://pypi.python.org/pypi/ClueBin/0.2.3">ClueBin</a>.  It demonstrates form
-processing, security, and the use of <em class="xref std std-term">ZODB</em> within a <a href="#id7"><span class="problematic" id="id8">:app:`Pyramid`</span></a>
-application.  Check this application out via:</p>
-<div class="highlight-text"><div class="highlight"><pre>git clone git://github.com/Pylons/cluegun.git
-</pre></div>
-</div>
-<p><a class="reference external" href="https://github.com/Pylons/virginia">virginia</a> is a very simple dynamic
-file rendering application.  It is willing to render structured text
-documents, HTML documents, and images from a filesystem directory.  An
-earlier version of this application runs the <a class="reference external" href="http://repoze.org">repoze.org</a> website.  Check this application out via:</p>
-<div class="highlight-text"><div class="highlight"><pre>git clone git://github.com/Pylons/virginia.git
-</pre></div>
-</div>
-<p><a class="reference external" href="https://github.com/Pylons/shootout">shootout</a> is an example &#8220;idea
-competition&#8221; application by Carlos de la Guardia and Lukasz Fidosz.  It
-demonstrates <em class="xref std std-term">URL dispatch</em>, simple authentication, integration
-with <a class="reference external" href="http://www.sqlalchemy.org/">SQLAlchemy</a> and <tt class="docutils literal"><span class="pre">pyramid_simpleform</span></tt>.
-Check this application out of version control via:</p>
-<div class="highlight-text"><div class="highlight"><pre>git clone git://github.com/Pylons/shootout.git
-</pre></div>
-</div>
-</div>
-<div class="section" id="older-sample-applications-repoze-bfg">
-<h2>Older Sample Applications (repoze.bfg)<a class="headerlink" href="#older-sample-applications-repoze-bfg" title="Permalink to this headline">¶</a></h2>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">These applications are for an older version of <a href="#id9"><span class="problematic" id="id10">:app:`Pyramid`</span></a>, which was
-named <tt class="xref py py-mod docutils literal"><span class="pre">repoze.bfg</span></tt>.  They won&#8217;t work unmodified under Pyramid, but
-might provide useful clues.</p>
-</div>
-<p><a class="reference external" href="http://svn.repoze.org/bfgsite/trunk">bfgsite</a> is the software which
-runs the <a class="reference external" href="http://bfg.repoze.org">bfg.repoze.org</a> website.  It
-demonstrates integration with Trac, and includes several
-mini-applications such as a pastebin and tutorial engine.  Check a
-buildout for this application out of Subversion via:</p>
-<div class="highlight-text"><div class="highlight"><pre>svn co http://svn.repoze.org/buildouts/bfgsite/ bfgsite_buildout
-</pre></div>
-</div>
-<p><a class="reference external" href="http://karlproject.org">KARL</a> is a moderately-sized application
-(roughly 70K lines of Python code) built on top of <tt class="xref py py-mod docutils literal"><span class="pre">repoze.bfg</span></tt>
-and other Repoze software.  It is an open source web system for
-collaboration, organizational intranets, and knowledge management, It
-provides facilities for wikis, calendars, manuals, searching, tagging,
-commenting, and file uploads.  See the <a class="reference external" href="http://karlproject.org">KARL site</a> for download and installation details.</p>
-</div>
-<div class="section" id="support-and-development">
-<h2>Support and Development<a class="headerlink" href="#support-and-development" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="http://pylonsproject.org/">Pylons Project web site</a> is the main online
-source of <a href="#id11"><span class="problematic" id="id12">:app:`Pyramid`</span></a> support and development information.</p>
-<p>To report bugs, use the <a class="reference external" href="http://github.com/Pylons/pyramid/issues">issue tracker</a>.</p>
-<p>If you&#8217;ve got questions that aren&#8217;t answered by this documentation,
-contact the <a class="reference external" href="http://groups.google.com/group/pylons-devel">Pylons-devel maillist</a> or join the <a class="reference external" href="irc://irc.freenode.net/#pyramid">#pyramid
-IRC channel</a>.</p>
-<p>Browse and check out tagged and trunk versions of <a href="#id13"><span class="problematic" id="id14">:app:`Pyramid`</span></a> via
-the <a class="reference external" href="http://github.com/Pylons/pyramid/">Pyramid GitHub repository</a>.
-To check out the trunk via <tt class="docutils literal"><span class="pre">git</span></tt>, use this command:</p>
-<div class="highlight-text"><div class="highlight"><pre>git clone git@github.com:Pylons/pyramid.git
-</pre></div>
-</div>
-<p>To find out how to become a contributor to <a href="#id15"><span class="problematic" id="id16">:app:`Pyramid`</span></a>, please see the
-<a class="reference external" href="http://docs.pylonsproject.org/index.html#contributing">contributor&#8217;s section of the documentation</a>.</p>
 </div>
 <div class="section" id="index-and-glossary">
 <h2>Index and Glossary<a class="headerlink" href="#index-and-glossary" title="Permalink to this headline">¶</a></h2>
@@ -220,24 +144,12 @@ To check out the trunk via <tt class="docutils literal"><span class="pre">git</s
 <li><a class="reference internal" href="#front-matter">Front Matter</a><ul>
 </ul>
 </li>
-<li><a class="reference internal" href="#what-s-new-documents">&#8220;What&#8217;s New&#8221; Documents</a><ul>
-</ul>
-</li>
 <li><a class="reference internal" href="#tutorials">Tutorials</a><ul>
 </ul>
 </li>
 <li><a class="reference internal" href="#reference-material">Reference Material</a><ul>
 </ul>
 </li>
-<li><a class="reference internal" href="#detailed-change-history">Detailed Change History</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#design-documentation">Design Documentation</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#sample-applications">Sample Applications</a></li>
-<li><a class="reference internal" href="#older-sample-applications-repoze-bfg">Older Sample Applications (repoze.bfg)</a></li>
-<li><a class="reference internal" href="#support-and-development">Support and Development</a></li>
 <li><a class="reference internal" href="#index-and-glossary">Index and Glossary</a><ul>
 </ul>
 </li>

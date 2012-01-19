@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Adding Ajax and JSON views &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    <title>Building out additional views &mdash; Recipe Website Tutorial 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
-    <link rel="prev" title="Setting up your development environment" href="setting-up-dev-environment.html" /> 
+    <link rel="prev" title="Adding Custom Views" href="views.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,7 +36,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="setting-up-dev-environment.html" title="Setting up your development environment"
+          <a href="views.html" title="Adding Custom Views"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -47,16 +47,29 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="adding-ajax-and-json-views">
-<span id="ajax-json-chapter"></span><span id="index-0"></span><h1>Adding Ajax and JSON views<a class="headerlink" href="#adding-ajax-and-json-views" title="Permalink to this headline">¶</a></h1>
-<p>XXX To be done</p>
-<div class="section" id="heading">
-<h2>Heading<a class="headerlink" href="#heading" title="Permalink to this headline">¶</a></h2>
-<p>text goes here</p>
-</div>
-<div class="section" id="another-heading">
-<h2>Another Heading<a class="headerlink" href="#another-heading" title="Permalink to this headline">¶</a></h2>
-<p>Here we talk about different mockup tools</p>
+  <div class="section" id="building-out-additional-views">
+<span id="additional-views-chapter"></span><span id="index-0"></span><h1>Building out additional views<a class="headerlink" href="#building-out-additional-views" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial we will explore how to use teh <cite>views.py</cite> file to
+define new views and associate new templates and contexts with these new views.</p>
+<div class="section" id="views-for-our-application">
+<h2>Views for our application<a class="headerlink" href="#views-for-our-application" title="Permalink to this headline">¶</a></h2>
+<p>Based on the nature of our application we can predict some of the common views
+that we may need.</p>
+<p>Views that we will need include:</p>
+<dl class="docutils">
+<dt>homepage</dt>
+<dd>a view which shows the home page, it is associated with the roote of the website.</dd>
+<dt>recipe</dt>
+<dd>when viewing an individual recipe, this view will be used to display all the information for that recipe.</dd>
+<dt>ingredient</dt>
+<dd>search by ingredient, this view will return a list of recipes that have the particular ingredient.</dd>
+<dt>submitrecipe</dt>
+<dd>It should be possible to add a new recipe using the &#8216;submit a recipe&#8217; link.</dd>
+<dt>registration</dt>
+<dd>There needs to be a registration page, so that new users can sign up</dd>
+<dt>faq</dt>
+<dd>This will be a simple view that lists common questions about the web application</dd>
+</dl>
 </div>
 </div>
 
@@ -68,16 +81,15 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Adding Ajax and JSON views</a><ul>
-<li><a class="reference internal" href="#heading">Heading</a></li>
-<li><a class="reference internal" href="#another-heading">Another Heading</a></li>
+<li><a class="reference internal" href="#">Building out additional views</a><ul>
+<li><a class="reference internal" href="#views-for-our-application">Views for our application</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="setting-up-dev-environment.html"
-                        title="previous chapter">Setting up your development environment</a></p>
+  <p class="topless"><a href="views.html"
+                        title="previous chapter">Adding Custom Views</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/tutorials/ajax-json.txt"
@@ -107,7 +119,7 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="setting-up-dev-environment.html" title="Setting up your development environment"
+          <a href="views.html" title="Adding Custom Views"
              >previous</a> |</li>
         <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
