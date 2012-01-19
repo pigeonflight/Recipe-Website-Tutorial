@@ -53,14 +53,140 @@
             
   <div class="section" id="setting-up-your-development-environment">
 <span id="setting-up-dev-chapter"></span><span id="index-0"></span><h1>Setting up your development environment<a class="headerlink" href="#setting-up-your-development-environment" title="Permalink to this headline">¶</a></h1>
-<p>XXX To be done</p>
-<div class="section" id="heading">
-<h2>Heading<a class="headerlink" href="#heading" title="Permalink to this headline">¶</a></h2>
-<p>text goes here</p>
+<p>In this tutorial we gather our tools. We assume that you already have a trusted text editor.
+So we will focus on the tools needed to build out the new application.</p>
+<div class="section" id="installing-the-pyramid-webframework">
+<h2>Installing the Pyramid Webframework<a class="headerlink" href="#installing-the-pyramid-webframework" title="Permalink to this headline">¶</a></h2>
+<p>You will need the following:</p>
+<ul class="simple">
+<li>A python interpreter</li>
+<li>The ability to compile source code</li>
+<li>and the python virtualenv package</li>
+</ul>
+<p>This is well documented in Pyramid Documentation so head over to
+the <a class="reference external" href="http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/install.html">Pyramid Installation Documentation</a> for more details.
+Then come back when you&#8217;re finished.</p>
+<p>If you are on a network with a proxy then pay careful attention to the next section.</p>
 </div>
-<div class="section" id="another-heading">
-<h2>Another Heading<a class="headerlink" href="#another-heading" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dealing-with-on-campus-proxies">
+<h2>Dealing with on campus proxies<a class="headerlink" href="#dealing-with-on-campus-proxies" title="Permalink to this headline">¶</a></h2>
+<p>Note: all the examples below are specific to UWI Mona, but should be applicable to other
+location that use a proxy on their network.</p>
 <p>Here we talk about different mockup tools</p>
+</div>
+<div class="section" id="using-virtualenv">
+<h2>Using Virtualenv<a class="headerlink" href="#using-virtualenv" title="Permalink to this headline">¶</a></h2>
+<p>To install Pyramid, create a virtualenv:</p>
+<div class="highlight-python"><pre>mkdir pyramidenv
+cd pyramidenv
+virtualenv --no-site-packages .</pre>
+</div>
+<p>When ever you need to use this environment use the command:</p>
+<div class="highlight-python"><pre>source bin/activate</pre>
+</div>
+<p>Then install pyramid using the pip command:</p>
+<div class="highlight-python"><pre>pip install pyramid</pre>
+</div>
+</div>
+<div class="section" id="quick-tour-of-common-pyramid-commands">
+<h2>Quick Tour of common Pyramid commands<a class="headerlink" href="#quick-tour-of-common-pyramid-commands" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><cite>pcreate</cite></dt>
+<dd>Create a new Pyramid project</dd>
+<dt><cite>pserve</cite></dt>
+<dd>Serve a pyramid application</dd>
+<dt><cite>pshell</cite></dt>
+<dd>Launch an interactive REPL type shell (useful for troubleshooting)</dd>
+</dl>
+<p>For more information about these tools visit <a class="reference external" href="http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/commandline.html">commandline pyramid</a>
+Other tools which you may find useful are <cite>proutes</cite>, <cite>pviews</cite> and <cite>ptweens</cite>.</p>
+</div>
+<div class="section" id="creating-the-scaffolds-for-our-project">
+<h2>Creating the scaffolds for our project<a class="headerlink" href="#creating-the-scaffolds-for-our-project" title="Permalink to this headline">¶</a></h2>
+<p>Establishing conventions help to make source code more maintainable, Pyramid provides
+a handful of starting templates, which it calls <cite>scaffolds</cite>. We will use one
+of these templates to generate the directory structure of our application.</p>
+<p>Let&#8217;s create a quick project.</p>
+<div class="highlight-python"><pre>bin/pcreate -s zodb RecipeWebsite</pre>
+</div>
+<p>You will see output similar to this (the output has been truncated):</p>
+<div class="highlight-python"><pre>Creating directory ...
+  Recursing into +package+
+...
+Welcome to Pyramid.  Sorry for the convenience.</pre>
+</div>
+<p>The result will be a directory structure like this:</p>
+<div class="highlight-python"><pre>RecipeWebsite/
+├── CHANGES.txt
+├── MANIFEST.in
+├── README.txt
+├── development.ini
+├── production.ini
+├── recipewebsite
+│   ├── __init__.py
+│   ├── models.py
+│   ├── static
+│   │   ├── favicon.ico
+│   │   ├── footerbg.png
+│   │   ├── headerbg.png
+│   │   ├── ie6.css
+│   │   ├── middlebg.png
+│   │   ├── pylons.css
+│   │   ├── pyramid-small.png
+│   │   ├── pyramid.png
+│   │   └── transparent.gif
+│   ├── templates
+│   │   └── mytemplate.pt
+│   ├── tests.py
+│   └── views.py
+├── setup.cfg
+└── setup.py</pre>
+</div>
+<p>Enter the <cite>RecipeWebsite</cite> folder and install the new package:</p>
+<div class="highlight-python"><pre>python setup.py develop</pre>
+</div>
+<p>The result will be output similar to this (output truncated):</p>
+<div class="highlight-python"><pre>...
+Finished processing dependencies for RecipeWebsite==0.0</pre>
+</div>
+<p>To view the new application your browser run the following command:</p>
+<div class="highlight-python"><pre>pserve development.ini</pre>
+</div>
+<p>The result will be output like this:</p>
+<div class="highlight-python"><pre>...
+Starting server in PID 24374.
+serving on http://0.0.0.0:6543</pre>
+</div>
+<p>Visiting <a class="reference external" href="http://localhost:6543">http://localhost:6543</a> in your browser will display something like the image below</p>
+<img alt="../_images/pyramid_app_running.jpg" src="../_images/pyramid_app_running.jpg" />
+</div>
+<div class="section" id="requirements-and-setup-py">
+<h2>Requirements and setup.py<a class="headerlink" href="#requirements-and-setup-py" title="Permalink to this headline">¶</a></h2>
+<p>If you need new functionality you can declare a requirement in your
+new package. This will prove very useful in the future.</p>
+<p>Take a look at <cite>setup.py</cite>
+Note the <cite>requires</cite> lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">requires</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">&#39;pyramid&#39;</span><span class="p">,</span>
+    <span class="s">&#39;pyramid_zodbconn&#39;</span><span class="p">,</span>
+    <span class="s">&#39;pyramid_tm&#39;</span><span class="p">,</span>
+    <span class="s">&#39;pyramid_debugtoolbar&#39;</span><span class="p">,</span>
+    <span class="s">&#39;ZODB3&#39;</span><span class="p">,</span>
+    <span class="s">&#39;waitress&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+</pre></div>
+</div>
+<p>Each of these refers to a package that our <cite>RecipeWebsite</cite> applications depends on.
+When the <cite>python setup.py develop</cite> command is invoked the required dependencies are installed.</p>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>What is the benefit of using the <cite>pcreate</cite> command to create a directory structure.</li>
+<li>In what way do conventions make source code more maintainable?</li>
+<li>Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</li>
+<li>What might cause an error like this: <cite>socket.error: [Errno 48] Address already in use</cite></li>
+</ul>
 </div>
 </div>
 
@@ -73,8 +199,13 @@
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Setting up your development environment</a><ul>
-<li><a class="reference internal" href="#heading">Heading</a></li>
-<li><a class="reference internal" href="#another-heading">Another Heading</a></li>
+<li><a class="reference internal" href="#installing-the-pyramid-webframework">Installing the Pyramid Webframework</a></li>
+<li><a class="reference internal" href="#dealing-with-on-campus-proxies">Dealing with on campus proxies</a></li>
+<li><a class="reference internal" href="#using-virtualenv">Using Virtualenv</a></li>
+<li><a class="reference internal" href="#quick-tour-of-common-pyramid-commands">Quick Tour of common Pyramid commands</a></li>
+<li><a class="reference internal" href="#creating-the-scaffolds-for-our-project">Creating the scaffolds for our project</a></li>
+<li><a class="reference internal" href="#requirements-and-setup-py">Requirements and setup.py</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
 </ul>
 </li>
 </ul>

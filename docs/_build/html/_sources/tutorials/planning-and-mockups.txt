@@ -1,6 +1,8 @@
 .. index::
    single: planning
    single: mockups
+   single: css
+   single: layout
 
 .. _planning_mockups_chapter:
 
@@ -94,6 +96,8 @@ View `the result of this code at dabblet`_
 
 Try `the code at dabblet`_
 
+Get `the code from github.com`_
+
 Discussion Points
 --------------------
 
@@ -105,6 +109,8 @@ Discussion Points
 
 - Look at the proposed html code, is there anything interesting about 'row-4'?
 
+- The code shown represents snippets, what would we need to add to complete it?
+
 
 
 .. _deco.gs: http://limi.net/deco.gs
@@ -115,3 +121,4 @@ Discussion Points
 .. [#] Note that the cell convenience classes are added to the same div tag as the cell.
 .. _the result of this code at dabblet: http://dabblet.com/result/gist/1636270
 .. _the code at dabblet: http://dabblet.com/1636270
+.. _the code from github.com: https://gist.github.com/1636270
