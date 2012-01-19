@@ -266,6 +266,9 @@ The old template looked like this:</p>
     &lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
+<p>Launch the application using the <cite>pserve development.ini</cite> command and visit <a class="reference external" href="http://localhost:6543/recipe_view">http://localhost:6543/recipe_view</a></p>
+<p>It should look similar to this:</p>
+<img alt="../_images/recipetemplate-with-globaltemplate.jpg" src="../_images/recipetemplate-with-globaltemplate.jpg" />
 </div>
 <div class="section" id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
@@ -274,10 +277,6 @@ The old template looked like this:</p>
 and the standard approach of embedding html and logic in PHP.</li>
 <li>If the template is called &#8216;global.pt&#8217;, how is it that we were able to refer to it as &#8216;master&#8217; in the updated template?</li>
 </ul>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">This is a warning</p>
-</div>
 </div>
 <div class="section" id="lab-exercises">
 <h2>Lab Exercises<a class="headerlink" href="#lab-exercises" title="Permalink to this headline">¶</a></h2>
@@ -286,6 +285,26 @@ and the standard approach of embedding html and logic in PHP.</li>
 <div class="highlight-python"><pre>${request}</pre>
 </div>
 <p>Observe the output.</p>
+</li>
+<li><p class="first">Configure views.py to support the additional templates that we discussed including:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ingredients</li>
+<li>faqs</li>
+<li>registration</li>
+<li>submitrecipe</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Create the corresponding templates for these views:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ingredients</li>
+<li>faqs</li>
+<li>registration</li>
+<li>submitrecipe</li>
+</ul>
+</div></blockquote>
 </li>
 </ol>
 </div>

@@ -240,6 +240,11 @@ Thanks to the changes in `views.py`, the new `recipe.pt` template now uses the `
 	    </div>
 	</div>
 
+Launch the application using the `pserve development.ini` command and visit http://localhost:6543/recipe_view
+
+It should look similar to this:
+
+.. image:: ../images/recipetemplate-with-globaltemplate.jpg
 
 
 Discussion
@@ -250,10 +255,6 @@ Discussion
 
 - If the template is called 'global.pt', how is it that we were able to refer to it as 'master' in the updated template?
 
-.. warning::
-  
-     This is a warning
-
 
 Lab Exercises
 --------------
@@ -263,4 +264,24 @@ Lab Exercises
 	${request}
 
    Observe the output.
+
+#. Configure views.py to support the additional templates that we discussed including:
+
+	- ingredients
+
+	- faqs
+
+	- registration
+
+	- submitrecipe
+
+#. Create the corresponding templates for these views:
+
+	- ingredients
+
+	- faqs
+
+	- registration
+
+	- submitrecipe
 

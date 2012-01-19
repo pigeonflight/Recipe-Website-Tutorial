@@ -2,8 +2,7 @@
 <html 
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
-      metal:define-macro="master>
-<head>
+      metal:define-macro="master">
 <head>
      <style>
         <!--
@@ -34,4 +33,4 @@
            <div class ="cell position-7 width-5">social stuff</div>
      </div>
 </body>
-
+</html>

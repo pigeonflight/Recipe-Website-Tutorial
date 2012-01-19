@@ -13,4 +13,4 @@ def my_view(request):
 
 @view_config(renderer='templates/recipe.pt',name='recipe_view')
 def recipe(request):
-    return {master:master_template()}
+    return {"master":master_template()}
