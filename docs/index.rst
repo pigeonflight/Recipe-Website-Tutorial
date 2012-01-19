@@ -6,12 +6,13 @@ Recipe Website Tutorial
 
 This tutorial is based on the `Pyramid` web application
 development framework.  Pyramid is an open source framework written 
-in Python and is part of the `Pylons Project
+in Python and is part of the 
+`Pylons Project
 <http://docs.pylonsproject.org/>`_.  
 
-Here is one of the simplest :app:`Pyramid` applications you can make:
+According to the Pyramid documentation the following is the simplest pyramid application that you can make:
 
-.. literalinclude:: tutorial/helloworld.py
+.. literalinclude:: ../code/snippets/helloworld.py
 
 When saved to ``helloworld.py``, the above application can be run via:
 
@@ -23,26 +24,15 @@ When saved to ``helloworld.py``, the above application can be run via:
 When you visit ``http://localhost:8080/hello/world`` in a browser, you will
 see the text ``Hello, world!``.
 
-See :ref:`planning_mockups_chapter` for a full explanation of how this application
-works. Read the :ref:`html_narrative_documentation` to understand how
-:app:`Pyramid` is designed to scale from simple applications like this to
-very large web applications.
+This is a simple single file application. As our tasks become more complex there comes a point
+when an application may be spread accross several files and possibly several packages. This tutorial
+will focus on building a "Recipe Website" following the conventions of a URL Traversal type Pyramid application.
 
-Front Matter
-============
-
-.. toctree::
-   :maxdepth: 1
-
-   copyright.rst
-   conventions.rst
-
-.. _html_tutorial:
 
 Tutorials
 =======================
 
-It should be possible to complete each tutorial within 30 - 40 minutes.
+Each tutorial includes discussion questions. It should be possible to work through the tutorial within 30 - 35 minutes and then spend 15 to 20 minutes in discussion, guided by the discussion questions.
 
 .. toctree::
    :maxdepth: 2
@@ -50,17 +40,16 @@ It should be possible to complete each tutorial within 30 - 40 minutes.
    tutorials/planning-and-mockups
    tutorials/setting-up-dev-environment
    tutorials/views
-   tutorials/addition-views
+   tutorials/additional-views
+   tutorials/creating-content
 
 Reference Material
 ==================
 
-Reference material includes documentation for every :app:`Pyramid` API.
+The following will be useful throughout the course.
 
-.. toctree::
-   :maxdepth: 2
-
-   api
+`The Pyramid API <http://docs.pylonsproject.org/projects/pyramid/en/latest/glossary.html/>`_  
+    
 
 
 Index and Glossary

@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -10,7 +9,7 @@
     
     <title>Adding Custom Views &mdash; Recipe Website Tutorial 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pylons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,10 +25,31 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
-    <link rel="next" title="Adding Ajax and JSON views" href="ajax-json.html" />
-    <link rel="prev" title="Setting up your development environment" href="setting-up-dev-environment.html" /> 
+    <link rel="next" title="Building out additional views" href="additional-views.html" />
+    <link rel="prev" title="Setting up your development environment" href="setting-up-dev-environment.html" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/nobile/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/neuton/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+<link rel="shortcut icon" href="../_static/pyramid.ico"/>
+
   </head>
   <body>
+
+
+
+
+
+<div class="header-small">
+	
+	<div class="logo-small">
+		<a href="../index.html">
+      		<img class="logo" src="../_static/pyramid-small.png" alt="Logo"/>
+		</a>
+  	</div>
+</div>
+
     <div class="related">
       <h3>Navigation</h3>
       <ul>
@@ -37,12 +57,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ajax-json.html" title="Adding Ajax and JSON views"
+          <a href="additional-views.html" title="Building out additional views"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="setting-up-dev-environment.html" title="Setting up your development environment"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -56,6 +76,18 @@
 <p>A <cite>view</cite> (or view callable) is <strong>python code that accepts a request and returns a response</strong>.</p>
 <p>Views are often associated with templates. These templates work with the views to provide a user interface.
 The user experience for an application is based around a collection of views.</p>
+<p>In a Pyramid application views and their templates are normally managed in the <cite>views.py</cite> file.</p>
+<p>Below is what our <cite>views.py</cite> file should look like at this time:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyramid.view</span> <span class="kn">import</span> <span class="n">view_config</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">RecipeSite</span>
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">RecipeSite</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;templates/mytemplate.pt&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;project&#39;</span><span class="p">:</span><span class="s">&#39;RecipeWebsite&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The <cite>&#64;view_config</cite> decorator is placed just before the view and is used to tell the view its
+<cite>context</cite> and <cite>renderer</cite>, which in this case is the <cite>mytemplate.pt</cite> template.</p>
 <div class="section" id="key-concepts">
 <h2>Key concepts<a class="headerlink" href="#key-concepts" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
@@ -218,9 +250,9 @@ the <cite>mytemplate.pt</cite> template.</p>
 <p>I got the following view (the dynamic part of the template has been highlighted):</p>
 <img alt="../_images/recipewebsite-template.jpg" src="../_images/recipewebsite-template.jpg" />
 </div>
-<div class="section" id="the-supporting-static-resources">
-<h2>The supporting static resources<a class="headerlink" href="#the-supporting-static-resources" title="Permalink to this headline">¶</a></h2>
-<p>For our purposes we will want to have a static files for css, javascript and image resources. By convention these resources are stored in the <cite>static</cite> folder.</p>
+<div class="section" id="static-resources">
+<h2>Static resources<a class="headerlink" href="#static-resources" title="Permalink to this headline">¶</a></h2>
+<p>For our purposes we will want to have static files for css, javascript and image resources. By convention these resources are stored in the <cite>static</cite> folder.</p>
 <p>Here are some things we can do:</p>
 <ul class="simple">
 <li>Add our own custom images to the static folder</li>
@@ -233,9 +265,9 @@ we will choose to host the grid css in our own static folder.</li>
 <ul class="simple">
 <li>What is a request?</li>
 <li>What is a response?</li>
-<li>The <cite>root factory</cite> (as the name implies) is what actually makes our new application root. Can you figure out where</li>
+<li>The <cite>root factory</cite> (as the name implies) is what actually makes our new application root. Can you figure out where
+(meaning in what file) the <cite>root factory</cite> is declared and how it relates to the <cite>models.py</cite> file?</li>
 </ul>
-<p>the <cite>root factory</cite> is declared and how it relates to the <cite>models.py</cite> file?</p>
 </div>
 <div class="section" id="lab-exercises">
 <h2>Lab Exercises<a class="headerlink" href="#lab-exercises" title="Permalink to this headline">¶</a></h2>
@@ -244,6 +276,8 @@ we will choose to host the grid css in our own static folder.</li>
 <li>Link to the style.css file from the welcome.pt.</li>
 <li>Make changes to the style.css
 so that the welcome.pt view looks more like the mockup.</li>
+<li>Add the css file that imports the grid styles to the <cite>static</cite> folder also and make sure that the grid
+system still works.</li>
 </ol>
 </div>
 </div>
@@ -261,7 +295,7 @@ so that the welcome.pt view looks more like the mockup.</li>
 <li><a class="reference internal" href="#configuring-the-root">Configuring the root</a></li>
 <li><a class="reference internal" href="#replacing-the-default-template">Replacing the default template</a></li>
 <li><a class="reference internal" href="#try-it-out">Try it out</a></li>
-<li><a class="reference internal" href="#the-supporting-static-resources">The supporting static resources</a></li>
+<li><a class="reference internal" href="#static-resources">Static resources</a></li>
 <li><a class="reference internal" href="#discussion">Discussion</a></li>
 <li><a class="reference internal" href="#lab-exercises">Lab Exercises</a></li>
 </ul>
@@ -272,13 +306,8 @@ so that the welcome.pt view looks more like the mockup.</li>
   <p class="topless"><a href="setting-up-dev-environment.html"
                         title="previous chapter">Setting up your development environment</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="ajax-json.html"
-                        title="next chapter">Adding Ajax and JSON views</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/tutorials/views.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
+  <p class="topless"><a href="additional-views.html"
+                        title="next chapter">Building out additional views</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -303,12 +332,12 @@ so that the welcome.pt view looks more like the mockup.</li>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ajax-json.html" title="Adding Ajax and JSON views"
+          <a href="additional-views.html" title="Building out additional views"
              >next</a> |</li>
         <li class="right" >
           <a href="setting-up-dev-environment.html" title="Setting up your development environment"
              >previous</a> |</li>
-        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

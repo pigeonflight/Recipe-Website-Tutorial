@@ -1,8 +1,4 @@
 .. index::
-   single: ajax
-   single: javascript
-   single: json
-   single: jsonp
    single: views
 
 .. _custom_views_chapter:
@@ -15,6 +11,19 @@ A `view` (or view callable) is **python code that accepts a request and returns 
 Views are often associated with templates. These templates work with the views to provide a user interface.
 The user experience for an application is based around a collection of views.
 
+In a Pyramid application views and their templates are normally managed in the `views.py` file.
+
+Below is what our `views.py` file should look like at this time::
+
+	from pyramid.view import view_config
+	from .models import RecipeSite
+
+	@view_config(context=RecipeSite, renderer='templates/mytemplate.pt')
+	def my_view(request):
+	    return {'project':'RecipeWebsite'}
+
+The `@view_config` decorator is placed just before the view and is used to tell the view its
+`context` and `renderer`, which in this case is the `mytemplate.pt` template.
 
 Key concepts
 ---------------
@@ -194,9 +203,9 @@ I got the following view (the dynamic part of the template has been highlighted)
 
 .. image:: ../images/recipewebsite-template.jpg
 
-The supporting static resources
+Static resources
 ----------------------------------
-For our purposes we will want to have a static files for css, javascript and image resources. By convention these resources are stored in the `static` folder.
+For our purposes we will want to have static files for css, javascript and image resources. By convention these resources are stored in the `static` folder.
 
 Here are some things we can do:
 
@@ -214,15 +223,17 @@ Discussion
 - What is a response?
 
 - The `root factory` (as the name implies) is what actually makes our new application root. Can you figure out where
-the `root factory` is declared and how it relates to the `models.py` file?
+  (meaning in what file) the `root factory` is declared and how it relates to the `models.py` file?
 
 Lab Exercises
 --------------
 
-
-1. Create a new css file in the `static` folder, name it style.css
+#. Create a new css file in the `static` folder, name it style.css
 
 #. Link to the style.css file from the welcome.pt.
 
 #. Make changes to the style.css
    so that the welcome.pt view looks more like the mockup. 
+
+#. Add the css file that imports the grid styles to the `static` folder also and make sure that the grid
+   system still works.

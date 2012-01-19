@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html 
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:define-macro="layout">
 <head>
-<link rel="stylesheet" href="/static/decogrids-12-gapless.css" />
+<head>
+     <style>
+        <!--
+        @import url(http://dl.dropbox.com/u/1004432/decogrids-12-gapless.css);
+        -->
+      </style>
 </head>
 <body>
 

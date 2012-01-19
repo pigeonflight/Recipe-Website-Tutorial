@@ -1,4 +1,4 @@
-.. index::
+
    single: planning
    single: mockups
    single: css
@@ -33,9 +33,12 @@ password to worry about)
 The Design
 ------------
 
-Our UI person (me in this case) has come up with the following layout:
+Our UI person (me in this case) has decided to use Cacoo to come up with the following layout:
 
 .. image:: /images/recipe-website-wireframe.png
+
+You can also see the `live version of the mockup`_ at the Cacoo website.
+Notice the use of a sketchy style.
 
 Layout using a CSS Framework
 ------------------------------
@@ -98,8 +101,8 @@ Try `the code at dabblet`_
 
 Get `the code from github.com`_
 
-Discussion Points
---------------------
+Discussion 
+------------
 
 - What might be some pros and cons to presenting the mockup in a "sketchy" style?
 
@@ -111,6 +114,12 @@ Discussion Points
 
 - The code shown represents snippets, what would we need to add to complete it?
 
+Lab
+----
+
+- Create a mockup for a website
+
+- Using Deco.gs (or a framework of your choice), implement a rough HTML version of that mockup.
 
 
 .. _deco.gs: http://limi.net/deco.gs
@@ -122,3 +131,4 @@ Discussion Points
 .. _the result of this code at dabblet: http://dabblet.com/result/gist/1636270
 .. _the code at dabblet: http://dabblet.com/1636270
 .. _the code from github.com: https://gist.github.com/1636270
+.. _live version of the mockup: https://cacoo.com/diagrams/qb2bRi32AHGvzlef

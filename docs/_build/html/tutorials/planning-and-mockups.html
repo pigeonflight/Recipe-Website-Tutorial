@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -10,7 +9,7 @@
     
     <title>Planning and Mockups &mdash; Recipe Website Tutorial 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pylons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -27,9 +26,30 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
     <link rel="next" title="Setting up your development environment" href="setting-up-dev-environment.html" />
-    <link rel="prev" title="Recipe Website Tutorial" href="../index.html" /> 
+    <link rel="prev" title="Recipe Website Tutorial" href="../index.html" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/nobile/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/neuton/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+<link rel="shortcut icon" href="../_static/pyramid.ico"/>
+
   </head>
   <body>
+
+
+
+
+
+<div class="header-small">
+	
+	<div class="logo-small">
+		<a href="../index.html">
+      		<img class="logo" src="../_static/pyramid-small.png" alt="Logo"/>
+		</a>
+  	</div>
+</div>
+
     <div class="related">
       <h3>Navigation</h3>
       <ul>
@@ -42,7 +62,7 @@
         <li class="right" >
           <a href="../index.html" title="Recipe Website Tutorial"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -51,8 +71,13 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="planning-and-mockups">
-<span id="planning-mockups-chapter"></span><span id="index-0"></span><h1>Planning and Mockups<a class="headerlink" href="#planning-and-mockups" title="Permalink to this headline">¶</a></h1>
+  <blockquote>
+<div>single: planning
+single: mockups
+single: css
+single: layout</div></blockquote>
+<div class="section" id="planning-and-mockups">
+<span id="planning-mockups-chapter"></span><h1>Planning and Mockups<a class="headerlink" href="#planning-and-mockups" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="why-do-this">
 <h2>Why do this?<a class="headerlink" href="#why-do-this" title="Permalink to this headline">¶</a></h2>
 <p>Because most customers are visual, we work with them to develop something that will give them a good idea of how their application will behave. This course focuses mostly on development not design, so we will use &#8220;shortcuts&#8221; for our design work. For a full project there will be need for a UI designer to
@@ -74,8 +99,10 @@ password to worry about)</p>
 </div>
 <div class="section" id="the-design">
 <h2>The Design<a class="headerlink" href="#the-design" title="Permalink to this headline">¶</a></h2>
-<p>Our UI person (me in this case) has come up with the following layout:</p>
+<p>Our UI person (me in this case) has decided to use Cacoo to come up with the following layout:</p>
 <img alt="../_images/recipe-website-wireframe.png" src="../_images/recipe-website-wireframe.png" />
+<p>You can also see the <a class="reference external" href="https://cacoo.com/diagrams/qb2bRi32AHGvzlef">live version of the mockup</a> at the Cacoo website.
+Notice the use of a sketchy style.</p>
 </div>
 <div class="section" id="layout-using-a-css-framework">
 <h2>Layout using a CSS Framework<a class="headerlink" href="#layout-using-a-css-framework" title="Permalink to this headline">¶</a></h2>
@@ -124,14 +151,21 @@ of the mockup with deco.gs using the following code.</p>
 <p>Try <a class="reference external" href="http://dabblet.com/1636270">the code at dabblet</a></p>
 <p>Get <a class="reference external" href="https://gist.github.com/1636270">the code from github.com</a></p>
 </div>
-<div class="section" id="discussion-points">
-<h2>Discussion Points<a class="headerlink" href="#discussion-points" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>What might be some pros and cons to presenting the mockup in a &#8220;sketchy&#8221; style?</li>
 <li>How does a css grid framework simplify things?</li>
 <li>What does the term convenience class suggest?</li>
 <li>Look at the proposed html code, is there anything interesting about &#8216;row-4&#8217;?</li>
 <li>The code shown represents snippets, what would we need to add to complete it?</li>
+</ul>
+</div>
+<div class="section" id="lab">
+<h2>Lab<a class="headerlink" href="#lab" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Create a mockup for a website</li>
+<li>Using Deco.gs (or a framework of your choice), implement a rough HTML version of that mockup.</li>
 </ul>
 <table class="docutils footnote" frame="void" id="id2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -155,7 +189,8 @@ of the mockup with deco.gs using the following code.</p>
 <li><a class="reference internal" href="#mockup-up-tools">Mockup up tools</a></li>
 <li><a class="reference internal" href="#the-design">The Design</a></li>
 <li><a class="reference internal" href="#layout-using-a-css-framework">Layout using a CSS Framework</a></li>
-<li><a class="reference internal" href="#discussion-points">Discussion Points</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+<li><a class="reference internal" href="#lab">Lab</a></li>
 </ul>
 </li>
 </ul>
@@ -166,11 +201,6 @@ of the mockup with deco.gs using the following code.</p>
   <h4>Next topic</h4>
   <p class="topless"><a href="setting-up-dev-environment.html"
                         title="next chapter">Setting up your development environment</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/tutorials/planning-and-mockups.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -200,7 +230,7 @@ of the mockup with deco.gs using the following code.</p>
         <li class="right" >
           <a href="../index.html" title="Recipe Website Tutorial"
              >previous</a> |</li>
-        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
