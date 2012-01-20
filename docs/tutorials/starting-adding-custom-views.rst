@@ -6,25 +6,6 @@
 Starting the Project, Adding Custom Views
 ===========================================
 
-A `view` (or view callable) is **python code that accepts a request and returns a response**. 
-
-Views are often associated with templates. These templates work with the views to provide a user interface.
-The user experience for an application is based around a collection of views.
-
-In a Pyramid application views and their templates are normally managed in the `views.py` file.
-
-Below is what our `views.py` file should look like at this time::
-
-	from pyramid.view import view_config
-	from .models import RecipeSite
-
-	@view_config(context=RecipeSite, renderer='templates/mytemplate.pt')
-	def my_view(request):
-	    return {'project':'RecipeWebsite'}
-
-The `@view_config` decorator is placed just before the view and is used to tell the view its
-`context` and `renderer`, which in this case is the `mytemplate.pt` template.
-
 Key concepts
 ---------------
 
@@ -137,9 +118,32 @@ The new models.py file will look like this.
 		transaction.commit()
 	    return zodb_root['app_root']
 
-Important: The `views.py` file depends on the `models.py` file so before we can use our new model
- we need to make appropriate adjustments to the `views.py` file. See if you can figure out
-what needs to be done.
+.. note:: The `views.py` file depends on the `models.py` file so before we can use our new model. We need to make appropriate adjustments to the `views.py` file. Read the next section and see if you can figure out what needs to be fixed.
+ 
+
+Introducting Views
+----------------------
+
+A `view` (or view callable) is **python code that accepts a request and returns a response**. 
+
+Views are often associated with templates. These templates work with the views to provide a user interface.
+The user experience for an application is based around a collection of views.
+
+In a Pyramid application views and their templates are normally managed in the `views.py` file.
+
+Below is what our `views.py` file should look like at this time::
+
+	from pyramid.view import view_config
+	from .models import RecipeSite
+
+	@view_config(context=RecipeSite, renderer='templates/mytemplate.pt')
+	def my_view(request):
+	    return {'project':'RecipeWebsite'}
+
+The `@view_config` decorator is placed just before the view and is used to tell the view its
+`context` and `renderer`, which in this case is the `mytemplate.pt` template.
+
+
 
 
 Replacing the default template
