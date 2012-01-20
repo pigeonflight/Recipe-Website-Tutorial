@@ -25,7 +25,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
-    <link rel="next" title="Building out additional views" href="building-out-additional-views.html" />
+    <link rel="next" title="Starting the Project, Adding Custom Views" href="starting-adding-custom-views.html" />
     <link rel="prev" title="Planning and Mockups" href="planning-and-mockups.html" />
 <link rel="stylesheet" href="https://static.pylonsproject.org/fonts/nobile/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
 <link rel="stylesheet" href="https://static.pylonsproject.org/fonts/neuton/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
@@ -57,7 +57,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="building-out-additional-views.html" title="Building out additional views"
+          <a href="starting-adding-custom-views.html" title="Starting the Project, Adding Custom Views"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="planning-and-mockups.html" title="Planning and Mockups"
@@ -125,8 +125,21 @@ virtualenv --no-site-packages .</pre>
 <p>When ever you need to use this environment use the command:</p>
 <div class="highlight-python"><pre>source bin/activate</pre>
 </div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<img alt="../_images/activate.gif" src="../_images/activate.gif" />
+<p class="last">Remember to activate your virtual environment!
+If you neglect this, <cite>pip</cite> will behave in unpredictable ways
+you will get permission errors
+and other strange behaviour.</p>
+</div>
 <p>Then install pyramid using the pip command:</p>
 <div class="highlight-python"><pre>pip install pyramid</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><cite>pip</cite> stands for &#8220;Pip Installs Packages&#8221;, it is a package installer designed to install python packages (similar to apt-get on Debian or Ubuntu).
+It has been affectionately referred to as <a class="reference external" href="http://s3.pixane.com/pip_distribute.png">the new hotness</a>.</p>
 </div>
 </div>
 <div class="section" id="quick-tour-of-common-pyramid-commands">
@@ -148,7 +161,11 @@ Other tools which you may find useful are <cite>proutes</cite>, <cite>pviews</ci
 a handful of starting templates, which it calls <cite>scaffolds</cite>. We will use one
 of these templates to generate the directory structure of our application.</p>
 <p>Let&#8217;s create a quick project.</p>
-<div class="highlight-python"><pre>bin/pcreate -s zodb RecipeWebsite</pre>
+<div class="highlight-python"><pre>pcreate -s zodb RecipeWebsite</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the -s means &#8220;scaffold&#8221; and <cite>zodb</cite> is a type of scaffold (other available scaffolds are <cite>starter</cite> and <cite>alchemy</cite></p>
 </div>
 <p>You will see output similar to this (the output has been truncated):</p>
 <div class="highlight-python"><pre>Creating directory ...
@@ -183,7 +200,12 @@ Welcome to Pyramid.  Sorry for the convenience.</pre>
 ├── setup.cfg
 └── setup.py</pre>
 </div>
-<p>Enter the <cite>RecipeWebsite</cite> folder and install the new package:</p>
+<p>Enter the <cite>RecipeWebsite</cite> folder and install the new package.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<img alt="../_images/activate.gif" src="../_images/activate.gif" />
+<p class="last">Remember to activate your virtual environment!</p>
+</div>
 <div class="highlight-python"><pre>pip install -e .</pre>
 </div>
 <div class="admonition note">
@@ -194,8 +216,12 @@ Welcome to Pyramid.  Sorry for the convenience.</pre>
 <div class="highlight-python"><pre>...
 Finished processing dependencies for RecipeWebsite==0.0</pre>
 </div>
-<p>To view the new application your browser run the following command:</p>
+<p>To view the new application in your browser run the following command:</p>
 <div class="highlight-python"><pre>pserve development.ini</pre>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">sometimes pserve will fail because another service on your machine may already be running on the port for pserve (you can change the port in the <cite>.ini</cite> file or stop the conflicting service).</p>
 </div>
 <p>The result will be output like this:</p>
 <div class="highlight-python"><pre>...
@@ -237,9 +263,13 @@ directory is <cite>RecipeWebsite</cite>.</p>
 <ul>
 <li><p class="first">What is the benefit of using the <cite>pcreate</cite> command to create a directory structure.</p>
 </li>
+<li><p class="first">We used pip to install packages, in python circles packages are often called <cite>eggs</cite>, can you guess why?</p>
+</li>
 <li><p class="first">In what way do conventions make source code more maintainable?</p>
 </li>
 <li><p class="first">Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</p>
+</li>
+<li><p class="first">What do you think happens when you set the <cite>http_proxy</cite> environment variable.?</p>
 </li>
 <li><dl class="first docutils">
 <dt>What might cause an error like this:</dt>
@@ -276,8 +306,8 @@ directory is <cite>RecipeWebsite</cite>.</p>
   <p class="topless"><a href="planning-and-mockups.html"
                         title="previous chapter">Planning and Mockups</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="building-out-additional-views.html"
-                        title="next chapter">Building out additional views</a></p>
+  <p class="topless"><a href="starting-adding-custom-views.html"
+                        title="next chapter">Starting the Project, Adding Custom Views</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -302,7 +332,7 @@ directory is <cite>RecipeWebsite</cite>.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="building-out-additional-views.html" title="Building out additional views"
+          <a href="starting-adding-custom-views.html" title="Starting the Project, Adding Custom Views"
              >next</a> |</li>
         <li class="right" >
           <a href="planning-and-mockups.html" title="Planning and Mockups"

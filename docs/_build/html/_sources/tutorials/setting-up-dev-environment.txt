@@ -73,9 +73,18 @@ When ever you need to use this environment use the command::
 
    source bin/activate
 
+.. note::   .. image:: ../images/activate.gif
+   Remember to activate your virtual environment!
+   If you neglect this, `pip` will behave in unpredictable ways
+   you will get permission errors
+   and other strange behaviour.
+
 Then install pyramid using the pip command::
 
     pip install pyramid
+
+.. note:: `pip` stands for "Pip Installs Packages", it is a package installer designed to install python packages (similar to apt-get on Debian or Ubuntu).
+        It has been affectionately referred to as `the new hotness`_.
 
 Quick Tour of common Pyramid commands
 ----------------------------------------
@@ -101,7 +110,9 @@ of these templates to generate the directory structure of our application.
 
 Let's create a quick project.
 ::
-    bin/pcreate -s zodb RecipeWebsite
+    pcreate -s zodb RecipeWebsite
+
+.. note:: the -s means "scaffold" and `zodb` is a type of scaffold (other available scaffolds are `starter` and `alchemy`
 
 You will see output similar to this (the output has been truncated)::
 
@@ -138,7 +149,12 @@ The result will be a directory structure like this::
 	├── setup.cfg
 	└── setup.py
 
-Enter the `RecipeWebsite` folder and install the new package::
+Enter the `RecipeWebsite` folder and install the new package.
+
+.. note::   .. image:: ../images/activate.gif
+   Remember to activate your virtual environment!
+
+::
 
     pip install -e .
 
@@ -149,9 +165,11 @@ The result will be output similar to this (output truncated)::
     ...
     Finished processing dependencies for RecipeWebsite==0.0
 
-To view the new application your browser run the following command::
+To view the new application in your browser run the following command::
 
     pserve development.ini
+
+.. warning:: sometimes pserve will fail because another service on your machine may already be running on the port for pserve (you can change the port in the `.ini` file or stop the conflicting service).
 
 The result will be output like this::
 
@@ -200,11 +218,17 @@ Discussion
 
 - What is the benefit of using the `pcreate` command to create a directory structure.
 
+- We used pip to install packages, in python circles packages are often called `eggs`, can you guess why?
+
 - In what way do conventions make source code more maintainable?
 
-- Any thoughts on what happens when you use virtualenv and the `source bin/activate` command?
+- Any thoughts on what happens when you use virtualenv and the `source bin/activate` command? 
+
+- What do you think happens when you set the `http_proxy` environment variable.?
 
 - What might cause an error like this: 
        `socket.error: [Errno 48] Address already in use`
 
 .. _commandline pyramid: http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/commandline.html
+
+.. _the new hotness: http://s3.pixane.com/pip_distribute.png
