@@ -4,29 +4,30 @@
 Recipe Website Tutorial
 =================================================
 
-This tutorial is based on the `Pyramid` web application
-development framework.  Pyramid is an open source framework written 
-in Python and is part of the 
-`Pylons Project
-<http://docs.pylonsproject.org/>`_.  
+This tutorial is based on the `Bottle` web application
+development microframework. 
+Learn more about Bottle at `The Bottle Website
+<http://bottlepy.org/>`_.  
 
-According to the Pyramid documentation the following is the simplest pyramid application that you can make:
+According to the Bottle documentation the following is the simplest pyramid application that you can make:
 
-.. literalinclude:: ../code/snippets/helloworld.py
+.. literalinclude:: hello.py
 
 When saved to ``helloworld.py``, the above application can be run via:
 
 .. code-block:: text
 
-   $ easy_install pyramid
+   $ pip install bottle
    $ python helloworld.py
 
 When you visit ``http://localhost:8080/hello/world`` in a browser, you will
-see the text ``Hello, world!``.
+see the text ``Hello world!``.
 
-This is a simple single file application. As our tasks become more complex there comes a point
-when an application may be spread accross several files and possibly several packages. This tutorial
-will focus on building a "Recipe Website" following the conventions of a URL Traversal type Pyramid application.
+This is a simple single file application.
+ As our tasks become more complex there comes a point
+when we will need supporting templates, CSS, JS and image files.
+This tutorial will focus on building a "Recipe Website" using the Bottle 
+microframework.
 
 
 Tutorials
