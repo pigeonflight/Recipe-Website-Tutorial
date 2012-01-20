@@ -3,7 +3,7 @@
 
 .. _custom_views_chapter:
 
-Adding Custom Views
+Starting the Project, Adding Custom Views
 ===========================================
 
 A `view` (or view callable) is **python code that accepts a request and returns a response**. 
@@ -50,6 +50,44 @@ the location in the resource tree, the object type etc..
     Properly known as a 'view callable' is callable python code that accepts a request as an argument and returns a response. Some view callables also accept an additional `context` argument. 
 
 Since context is important when traversal is involved, most of the views that we work with on this project will be "context sensitive".
+
+
+
+Creating the project with pcreate
+-----------------------------------------
+
+In case you didn't get it working last time, this is a quick reminder of getting started.
+We'll create a project called `RecipeWebsite`.
+
+.. note:: Remember to declare the http_proxy BEFORE doing anything else.
+
+       for Unix
+            export http_proxy=scalpel:8080
+
+       for Windows
+            set http_proxy=scalpel:8080
+
+::
+
+    bin/pcreate -s zodb RecipeWebsite
+
+You will see output similar to this (the output has been truncated)::
+
+    Creating directory ...
+      Recursing into +package+
+    ...
+    Welcome to Pyramid.  Sorry for the convenience.
+
+The result will be a directory structure like this (we've left out the files, this just lists the directories::
+    
+	RecipeWebsite/
+	├── recipewebsite
+	│   ├── static
+	│   ├── templates
+
+Enter the `RecipeWebsite` folder and install the new package::
+
+    pip install -e .
 
 
 Configuring the root

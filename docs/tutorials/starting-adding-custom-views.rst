@@ -3,7 +3,7 @@
 
 .. _custom_views_chapter:
 
-Adding Custom Views
+Starting the Project, Adding Custom Views
 ===========================================
 
 A `view` (or view callable) is **python code that accepts a request and returns a response**. 

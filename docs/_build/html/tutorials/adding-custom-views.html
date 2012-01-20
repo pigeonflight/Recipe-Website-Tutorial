@@ -7,9 +7,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Adding Custom Views &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    <title>Starting the Project, Adding Custom Views &mdash; Recipe Website Tutorial 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pylons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,16 +25,30 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
-    <link rel="next" title="Building out additional views" href="additional-views.html" />
+    <link rel="next" title="Building out additional views" href="building-out-additional-views.html" />
     <link rel="prev" title="Setting up your development environment" href="setting-up-dev-environment.html" />
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/nobile/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/neuton/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
 <![endif]-->
+<link rel="shortcut icon" href="../_static/pyramid.ico"/>
 
   </head>
   <body>
+
+
+
+
+
+<div class="header-small">
+	
+	<div class="logo-small">
+		<a href="../index.html">
+      		<img class="logo" src="../_static/pyramid-small.png" alt="Logo"/>
+		</a>
+  	</div>
+</div>
 
     <div class="related">
       <h3>Navigation</h3>
@@ -43,12 +57,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="additional-views.html" title="Building out additional views"
+          <a href="building-out-additional-views.html" title="Building out additional views"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="setting-up-dev-environment.html" title="Setting up your development environment"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -57,8 +71,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="adding-custom-views">
-<span id="custom-views-chapter"></span><span id="index-0"></span><h1>Adding Custom Views<a class="headerlink" href="#adding-custom-views" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="starting-the-project-adding-custom-views">
+<span id="custom-views-chapter"></span><span id="index-0"></span><h1>Starting the Project, Adding Custom Views<a class="headerlink" href="#starting-the-project-adding-custom-views" title="Permalink to this headline">¶</a></h1>
 <p>A <cite>view</cite> (or view callable) is <strong>python code that accepts a request and returns a response</strong>.</p>
 <p>Views are often associated with templates. These templates work with the views to provide a user interface.
 The user experience for an application is based around a collection of views.</p>
@@ -99,6 +113,38 @@ below demonstrates a graphical representation of a simple resource tree of recip
 <dd>Properly known as a &#8216;view callable&#8217; is callable python code that accepts a request as an argument and returns a response. Some view callables also accept an additional <cite>context</cite> argument.</dd>
 </dl>
 <p>Since context is important when traversal is involved, most of the views that we work with on this project will be &#8220;context sensitive&#8221;.</p>
+</div>
+<div class="section" id="creating-the-project-with-pcreate">
+<h2>Creating the project with pcreate<a class="headerlink" href="#creating-the-project-with-pcreate" title="Permalink to this headline">¶</a></h2>
+<p>In case you didn&#8217;t get it working last time, this is a quick reminder of getting started.
+We&#8217;ll create a project called <cite>RecipeWebsite</cite>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Remember to declare the http_proxy BEFORE doing anything else.</p>
+<dl class="last docutils">
+<dt>for Unix</dt>
+<dd>export http_proxy=scalpel:8080</dd>
+<dt>for Windows</dt>
+<dd>set http_proxy=scalpel:8080</dd>
+</dl>
+</div>
+<div class="highlight-python"><pre>bin/pcreate -s zodb RecipeWebsite</pre>
+</div>
+<p>You will see output similar to this (the output has been truncated):</p>
+<div class="highlight-python"><pre>Creating directory ...
+  Recursing into +package+
+...
+Welcome to Pyramid.  Sorry for the convenience.</pre>
+</div>
+<p>The result will be a directory structure like this (we&#8217;ve left out the files, this just lists the directories:</p>
+<div class="highlight-python"><pre>RecipeWebsite/
+├── recipewebsite
+│   ├── static
+│   ├── templates</pre>
+</div>
+<p>Enter the <cite>RecipeWebsite</cite> folder and install the new package:</p>
+<div class="highlight-python"><pre>pip install -e .</pre>
+</div>
 </div>
 <div class="section" id="configuring-the-root">
 <h2>Configuring the root<a class="headerlink" href="#configuring-the-root" title="Permalink to this headline">¶</a></h2>
@@ -276,8 +322,9 @@ system still works.</li>
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Adding Custom Views</a><ul>
+<li><a class="reference internal" href="#">Starting the Project, Adding Custom Views</a><ul>
 <li><a class="reference internal" href="#key-concepts">Key concepts</a></li>
+<li><a class="reference internal" href="#creating-the-project-with-pcreate">Creating the project with pcreate</a></li>
 <li><a class="reference internal" href="#configuring-the-root">Configuring the root</a></li>
 <li><a class="reference internal" href="#replacing-the-default-template">Replacing the default template</a></li>
 <li><a class="reference internal" href="#try-it-out">Try it out</a></li>
@@ -292,7 +339,7 @@ system still works.</li>
   <p class="topless"><a href="setting-up-dev-environment.html"
                         title="previous chapter">Setting up your development environment</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="additional-views.html"
+  <p class="topless"><a href="building-out-additional-views.html"
                         title="next chapter">Building out additional views</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
@@ -318,12 +365,12 @@ system still works.</li>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="additional-views.html" title="Building out additional views"
+          <a href="building-out-additional-views.html" title="Building out additional views"
              >next</a> |</li>
         <li class="right" >
           <a href="setting-up-dev-environment.html" title="Setting up your development environment"
              >previous</a> |</li>
-        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

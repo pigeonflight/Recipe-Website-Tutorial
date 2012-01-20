@@ -1,0 +1,5 @@
+<div metal:use-macro="view.master_template">
+    <div metal:fill-slot="content">
+       <h1>I am the recipe template</h1>
+    </div>
+</div>
