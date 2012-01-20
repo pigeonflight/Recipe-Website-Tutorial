@@ -1,0 +1,378 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Building out additional views &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pylons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
+    <link rel="next" title="Resources URLs and Content Creation" href="resources-urls-content-creation.html" />
+    <link rel="prev" title="Setting up your development environment" href="setting-up-dev-environment.html" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/nobile/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/neuton/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+<link rel="shortcut icon" href="../_static/pyramid.ico"/>
+
+  </head>
+  <body>
+
+
+
+
+
+<div class="header-small">
+	
+	<div class="logo-small">
+		<a href="../index.html">
+      		<img class="logo" src="../_static/pyramid-small.png" alt="Logo"/>
+		</a>
+  	</div>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="resources-urls-content-creation.html" title="Resources URLs and Content Creation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="setting-up-dev-environment.html" title="Setting up your development environment"
+             accesskey="P">previous</a> |</li>
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="building-out-additional-views">
+<span id="additional-views-chapter"></span><span id="index-0"></span><h1>Building out additional views<a class="headerlink" href="#building-out-additional-views" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial we will:</p>
+<ul class="simple">
+<li>Explore how to use the <cite>views.py</cite> file to</li>
+</ul>
+<p>define new views and associate templates and contexts with these new views.</p>
+<ul class="simple">
+<li>Make use of ZPT (Chameleon template) macros to create a master template which will be shared by the other templates</li>
+<li>Register the master template in the <cite>views.py</cite> file.</li>
+<li>Alter templates so that they can use the new global/master template.</li>
+<li>Alter the <a href="#id1"><span class="problematic" id="id2">`</span></a>views.py`file so that all templates use the new master template.</li>
+</ul>
+<p>Remember that <cite>views.py</cite> is located in the <cite>recipewebsite</cite> folder (I&#8217;ve highlighted it
+with an &#8216;*&#8217;:</p>
+<div class="highlight-python"><pre>RecipeWebsite/recipewebsite/
+├── __init__.py
+├── models.py
+├── static
+├── templates
+│   └── mytemplate.pt
+├── tests.py
+├── views.py*</pre>
+</div>
+<p>We will include dummy data so that the views look realistic.</p>
+<p>We will also look at the use of macros.</p>
+<p>By convention, the procedure for adding a view is as follows:</p>
+<ul class="simple">
+<li>define the new view and associated template in the <cite>views.py</cite> file</li>
+<li>create the required template in the <cite>templates</cite> folder of the application</li>
+</ul>
+<div class="section" id="views-for-our-application">
+<h2>Views for our application<a class="headerlink" href="#views-for-our-application" title="Permalink to this headline">¶</a></h2>
+<p>Based on the nature of our application we can predict some of views
+that we will need.</p>
+<p>The names below represent reasonable descriptive choices for our Views:</p>
+<dl class="docutils">
+<dt>welcome</dt>
+<dd>a view which shows a welcome or home page, it is associated with the root of the website.</dd>
+<dt>recipe</dt>
+<dd>when viewing an individual recipe, this view will be used to display all the information for that recipe.</dd>
+<dt>ingredient</dt>
+<dd>search by ingredient, this view will return a list of recipes that have the particular ingredient.</dd>
+<dt>submitrecipe</dt>
+<dd>It should be possible to add a new recipe using the &#8216;submit a recipe&#8217; link.</dd>
+<dt>registration</dt>
+<dd>There needs to be a registration page, so that new users can sign up</dd>
+<dt>faq</dt>
+<dd>This will be a simple view that lists common questions about the web application</dd>
+</dl>
+</div>
+<div class="section" id="defining-a-new-view-in-views-py">
+<h2>Defining a new view in <cite>views.py</cite><a class="headerlink" href="#defining-a-new-view-in-views-py" title="Permalink to this headline">¶</a></h2>
+<p>We&#8217;ll start by adding a single new view called <cite>recipe_view</cite>, it will use a template
+called <cite>recipe.pt</cite>. We will add <cite>recipe.pt</cite> immediately afterwards.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyramid.view</span> <span class="kn">import</span> <span class="n">view_config</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">RecipeSite</span>
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">RecipeSite</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;templates/welcome.pt&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;project&#39;</span><span class="p">:</span><span class="s">&#39;RecipeWebsite&#39;</span><span class="p">}</span>
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s">&#39;templates/recipe.pt&#39;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;recipe_view&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">recipe</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-a-template-in-the-templates-folder">
+<h2>Adding a template in the <cite>templates</cite> folder<a class="headerlink" href="#adding-a-template-in-the-templates-folder" title="Permalink to this headline">¶</a></h2>
+<p>In the <cite>templates</cite> folder we will add a new template called <cite>recipe.pt</cite>. To make it very
+simple we will just put the phrase, &#8220;I am the recipe template&#8221;.</p>
+<div class="highlight-python"><pre>&lt;h1&gt;I am the recipe template&lt;/h1&gt;</pre>
+</div>
+</div>
+<div class="section" id="view-the-new-view-in-your-browser">
+<h2>View the new view in your browser<a class="headerlink" href="#view-the-new-view-in-your-browser" title="Permalink to this headline">¶</a></h2>
+<p>Start the application:</p>
+<div class="highlight-python"><pre>pserve development.ini</pre>
+</div>
+<p>Then visit localhost:6543/recipe_view, you should see something like the image below.</p>
+<blockquote>
+<div><img alt="../_images/recipetemplate.jpg" src="../_images/recipetemplate.jpg" />
+</div></blockquote>
+</div>
+<div class="section" id="passing-variables-to-the-template">
+<h2>Passing variables to the template<a class="headerlink" href="#passing-variables-to-the-template" title="Permalink to this headline">¶</a></h2>
+<p>Variables are generally passed to Chameleon templates as key value pairs of a python dictionary.
+Notice how this approach is used to define the &#8216;project&#8217; in the root template <cite>my_view</cite>.</p>
+<div class="highlight-python"><pre>@view_config(context=RecipeSite, renderer='templates/welcome.pt')
+        def my_view(request):
+            return {'project':'RecipeWebsite'}</pre>
+</div>
+</div>
+<div class="section" id="defining-macros-and-slots-creating-a-master-template">
+<h2>Defining macros and slots, creating a master template<a class="headerlink" href="#defining-macros-and-slots-creating-a-master-template" title="Permalink to this headline">¶</a></h2>
+<p>After a while we begin to see things that are common to all templates. Instead of repeating these elements
+across different templates, we can share these elements by creating a global or master template.
+New templates can be made to inherit from the master template.
+In our case the <cite>welcome.pt</cite> template is a good starting point.</p>
+<p>Based on our mockups, most pages will be simpler than the front page so we will create a more generic template
+based on the <cite>welcome.pt</cite> template.</p>
+<img alt="../_images/recipewebsite-template-innerpage.png" src="../_images/recipewebsite-template-innerpage.png" />
+<p>We&#8217;ll create a new master template called &#8216;global.pt&#8217; in the <cite>templates</cite> folder. We can use the <cite>welcome.pt</cite> template as the starting point.</p>
+<p>The simpler global template can be implemented with 3 rows instead of 5 in the welcome template.</p>
+<img alt="../_images/simpletemplate.jpg" src="../_images/simpletemplate.jpg" />
+<p>Pay attention to the following changes:</p>
+<ul class="simple">
+<li>the addition of a <cite>metal:define-macro</cite> line</li>
+<li>the addition of a <cite>define-slot</cite> which will act as a replaceable region.</li>
+<li>in general this template is more generic</li>
+</ul>
+<p>We name our template <cite>global.pt</cite>:</p>
+<div class="highlight-python"><pre>&lt;!DOCTYPE html&gt;
+&lt;html
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      metal:define-macro="layout"&gt;
+&lt;head&gt;
+&lt;head&gt;
+     &lt;style&gt;
+        &lt;!--
+        @import url(http://dl.dropbox.com/u/1004432/decogrids-12-gapless.css);
+        --&gt;
+      &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+     &lt;div id="row-1" class="row"&gt;
+           &lt;div class ="cell position-0 width-3"&gt;
+               LOGO will go here
+           &lt;/div&gt;
+           &lt;div class ="cell position-3 width-6"&gt;the menu&lt;/div&gt;
+           &lt;div class ="cell position-9 width-3"&gt;search&lt;/div&gt;
+     &lt;/div&gt;
+     &lt;div id="row-2" class="row"&gt;
+           &lt;div class ="cell position-0 width-3"&gt;side content&lt;/div&gt;
+           &lt;div class ="cell position-3 width-9"&gt;
+                     &lt;div metal:define-slot="content"&gt;
+                      main content
+                     &lt;/div&gt;
+           &lt;/div&gt;
+     &lt;/div&gt;
+     &lt;div id="row-3" class="row"&gt;
+           &lt;div class ="cell position-0 width-3"&gt;I heart Recipes&lt;/div&gt;
+           &lt;div class ="cell position-3 width-4"&gt;footer stuff&lt;/div&gt;
+           &lt;div class ="cell position-7 width-5"&gt;social stuff&lt;/div&gt;
+     &lt;/div&gt;
+&lt;/body&gt;</pre>
+</div>
+</div>
+<div class="section" id="using-macros-and-fill-slots-with-a-master-template">
+<h2>Using macros and fill-slots with a master template<a class="headerlink" href="#using-macros-and-fill-slots-with-a-master-template" title="Permalink to this headline">¶</a></h2>
+<p>Before our master template will work, we need to make it available via the <cite>views.py</cite> file.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyramid.view</span> <span class="kn">import</span> <span class="n">view_config</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">RecipeSite</span>
+<span class="kn">from</span> <span class="nn">pyramid.renderers</span> <span class="kn">import</span> <span class="n">get_renderer</span>
+
+<span class="k">def</span> <span class="nf">master_template</span><span class="p">():</span>
+    <span class="n">renderer</span> <span class="o">=</span> <span class="n">get_renderer</span><span class="p">(</span><span class="s">&quot;templates/global.pt&quot;</span><span class="p">)</span>
+    <span class="n">master</span> <span class="o">=</span> <span class="n">renderer</span><span class="o">.</span><span class="n">implementation</span><span class="p">()</span><span class="o">.</span><span class="n">macros</span><span class="p">[</span><span class="s">&#39;master&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">master</span>
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">RecipeSite</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;templates/welcome.pt&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;project&#39;</span><span class="p">:</span><span class="s">&#39;RecipeWebsite&#39;</span><span class="p">}</span>
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">renderer</span><span class="o">=</span><span class="s">&#39;templates/recipe.pt&#39;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;recipe_view&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">recipe</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">master</span><span class="p">:</span><span class="n">master_template</span><span class="p">()}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Notice a few things:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>the use of <cite>pyramid.renderers.get_renderer</cite>.</li>
+<li>the method master_template() is used by the recipe() method</li>
+</ul>
+</div></blockquote>
+</div>
+<p>We now have a <cite>master_template</cite> method, which is returned as the variable <cite>master</cite> by the <cite>recipe_view</cite>.</p>
+<p>The key commands when using ZPT macros are <cite>use-macro</cite> and <cite>fill-slot</cite>.</p>
+<p>Let&#8217;s update the <cite>recipe.pt</cite> template to use our new master template.
+The old template looked like this:</p>
+<div class="highlight-python"><pre>&lt;h1&gt;I am the recipe template&lt;/h1&gt;</pre>
+</div>
+<p>Thanks to the changes in <cite>views.py</cite>, the new <cite>recipe.pt</cite> template now uses the <cite>global.pt</cite> master macro and looks like this:</p>
+<div class="highlight-python"><pre>&lt;div metal:use-macro="master"&gt;
+    &lt;div metal:fill-slot="content"&gt;
+       &lt;h1&gt;I am the recipe template&lt;/h1&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+</div>
+<p>Launch the application using the <cite>pserve development.ini</cite> command and visit <a class="reference external" href="http://localhost:6543/recipe_view">http://localhost:6543/recipe_view</a></p>
+<p>It should look similar to this:</p>
+<img alt="../_images/recipetemplate-with-globaltemplate.jpg" src="../_images/recipetemplate-with-globaltemplate.jpg" />
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>If you&#8217;ve worked with standard PHP you may notice a difference between the view/template approach
+and the standard approach of embedding html and logic in PHP.</li>
+<li>If the template is called &#8216;global.pt&#8217;, how is it that we were able to refer to it as &#8216;master&#8217; in the updated template?</li>
+</ul>
+</div>
+<div class="section" id="lab-exercises">
+<h2>Lab Exercises<a class="headerlink" href="#lab-exercises" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p class="first">Try adding the following to any of your .pt templates:</p>
+<div class="highlight-python"><pre>${request}</pre>
+</div>
+<p>Observe the output.</p>
+</li>
+<li><p class="first">Configure views.py to support the additional templates that we discussed including:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ingredients</li>
+<li>faqs</li>
+<li>registration</li>
+<li>submitrecipe</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Create the corresponding templates for these views:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ingredients</li>
+<li>faqs</li>
+<li>registration</li>
+<li>submitrecipe</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Building out additional views</a><ul>
+<li><a class="reference internal" href="#views-for-our-application">Views for our application</a></li>
+<li><a class="reference internal" href="#defining-a-new-view-in-views-py">Defining a new view in <cite>views.py</cite></a></li>
+<li><a class="reference internal" href="#adding-a-template-in-the-templates-folder">Adding a template in the <cite>templates</cite> folder</a></li>
+<li><a class="reference internal" href="#view-the-new-view-in-your-browser">View the new view in your browser</a></li>
+<li><a class="reference internal" href="#passing-variables-to-the-template">Passing variables to the template</a></li>
+<li><a class="reference internal" href="#defining-macros-and-slots-creating-a-master-template">Defining macros and slots, creating a master template</a></li>
+<li><a class="reference internal" href="#using-macros-and-fill-slots-with-a-master-template">Using macros and fill-slots with a master template</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+<li><a class="reference internal" href="#lab-exercises">Lab Exercises</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="setting-up-dev-environment.html"
+                        title="previous chapter">Setting up your development environment</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="resources-urls-content-creation.html"
+                        title="next chapter">Resources URLs and Content Creation</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="resources-urls-content-creation.html" title="Resources URLs and Content Creation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="setting-up-dev-environment.html" title="Setting up your development environment"
+             >previous</a> |</li>
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, David Bain.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

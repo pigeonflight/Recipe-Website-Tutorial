@@ -1,0 +1,381 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Starting the Project, Adding Custom Views &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/pylons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
+    <link rel="next" title="Building out additional views" href="building-out-additional-views.html" />
+    <link rel="prev" title="Setting up your development environment" href="setting-up-dev-environment.html" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/nobile/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/neuton/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+<link rel="shortcut icon" href="../_static/pyramid.ico"/>
+
+  </head>
+  <body>
+
+
+
+
+
+<div class="header-small">
+	
+	<div class="logo-small">
+		<a href="../index.html">
+      		<img class="logo" src="../_static/pyramid-small.png" alt="Logo"/>
+		</a>
+  	</div>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="building-out-additional-views.html" title="Building out additional views"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="setting-up-dev-environment.html" title="Setting up your development environment"
+             accesskey="P">previous</a> |</li>
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="starting-the-project-adding-custom-views">
+<span id="custom-views-chapter"></span><span id="index-0"></span><h1>Starting the Project, Adding Custom Views<a class="headerlink" href="#starting-the-project-adding-custom-views" title="Permalink to this headline">¶</a></h1>
+<p>A <cite>view</cite> (or view callable) is <strong>python code that accepts a request and returns a response</strong>.</p>
+<p>Views are often associated with templates. These templates work with the views to provide a user interface.
+The user experience for an application is based around a collection of views.</p>
+<p>In a Pyramid application views and their templates are normally managed in the <cite>views.py</cite> file.</p>
+<p>Below is what our <cite>views.py</cite> file should look like at this time:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyramid.view</span> <span class="kn">import</span> <span class="n">view_config</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">RecipeSite</span>
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">RecipeSite</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;templates/mytemplate.pt&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;project&#39;</span><span class="p">:</span><span class="s">&#39;RecipeWebsite&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The <cite>&#64;view_config</cite> decorator is placed just before the view and is used to tell the view its
+<cite>context</cite> and <cite>renderer</cite>, which in this case is the <cite>mytemplate.pt</cite> template.</p>
+<div class="section" id="key-concepts">
+<h2>Key concepts<a class="headerlink" href="#key-concepts" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>resource tree</strong></dt>
+<dd><p class="first">The collection of traversable resources within an application. It is most comparable to a filesystem. The diagram
+below demonstrates a graphical representation of a simple resource tree of recipes.</p>
+<img alt="../_images/reciperesourcetree.jpg" src="../_images/reciperesourcetree.jpg" />
+<p class="last">The traversal path highlighted in pink could also be represented as the following path <strong>/recipe/preparationtime</strong></p>
+</dd>
+<dt><strong>traversal</strong></dt>
+<dd>The act of stepping through a resource tree. Traversal is similar to navigating through</dd>
+</dl>
+<p>a folder hierarchy in a filesystem. Depending on the type of object being viewed</p>
+<dl class="docutils">
+<dt><strong>context</strong></dt>
+<dd>The context refers to  a resource in the resource tree which is accessed during traversal. The properties associated with the current context will vary but can include properties such as</dd>
+</dl>
+<p>the location in the resource tree, the object type etc..</p>
+<dl class="docutils">
+<dt><strong>root</strong></dt>
+<dd>This refers to the object at the top of the resource tree. This object is usually configured to provide a <cite>root factory</cite>, all other objects are added below the root. This is analagous to the root of a filesystem.</dd>
+<dt><strong>view</strong></dt>
+<dd>Properly known as a &#8216;view callable&#8217; is callable python code that accepts a request as an argument and returns a response. Some view callables also accept an additional <cite>context</cite> argument.</dd>
+</dl>
+<p>Since context is important when traversal is involved, most of the views that we work with on this project will be &#8220;context sensitive&#8221;.</p>
+</div>
+<div class="section" id="creating-the-project-with-pcreate">
+<h2>Creating the project with pcreate<a class="headerlink" href="#creating-the-project-with-pcreate" title="Permalink to this headline">¶</a></h2>
+<p>In case you didn&#8217;t get it working last time, this is a quick reminder of getting started.
+We&#8217;ll create a project called <cite>RecipeWebsite</cite>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Remember to declare the http_proxy BEFORE doing anything else.</p>
+<dl class="last docutils">
+<dt>for Unix</dt>
+<dd>export http_proxy=scalpel:8080</dd>
+<dt>for Windows</dt>
+<dd>set http_proxy=scalpel:8080</dd>
+</dl>
+</div>
+<div class="highlight-python"><pre>bin/pcreate -s zodb RecipeWebsite</pre>
+</div>
+<p>You will see output similar to this (the output has been truncated):</p>
+<div class="highlight-python"><pre>Creating directory ...
+  Recursing into +package+
+...
+Welcome to Pyramid.  Sorry for the convenience.</pre>
+</div>
+<p>The result will be a directory structure like this (we&#8217;ve left out the files, this just lists the directories:</p>
+<div class="highlight-python"><pre>RecipeWebsite/
+├── recipewebsite
+│   ├── static
+│   ├── templates</pre>
+</div>
+<p>Enter the <cite>RecipeWebsite</cite> folder and install the new package:</p>
+<div class="highlight-python"><pre>pip install -e .</pre>
+</div>
+</div>
+<div class="section" id="configuring-the-root">
+<h2>Configuring the root<a class="headerlink" href="#configuring-the-root" title="Permalink to this headline">¶</a></h2>
+<p>Look under the <cite>recipewebsite</cite> directory
+(I&#8217;ve added a &#8216;*&#8217; at the end of important files).</p>
+<div class="highlight-python"><pre>RecipeWebsite/recipewebsite/
+├── __init__.py
+├── models.py*
+├── static
+│   ├── favicon.ico
+│   ├── footerbg.png
+│   ├── headerbg.png
+│   ├── ie6.css
+│   ├── middlebg.png
+│   ├── pylons.css
+│   ├── pyramid-small.png
+│   ├── pyramid.png
+│   └── transparent.gif
+├── templates
+│   └── mytemplate.pt*
+├── tests.py
+├── views.py*</pre>
+</div>
+<p>The <cite>root</cite> object is configured in the <cite>models.py</cite> file.</p>
+<p>Instead of the name <cite>MyModel</cite>, we want to give our root the more descriptive name <cite>RecipeSite</cite>.</p>
+<p>This is a cosmetic change, but the new name makes more sense for a recipe website.</p>
+<p>The new models.py file will look like this.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">persistent.mapping</span> <span class="kn">import</span> <span class="n">PersistentMapping</span>
+
+<span class="k">class</span> <span class="nc">RecipeSite</span><span class="p">(</span><span class="n">PersistentMapping</span><span class="p">):</span>
+    <span class="n">__parent__</span> <span class="o">=</span> <span class="n">__name__</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">appmaker</span><span class="p">(</span><span class="n">zodb_root</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="s">&#39;app_root&#39;</span> <span class="ow">in</span> <span class="n">zodb_root</span><span class="p">:</span>
+        <span class="n">app_root</span> <span class="o">=</span> <span class="n">RecipeSite</span><span class="p">()</span>
+        <span class="n">zodb_root</span><span class="p">[</span><span class="s">&#39;app_root&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">app_root</span>
+        <span class="kn">import</span> <span class="nn">transaction</span>
+        <span class="n">transaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">zodb_root</span><span class="p">[</span><span class="s">&#39;app_root&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>Important: The <cite>views.py</cite> file depends on the <cite>models.py</cite> file so before we can use our new model</dt>
+<dd>we need to make appropriate adjustments to the <cite>views.py</cite> file. See if you can figure out</dd>
+</dl>
+<p>what needs to be done.</p>
+</div>
+<div class="section" id="replacing-the-default-template">
+<h2>Replacing the default template<a class="headerlink" href="#replacing-the-default-template" title="Permalink to this headline">¶</a></h2>
+<p>The <cite>views.py</cite> file contains configuration information which makes reference to the default template.
+We will replace the current template called <cite>mytemplate.pt</cite> with <a class="reference external" href="https://gist.github.com/1636270">the code from the previous tutorial</a></p>
+<p>If we look at the <cite>mytemplate.pt</cite> file there is only one dynamic variable called ${project}. Here is the snippet from
+the template:</p>
+<div class="highlight-python"><pre>&lt;div id="middle"&gt;
+  &lt;div class="middle align-center"&gt;
+    &lt;p class="app-welcome"&gt;
+      Welcome to &lt;span class="app-name"&gt;${project}&lt;/span&gt;, an application generated by&lt;br/&gt;
+      the Pyramid web application development framework.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+</div>
+<p>Let&#8217;s create a template of our own based on <a class="reference external" href="https://gist.github.com/1636270">the code from the previous tutorial</a>, this time around
+we will also add proper doctypes and make it a fully valid html file.
+We just want to keep the welcome content:</p>
+<div class="highlight-python"><pre>&lt;p class="app-welcome"&gt;
+  Welcome to &lt;span class="app-name"&gt;${project}&lt;/span&gt;, an application generated by&lt;br/&gt;
+  the Pyramid web application development framework.
+&lt;/p&gt;</pre>
+</div>
+<dl class="docutils">
+<dt>Using our previous grid we&#8217;ll create a new template in the <cite>templates</cite> folder</dt>
+<dd>called <cite>welcome.pt</cite> which will look</dd>
+</dl>
+<p>something like this:</p>
+<div class="highlight-python"><pre>&lt;!DOCTYPE html&gt;
+ &lt;html&gt;
+  &lt;head&gt;
+     &lt;style&gt;
+        &lt;!--
+        @import url(http://dl.dropbox.com/u/1004432/decogrids-12-gapless.css);
+        --&gt;
+      &lt;/style&gt;
+  &lt;/head&gt;
+   &lt;body&gt;
+
+     &lt;div id="row-1" class="row"&gt;
+           &lt;div class ="cell position-0 width-3"&gt;
+                 &lt;p class="app-welcome"&gt;
+                   Welcome to &lt;span class="app-name"&gt;${project}&lt;/span&gt;,
+                   an application generated by&lt;br/&gt;
+                   the Pyramid web application development framework.
+                 &lt;/p&gt;
+         &lt;/div&gt;
+           &lt;div class ="cell position-3 width-6"&gt;the menu&lt;/div&gt;
+           &lt;div class ="cell position-9 width-3"&gt;search&lt;/div&gt;
+     &lt;/div&gt;
+     &lt;div id="row-2" class="row"&gt;
+           &lt;div class ="cell position-0 width-3"&gt;submit a recipe&lt;/div&gt;
+           &lt;div class ="cell position-3 width-9"&gt;highlight recipes&lt;/div&gt;
+     &lt;/div&gt;
+     &lt;div id="row-3" class="row"&gt;
+           &lt;div class ="cell position-0 width-3"&gt;popular ingredients&lt;/div&gt;
+           &lt;div class ="cell position-3 width-4"&gt;new recipes box&lt;/div&gt;
+           &lt;div class ="cell position-7 width-5"&gt;popular recipes box&lt;/div&gt;
+     &lt;/div&gt;
+     &lt;div id="row-4" class="row"&gt;
+
+           &lt;div class ="cell position-3 width-9"&gt;Recipe Categories&lt;/div&gt;
+     &lt;/div&gt;
+     &lt;div id="row-5" class="row"&gt;
+           &lt;div class ="cell position-0 width-3"&gt;I heart Recipes&lt;/div&gt;
+           &lt;div class ="cell position-3 width-4"&gt;footer stuff&lt;/div&gt;
+           &lt;div class ="cell position-7 width-5"&gt;social stuff&lt;/div&gt;
+     &lt;/div&gt;
+     &lt;/body&gt;</pre>
+</div>
+<p>We need to edit the <cite>views.py</cite> file so that our new <cite>welcome.pt</cite> template is used instead of
+the <cite>mytemplate.pt</cite> template.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pyramid.view</span> <span class="kn">import</span> <span class="n">view_config</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">RecipeSite</span>
+
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">context</span><span class="o">=</span><span class="n">RecipeSite</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;templates/welcome.pt&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;project&#39;</span><span class="p">:</span><span class="s">&#39;RecipeWebsite&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="try-it-out">
+<h2>Try it out<a class="headerlink" href="#try-it-out" title="Permalink to this headline">¶</a></h2>
+<p>It is recommended that you delete the Data.fs file if it exists. This is ZODB file where the resource tree is stored. Otherwise it is possible that the old version of the resource tree with the &#8216;MyModel&#8217; root object will persist and cause errors.</p>
+<p>Go to the application directory and run:</p>
+<div class="highlight-python"><pre>pserve development.ini</pre>
+</div>
+<p>I got the following view (the dynamic part of the template has been highlighted):</p>
+<img alt="../_images/recipewebsite-template.jpg" src="../_images/recipewebsite-template.jpg" />
+</div>
+<div class="section" id="static-resources">
+<h2>Static resources<a class="headerlink" href="#static-resources" title="Permalink to this headline">¶</a></h2>
+<p>For our purposes we will want to have static files for css, javascript and image resources. By convention these resources are stored in the <cite>static</cite> folder.</p>
+<p>Here are some things we can do:</p>
+<ul class="simple">
+<li>Add our own custom images to the static folder</li>
+<li>Move all css to the static folder, in our case we have an external link for our grid framework
+we will choose to host the grid css in our own static folder.</li>
+</ul>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>What is a request?</li>
+<li>What is a response?</li>
+<li>The <cite>root factory</cite> (as the name implies) is what actually makes our new application root. Can you figure out where
+(meaning in what file) the <cite>root factory</cite> is declared and how it relates to the <cite>models.py</cite> file?</li>
+</ul>
+</div>
+<div class="section" id="lab-exercises">
+<h2>Lab Exercises<a class="headerlink" href="#lab-exercises" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Create a new css file in the <cite>static</cite> folder, name it style.css</li>
+<li>Link to the style.css file from the welcome.pt.</li>
+<li>Make changes to the style.css
+so that the welcome.pt view looks more like the mockup.</li>
+<li>Add the css file that imports the grid styles to the <cite>static</cite> folder also and make sure that the grid
+system still works.</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Starting the Project, Adding Custom Views</a><ul>
+<li><a class="reference internal" href="#key-concepts">Key concepts</a></li>
+<li><a class="reference internal" href="#creating-the-project-with-pcreate">Creating the project with pcreate</a></li>
+<li><a class="reference internal" href="#configuring-the-root">Configuring the root</a></li>
+<li><a class="reference internal" href="#replacing-the-default-template">Replacing the default template</a></li>
+<li><a class="reference internal" href="#try-it-out">Try it out</a></li>
+<li><a class="reference internal" href="#static-resources">Static resources</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+<li><a class="reference internal" href="#lab-exercises">Lab Exercises</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="setting-up-dev-environment.html"
+                        title="previous chapter">Setting up your development environment</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="building-out-additional-views.html"
+                        title="next chapter">Building out additional views</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="building-out-additional-views.html" title="Building out additional views"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="setting-up-dev-environment.html" title="Setting up your development environment"
+             >previous</a> |</li>
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, David Bain.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
