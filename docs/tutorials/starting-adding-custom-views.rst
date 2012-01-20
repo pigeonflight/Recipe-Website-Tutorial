@@ -40,7 +40,7 @@ Creating the project with pcreate
 In case you didn't get it working last time, this is a quick reminder of getting started.
 We'll create a project called `RecipeWebsite`.
 
-.. note:: Remember to declare the http_proxy BEFORE doing anything else.
+.. note:: If you are on campus, remember to declare the http_proxy BEFORE doing anything else.
 
        for Unix
             export http_proxy=scalpel:8080
