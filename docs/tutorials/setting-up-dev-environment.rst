@@ -216,7 +216,7 @@ directory is `RecipeWebsite`.
 Discussion
 -----------
 
-- What is the benefit of using the `pcreate` command to create a directory structure.
+- What is the benefit of using the `pcreate` command to create a directory structure?
 
 - We used pip to install packages, in python circles packages are often called `eggs`, can you guess why?
 
