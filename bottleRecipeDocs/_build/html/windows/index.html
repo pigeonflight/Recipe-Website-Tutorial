@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installing Pyramid and Virtualenv on Windows behind the UWI proxy &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installing-pyramid-and-virtualenv-on-windows-behind-the-uwi-proxy">
+<span id="setting-up-windows-dev-chapter"></span><span id="index-0"></span><h1>Installing Pyramid and Virtualenv on Windows behind the UWI proxy<a class="headerlink" href="#installing-pyramid-and-virtualenv-on-windows-behind-the-uwi-proxy" title="Permalink to this headline">¶</a></h1>
+<p>Before attempting any of the instructions below, <a class="reference external" href="http://python.org/download/">download and install python2.7</a>.</p>
+<ol class="arabic simple">
+<li>Open <a class="reference external" href="http://peak.telecommunity.com/dist/ez_setup.py">http://peak.telecommunity.com/dist/ez_setup.py</a> in a webbrowser</li>
+<li>Then save the file. (In Firefox you can select “save page as”).</li>
+<li>Save the file to your Desktop.</li>
+</ol>
+<p>Open the Windows command line (cmd)</p>
+<p>and install virtualenv using the following commands</p>
+<div class="highlight-python"><pre>set http_proxy=scalpel:8080
+python Desktop\ez_setup.py
+D:\Python27\Scripts\easy_install virtualenv</pre>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>When on campus, the first thing that you should do after launching the command line is to set the http_proxy.</p>
+<blockquote>
+<div>set http_proxy=scalpel:8080</div></blockquote>
+<p>Other proxies include proxy3:8080 proxy-cluster:8080</p>
+<p class="last"><strong>If this is NOT set the other commands will fail whenever they need to download items from the internet.</strong></p>
+</div>
+<p>You will see output similar to this:</p>
+<img alt="../_images/installingvirtualenv.png" src="../_images/installingvirtualenv.png" />
+<p>Create and activate a virtualenv:</p>
+<div class="highlight-python"><pre>D:\Python27\Scripts\virtualenv venv
+venv\Scripts\activate</pre>
+</div>
+<p>Below is sample output from a command line session with a virtualenv named <cite>venv</cite> activated.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Notice the (venv) in brackets at the beginning of the command line prompt. This is how you can know that your virtual enviroment is active.</p>
+</div>
+<p>You can now install pyramid using the following commands:</p>
+<div class="highlight-python"><pre>pip install pyramid</pre>
+</div>
+<p>It is recommended that you do all your development in a folder on your Desktop, Create a folder called <cite>code</cite>. This is where you will create your custom packages.</p>
+<img alt="../_images/createcodefolder.jpg" src="../_images/createcodefolder.jpg" />
+<div class="section" id="creating-and-activating-a-new-application">
+<h2>Creating and activating a new application<a class="headerlink" href="#creating-and-activating-a-new-application" title="Permalink to this headline">¶</a></h2>
+<p>Do this in your code folder.</p>
+<p>You can do this by launching the commandline and running the following commands:</p>
+<div class="highlight-python"><pre>cd Desktop\code
+pcreate -s zodb MyRecipe</pre>
+</div>
+<p>Then activate the new package using the following commands:</p>
+<div class="highlight-python"><pre>cd MyRecipe
+python setup.py develop</pre>
+</div>
+<p>View the result in your file browser:</p>
+<div class="highlight-python"><pre>explorer .\</pre>
+</div>
+<img alt="../_images/explorerview.png" src="../_images/explorerview.png" />
+<p>To launch the new application run the following command:</p>
+<div class="highlight-python"><pre>pserve development.ini</pre>
+</div>
+<p>Then visit <a class="reference external" href="http://localhost:6543">http://localhost:6543</a> in your webbrowser. The application will look like this:</p>
+<div class="highlight-python"><pre>.. image:: ../images/pyramidonwindows.png</pre>
+</div>
+</div>
+<div class="section" id="important-notes-about-windows">
+<h2>Important notes about Windows<a class="headerlink" href="#important-notes-about-windows" title="Permalink to this headline">¶</a></h2>
+<p>The set http_proxy command is very important on campus
+<cite>set http_proxy=scalpel:8080</cite> (or other proxy) is VERY IMPORTANT!!</p>
+<p>Use your &#8216;Desktop&#8217; as recommended, NOT &#8216;My Documents&#8217;, we don&#8217;t want to have any issues
+due to working with paths that have spaces, we haven&#8217;t confirmed this to be an issue, but
+we don&#8217;t recommend that you test it.</p>
+</div>
+<div class="section" id="useful-tips">
+<h2>Useful tips<a class="headerlink" href="#useful-tips" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><blockquote>
+<div><ol class="arabic simple">
+<li>In explorer, open Tools &gt; Folder Options &gt; File Types tab</li>
+<li>For Windows XP: Go to NONE / Folder.</li>
+</ol>
+<ol class="arabic simple" start="4">
+<li>For Windows 2000: Press n to scroll to the N/A section.</li>
+<li>For Windows NT/98/95: Press f to scroll to the Folders section.</li>
+<li>Select the entry labeled Folder</li>
+<li>For Windows 2000/XP: Press Advanced button.</li>
+<li>For Windows NT/98/95: Press Edit button.</li>
+<li>Select New</li>
+</ol>
+</div></blockquote>
+<ol class="arabic simple" start="10">
+<li>In the action block type &#8220;Command Prompt&#8221; without the quotes.</li>
+<li>In the app block type &#8220;cmd.exe&#8221; without the quotes.</li>
+<li>Save and exit Folder Options.</li>
+</ol>
+</div></blockquote>
+<p>Now right click on Start, you should have a new drop down option. Open explorer and right click on a folder, select Command Prompt and a command window opens in that folder.</p>
+<p>Read this thread for some information on how to remove the context menu:</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installing Pyramid and Virtualenv on Windows behind the UWI proxy</a><ul>
+<li><a class="reference internal" href="#creating-and-activating-a-new-application">Creating and activating a new application</a></li>
+<li><a class="reference internal" href="#important-notes-about-windows">Important notes about Windows</a></li>
+<li><a class="reference internal" href="#useful-tips">Useful tips</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/windows/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, David Bain.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
