@@ -71,7 +71,7 @@ When ever you need to use this environment use the command::
    cd venv
    source bin/activate
 
-On Windows the following is enough
+On Windows the following is enough::
 
    cd venv
    Scripts/activate
