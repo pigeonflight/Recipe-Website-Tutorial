@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
-    <link rel="next" title="Starting the Project, Adding Custom Views" href="starting-adding-custom-views.html" />
+    <link rel="next" title="Starting the Project, Routes and Static Resources" href="starting-routes-static-resources.html" />
     <link rel="prev" title="Planning and Mockups" href="planning-and-mockups.html" /> 
   </head>
   <body>
@@ -37,7 +37,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="starting-adding-custom-views.html" title="Starting the Project, Adding Custom Views"
+          <a href="starting-routes-static-resources.html" title="Starting the Project, Routes and Static Resources"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="planning-and-mockups.html" title="Planning and Mockups"
@@ -104,10 +104,10 @@ virtualenv --no-site-packages .</pre>
 <div class="highlight-python"><pre>cd venv
 source bin/activate</pre>
 </div>
-<p>On Windows the following is enough</p>
-<blockquote>
-<div>cd venv
-Scripts/activate</div></blockquote>
+<p>On Windows the following is enough:</p>
+<div class="highlight-python"><pre>cd venv
+Scripts/activate</pre>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <img alt="../_images/activate.gif" src="../_images/activate.gif" />
@@ -163,55 +163,15 @@ Your directory will now look like this</p>
 <p class="last">sometimes this will will fail because another service on your machine may already be running on the port  (you can change the port in the <cite>app.py</cite> file or stop the conflicting service).</p>
 </div>
 <p>Visiting <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> in your browser will display the following text in your browser:</p>
-<div class="highlight-python"><pre>.. image:: ../images/pyramid_app_running.jpg</pre>
-</div>
-</div>
-<div class="section" id="requirements-and-setup-py">
-<h2>Requirements and setup.py<a class="headerlink" href="#requirements-and-setup-py" title="Permalink to this headline">¶</a></h2>
-<p>If you need new functionality you can declare a requirement in your
-new package. This will prove very useful in the future.</p>
-<p>Take a look at <cite>setup.py</cite>
-Note the <cite>requires</cite> lines:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">requires</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s">&#39;pyramid&#39;</span><span class="p">,</span>
-    <span class="s">&#39;pyramid_zodbconn&#39;</span><span class="p">,</span>
-    <span class="s">&#39;pyramid_tm&#39;</span><span class="p">,</span>
-    <span class="s">&#39;pyramid_debugtoolbar&#39;</span><span class="p">,</span>
-    <span class="s">&#39;ZODB3&#39;</span><span class="p">,</span>
-    <span class="s">&#39;waitress&#39;</span><span class="p">,</span>
-    <span class="p">]</span>
-</pre></div>
-</div>
-<p>Each of these refers to a package that our <cite>RecipeWebsite</cite> application depends on.
-When the <cite>python setup.py develop</cite> command is invoked the required dependencies are installed.</p>
-</div>
-<div class="section" id="where-the-code-lives">
-<h2>Where the code lives<a class="headerlink" href="#where-the-code-lives" title="Permalink to this headline">¶</a></h2>
-<p>Throughout this project, most of your code and customizations will be done
-in the <cite>recipewebsite</cite> subdirectory.
-Note that the subdirectory is all lowercase, even though the package
-directory is <cite>RecipeWebsite</cite>.</p>
-<img alt="../_images/location.png" src="../_images/location.png" />
 </div>
 <div class="section" id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">What is the benefit of using the <cite>pcreate</cite> command to create a directory structure?</p>
-</li>
-<li><p class="first">We used pip to install packages, in python circles packages are often called <cite>eggs</cite>, can you guess why?</p>
-</li>
-<li><p class="first">In what way do conventions make source code more maintainable?</p>
-</li>
-<li><p class="first">Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</p>
-</li>
-<li><p class="first">What do you think happens when you set the <cite>http_proxy</cite> environment variable.?</p>
-</li>
-<li><dl class="first docutils">
-<dt>What might cause an error like this:</dt>
-<dd><p class="first last"><cite>socket.error: [Errno 48] Address already in use</cite></p>
-</dd>
-</dl>
-</li>
+<ul class="simple">
+<li>What is the benefit have a standard directory structure?</li>
+<li>We used pip to install the Bottle package, in python circles packages are often called <cite>eggs</cite>, can you guess why?</li>
+<li>In what way do conventions make source code more maintainable?</li>
+<li>Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</li>
+<li>What do you think happens when you set the <cite>http_proxy</cite> environment variable.?</li>
 </ul>
 </div>
 </div>
@@ -229,8 +189,6 @@ directory is <cite>RecipeWebsite</cite>.</p>
 <li><a class="reference internal" href="#dealing-with-on-campus-proxies">Dealing with on campus proxies</a></li>
 <li><a class="reference internal" href="#using-virtualenv">Using Virtualenv</a></li>
 <li><a class="reference internal" href="#creating-the-scaffolds-for-our-project">Creating the scaffolds for our project</a></li>
-<li><a class="reference internal" href="#requirements-and-setup-py">Requirements and setup.py</a></li>
-<li><a class="reference internal" href="#where-the-code-lives">Where the code lives</a></li>
 <li><a class="reference internal" href="#discussion">Discussion</a></li>
 </ul>
 </li>
@@ -240,8 +198,8 @@ directory is <cite>RecipeWebsite</cite>.</p>
   <p class="topless"><a href="planning-and-mockups.html"
                         title="previous chapter">Planning and Mockups</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="starting-adding-custom-views.html"
-                        title="next chapter">Starting the Project, Adding Custom Views</a></p>
+  <p class="topless"><a href="starting-routes-static-resources.html"
+                        title="next chapter">Starting the Project, Routes and Static Resources</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/tutorials/setting-up-dev-environment.txt"
@@ -271,7 +229,7 @@ directory is <cite>RecipeWebsite</cite>.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="starting-adding-custom-views.html" title="Starting the Project, Adding Custom Views"
+          <a href="starting-routes-static-resources.html" title="Starting the Project, Routes and Static Resources"
              >next</a> |</li>
         <li class="right" >
           <a href="planning-and-mockups.html" title="Planning and Mockups"

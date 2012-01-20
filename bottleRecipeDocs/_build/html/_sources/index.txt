@@ -40,7 +40,7 @@ Each tutorial includes discussion questions. It should be possible to work throu
 
    tutorials/planning-and-mockups
    tutorials/setting-up-dev-environment
-   tutorials/starting-adding-custom-views
+   tutorials/starting-routes-static-resources
    tutorials/building-out-additional-views
    tutorials/resources-urls-content-creation
 
