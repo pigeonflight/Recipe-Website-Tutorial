@@ -9,7 +9,7 @@
     
     <title>Setting up your development environment &mdash; Recipe Website Tutorial 1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/pyramid.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pylons.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -25,16 +25,30 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
-    <link rel="next" title="Adding Custom Views" href="views.html" />
+    <link rel="next" title="Building out additional views" href="building-out-additional-views.html" />
     <link rel="prev" title="Planning and Mockups" href="planning-and-mockups.html" />
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/nobile/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://static.pylonsproject.org/fonts/neuton/stylesheet.css" type="text/css" media="screen" charset="utf-8" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" href="../_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
 <![endif]-->
+<link rel="shortcut icon" href="../_static/pyramid.ico"/>
 
   </head>
   <body>
+
+
+
+
+
+<div class="header-small">
+	
+	<div class="logo-small">
+		<a href="../index.html">
+      		<img class="logo" src="../_static/pyramid-small.png" alt="Logo"/>
+		</a>
+  	</div>
+</div>
 
     <div class="related">
       <h3>Navigation</h3>
@@ -43,12 +57,12 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="views.html" title="Adding Custom Views"
+          <a href="building-out-additional-views.html" title="Building out additional views"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="planning-and-mockups.html" title="Planning and Mockups"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -60,7 +74,11 @@
   <div class="section" id="setting-up-your-development-environment">
 <span id="setting-up-dev-chapter"></span><span id="index-0"></span><h1>Setting up your development environment<a class="headerlink" href="#setting-up-your-development-environment" title="Permalink to this headline">¶</a></h1>
 <p>In this tutorial we gather our tools. We assume that you already have a trusted text editor.
-So we will focus on the tools needed to build out the new application.</p>
+So we will focus on the tools needed to build out the new application.
+It is recommended that you use a UNIX/Linux environment.
+If you would like to try Pyramid on Windows, read the article
+<a class="reference internal" href="../windows/index.html#setting-up-windows-dev-chapter"><em>Installing Pyramid and Virtualenv on Windows behind the UWI proxy</em></a>, while Pyramid works on Windows
+there is far more documentation and support related to using it on UNIX/Linux.</p>
 <div class="section" id="installing-the-pyramid-webframework">
 <h2>Installing the Pyramid Webframework<a class="headerlink" href="#installing-the-pyramid-webframework" title="Permalink to this headline">¶</a></h2>
 <p>You will need the following:</p>
@@ -69,16 +87,33 @@ So we will focus on the tools needed to build out the new application.</p>
 <li>The ability to compile source code</li>
 <li>and the python virtualenv package</li>
 </ul>
-<p>This is well documented in Pyramid Documentation so head over to
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is well documented in the Pyramid Documentation so head over to
 the <a class="reference external" href="http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/install.html">Pyramid Installation Documentation</a> for more details.
 Then come back when you&#8217;re finished.</p>
+</div>
 <p>If you are on a network with a proxy then pay careful attention to the next section.</p>
 </div>
 <div class="section" id="dealing-with-on-campus-proxies">
 <h2>Dealing with on campus proxies<a class="headerlink" href="#dealing-with-on-campus-proxies" title="Permalink to this headline">¶</a></h2>
-<p>Note: all the examples below are specific to UWI Mona, but should be applicable to other
-location that use a proxy on their network.</p>
-<p>Here we talk about different mockup tools</p>
+<p>locations that use a proxy on their network.</p>
+<dl class="docutils">
+<dt><strong>Known UWI proxies</strong></dt>
+<dd>scalpel, proxy-cluster, proxy1, proxy3, sword</dd>
+</dl>
+<ul class="simple">
+<li>All proxies are configured to run on port 8080.</li>
+</ul>
+<p>After launching the terminal (or commandline) it is important to set the http_proxy
+environmental variable, before running any other command</p>
+<p><strong>On Unix</strong></p>
+<div class="highlight-python"><pre>export http_proxy=proxy3:8080</pre>
+</div>
+<p><strong>On Windows</strong></p>
+<p>the same can be acheived by using <cite>set</cite> instead of <cite>export</cite>:</p>
+<div class="highlight-python"><pre>set http_proxy=proxy3:8080</pre>
+</div>
 </div>
 <div class="section" id="using-virtualenv">
 <h2>Using Virtualenv<a class="headerlink" href="#using-virtualenv" title="Permalink to this headline">¶</a></h2>
@@ -149,7 +184,11 @@ Welcome to Pyramid.  Sorry for the convenience.</pre>
 └── setup.py</pre>
 </div>
 <p>Enter the <cite>RecipeWebsite</cite> folder and install the new package:</p>
-<div class="highlight-python"><pre>python setup.py develop</pre>
+<div class="highlight-python"><pre>pip install -e .</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">an older alternative approach is to run <cite>python setup.py develop</cite>.</p>
 </div>
 <p>The result will be output similar to this (output truncated):</p>
 <div class="highlight-python"><pre>...
@@ -191,14 +230,23 @@ When the <cite>python setup.py develop</cite> command is invoked the required de
 in the <cite>recipewebsite</cite> subdirectory.
 Note that the subdirectory is all lowercase, even though the package
 directory is <cite>RecipeWebsite</cite>.</p>
+<img alt="../_images/location.png" src="../_images/location.png" />
 </div>
 <div class="section" id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>What is the benefit of using the <cite>pcreate</cite> command to create a directory structure.</li>
-<li>In what way do conventions make source code more maintainable?</li>
-<li>Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</li>
-<li>What might cause an error like this: <cite>socket.error: [Errno 48] Address already in use</cite></li>
+<ul>
+<li><p class="first">What is the benefit of using the <cite>pcreate</cite> command to create a directory structure.</p>
+</li>
+<li><p class="first">In what way do conventions make source code more maintainable?</p>
+</li>
+<li><p class="first">Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</p>
+</li>
+<li><dl class="first docutils">
+<dt>What might cause an error like this:</dt>
+<dd><p class="first last"><cite>socket.error: [Errno 48] Address already in use</cite></p>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
 </div>
@@ -228,8 +276,8 @@ directory is <cite>RecipeWebsite</cite>.</p>
   <p class="topless"><a href="planning-and-mockups.html"
                         title="previous chapter">Planning and Mockups</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="views.html"
-                        title="next chapter">Adding Custom Views</a></p>
+  <p class="topless"><a href="building-out-additional-views.html"
+                        title="next chapter">Building out additional views</a></p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
@@ -254,12 +302,12 @@ directory is <cite>RecipeWebsite</cite>.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="views.html" title="Adding Custom Views"
+          <a href="building-out-additional-views.html" title="Building out additional views"
              >next</a> |</li>
         <li class="right" >
           <a href="planning-and-mockups.html" title="Planning and Mockups"
              >previous</a> |</li>
-        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+    	<li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

@@ -39,9 +39,9 @@ Each tutorial includes discussion questions. It should be possible to work throu
 
    tutorials/planning-and-mockups
    tutorials/setting-up-dev-environment
-   tutorials/views
-   tutorials/additional-views
-   tutorials/creating-content
+   tutorials/adding-custom-views
+   tutorials/building-out-additional-views
+   tutorials/resources-urls-content-creation
 
 Reference Material
 ==================

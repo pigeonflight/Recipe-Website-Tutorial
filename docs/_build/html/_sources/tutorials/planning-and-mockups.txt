@@ -1,4 +1,4 @@
-
+.. index::
    single: planning
    single: mockups
    single: css

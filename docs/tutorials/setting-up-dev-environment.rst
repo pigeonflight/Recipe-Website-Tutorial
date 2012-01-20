@@ -9,6 +9,10 @@ Setting up your development environment
 
 In this tutorial we gather our tools. We assume that you already have a trusted text editor.
 So we will focus on the tools needed to build out the new application.
+It is recommended that you use a UNIX/Linux environment.
+If you would like to try Pyramid on Windows, read the article 
+:ref:`setting_up_windows_dev_chapter`, while Pyramid works on Windows
+there is far more documentation and support related to using it on UNIX/Linux.
 
 Installing the Pyramid Webframework
 -----------------------------------------
@@ -21,21 +25,40 @@ You will need the following:
 
 - and the python virtualenv package
 
-This is well documented in Pyramid Documentation so head over to 
-the `Pyramid Installation Documentation`_ for more details.
-Then come back when you're finished. 
+.. note:: This is well documented in the Pyramid Documentation so head over to 
+   the `Pyramid Installation Documentation`_ for more details.
+   Then come back when you're finished. 
 
 If you are on a network with a proxy then pay careful attention to the next section.
+
+.. _Pyramid Installation Documentation: http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/install.html
 
 Dealing with on campus proxies
 -------------------------------
 
-Note: all the examples below are specific to UWI Mona, but should be applicable to other 
-location that use a proxy on their network.
+.. note: All the examples below are specific to the UWI Mona network, but should be applicable to other 
+locations that use a proxy on their network.
 
-Here we talk about different mockup tools
+**Known UWI proxies** 
+	scalpel, proxy-cluster, proxy1, proxy3, sword
 
-.. _Pyramid Installation Documentation: http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/install.html
+- All proxies are configured to run on port 8080. 
+
+After launching the terminal (or commandline) it is important to set the http_proxy
+environmental variable, before running any other command
+
+**On Unix** 
+
+::
+
+   export http_proxy=proxy3:8080
+
+**On Windows** 
+
+the same can be acheived by using `set` instead of `export`::
+
+
+   set http_proxy=proxy3:8080
 
 Using Virtualenv
 ------------------
@@ -117,7 +140,9 @@ The result will be a directory structure like this::
 
 Enter the `RecipeWebsite` folder and install the new package::
 
-    python setup.py develop
+    pip install -e .
+
+.. note:: an older alternative approach is to run `python setup.py develop`.
 
 The result will be output similar to this (output truncated)::
 
@@ -168,6 +193,8 @@ in the `recipewebsite` subdirectory.
 Note that the subdirectory is all lowercase, even though the package 
 directory is `RecipeWebsite`.
 
+.. image:: ../images/location.png
+
 Discussion
 -----------
 
@@ -177,6 +204,7 @@ Discussion
 
 - Any thoughts on what happens when you use virtualenv and the `source bin/activate` command?
 
-- What might cause an error like this: `socket.error: [Errno 48] Address already in use`
+- What might cause an error like this: 
+       `socket.error: [Errno 48] Address already in use`
 
 .. _commandline pyramid: http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/commandline.html
