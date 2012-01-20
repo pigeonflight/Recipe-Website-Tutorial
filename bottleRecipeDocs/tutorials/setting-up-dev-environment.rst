@@ -135,55 +135,17 @@ To view the new application in your browser run the following command::
 
 Visiting http://localhost:8080 in your browser will display the following text in your browser::
 
-.. image:: ../images/pyramid_app_running.jpg
-
-Requirements and setup.py
---------------------------
-
-If you need new functionality you can declare a requirement in your 
-new package. This will prove very useful in the future.
-
-Take a look at `setup.py` 
-Note the `requires` lines::
-
-	requires = [
-	    'pyramid',
-	    'pyramid_zodbconn',
-	    'pyramid_tm',
-	    'pyramid_debugtoolbar',
-	    'ZODB3',
-	    'waitress',
-	    ]
-
-Each of these refers to a package that our `RecipeWebsite` application depends on.
-When the `python setup.py develop` command is invoked the required dependencies are installed. 
-
-Where the code lives
-------------------------
-
-Throughout this project, most of your code and customizations will be done 
-in the `recipewebsite` subdirectory.
-Note that the subdirectory is all lowercase, even though the package 
-directory is `RecipeWebsite`.
-
-.. image:: ../images/location.png
-
 Discussion
 -----------
 
-- What is the benefit of using the `pcreate` command to create a directory structure?
+- What is the benefit have a standard directory structure?
 
-- We used pip to install packages, in python circles packages are often called `eggs`, can you guess why?
+- We used pip to install the Bottle package, in python circles packages are often called `eggs`, can you guess why?
 
 - In what way do conventions make source code more maintainable?
 
 - Any thoughts on what happens when you use virtualenv and the `source bin/activate` command? 
 
 - What do you think happens when you set the `http_proxy` environment variable.?
-
-- What might cause an error like this: 
-       `socket.error: [Errno 48] Address already in use`
-
-.. _commandline pyramid: http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/commandline.html
 
 .. _the new hotness: http://s3.pixane.com/pip_distribute.png
