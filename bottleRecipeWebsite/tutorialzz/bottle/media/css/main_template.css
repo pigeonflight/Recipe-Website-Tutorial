@@ -1,0 +1,41 @@
+#header {
+	width: 700px;
+	text-align: center;
+	margin: 50px auto 0 auto;
+}
+
+#main-heading { 
+	font-size: 52px;
+	font-family: sans-serif;
+}
+
+#sub-heading {
+	font-size: 26px;
+	font-family: sans-serif;
+	color: #71BF44;
+}
+
+#header a {
+	text-decoration: none;
+	color: #01B7EF;
+}
+
+#sub-block1 {
+	font-size: 20px; 
+	width: 250px; 
+	background: #6A7067; 
+	text-align: center; 
+	height: 0px;
+	margin: 50px auto 0 auto;
+	padding: 5px;
+	font-family: sans-serif;
+	color: #ffffff;
+	border-radius: 10px;
+}
+
+#social {
+	width: 400px;
+	margin: 200px auto 0 auto;
+	text-align: center;
+	font-family: sans-serif;
+}

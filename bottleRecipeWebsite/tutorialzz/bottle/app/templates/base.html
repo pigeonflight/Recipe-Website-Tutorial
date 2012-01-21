@@ -1,0 +1,23 @@
+<html>
+	<head> 
+		
+		<script type="text/javascript" src="/media/js/jquery-1.6.2.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="/media/css/main_template.css" />
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+					$("body").css("display", "none");
+					$("body").fadeIn(2000);
+			});
+		</script>
+		
+		<title> Sample Bottle App </title>
+	</head>
+
+	<body>
+	
+		{% block content %} {% endblock %}	
+	
+	</body>
+
+</html>
