@@ -8,7 +8,7 @@
 Installing Pyramid and Virtualenv on Windows behind the UWI proxy
 ==================================================================
 
-Before attempting any of the instructions below, `download and install python2.7`_. 
+Before attempting any of the instructions below, `download and install python`_. 
 
 1. Open http://peak.telecommunity.com/dist/ez_setup.py in a webbrowser
 2. Then save the file. (In Firefox you can select “save page as”). 
@@ -49,7 +49,7 @@ Below is sample output from a command line session with a virtualenv named `venv
 You can now install pyramid using the following commands:
 ::
  
-	pip install pyramid
+	pip install bottle
 
 It is recommended that you do all your development in a folder on your Desktop, Create a folder called `code`. This is where you will create your custom packages.
 
@@ -59,13 +59,15 @@ It is recommended that you do all your development in a folder on your Desktop, 
 Creating and activating a new application
 ------------------------------------------
 
+Use the `bottle starter app`_
+
 Do this in your code folder.
 
 You can do this by launching the commandline and running the following commands:
 ::
 
 	cd Desktop\code
-	pcreate -s zodb MyRecipe
+
 
 Then activate the new package using the following commands:
 ::
@@ -121,4 +123,5 @@ Now right click on Start, you should have a new drop down option. Open explorer 
 
 Read this thread for some information on how to remove the context menu:
 
-.. _download and install python2.7: http://python.org/download/
+.. _download and install python: http://python.org/download/
+.. _bottle starter app: http://dl.dropbox.com/u/1004432/bottle-app.zip
