@@ -6,7 +6,7 @@
 
 .. _planning_mockups_chapter:
 
-Planning and Mockups
+Part 1 - Planning and Mockups
 =====================
 
 Why do this?

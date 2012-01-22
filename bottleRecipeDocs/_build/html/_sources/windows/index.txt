@@ -5,7 +5,7 @@
 
 .. _setting_up_windows_dev_chapter:
 
-Installing Pyramid and Virtualenv on Windows behind the UWI proxy
+Installing Bottle and Virtualenv on Windows behind the UWI proxy
 ==================================================================
 
 Before attempting any of the instructions below, `download and install python`_. 
@@ -40,18 +40,30 @@ Create and activate a virtualenv:
 	D:\Python27\Scripts\virtualenv venv
 	venv\Scripts\activate
 
-Below is sample output from a command line session with a virtualenv named `venv` activated.
-
 .. note:: 
 
-    Notice the (venv) in brackets at the beginning of the command line prompt. This is how you can know that your virtual enviroment is active.
+    After activating the virtualenv you will notice the name of your environment presented in brackets e.g. (venv) at the beginning of the command line prompt. This is how you can know that your virtual enviroment is active.
 
-You can now install pyramid using the following commands:
+.. note::  
+
+   Remember to activate your virtual environment!
+       .. image:: ../images/activate.gif
+
+   If you neglect this, `pip` will behave in unpredictable ways,
+   you will get permission errors
+   and other strange behaviour.
+
+You can now install bottle using the following commands:
 ::
  
 	pip install bottle
 
-It is recommended that you do all your development in a folder on your Desktop, Create a folder called `code`. This is where you will create your custom packages.
+.. note:: The `pip` command depends on the Python Packaging Index (PYPI).
+            If the `pip install` command fails try specifying a pypi mirror.
+                `pip install -i http://d.pypi.python.org/simple bottle`
+
+
+We recommended that you do all your development in a folder on your Desktop, create a folder called `code`. This is where you will create your custom packages.
 
 .. image:: ../images/createcodefolder.jpg
 
@@ -59,37 +71,15 @@ It is recommended that you do all your development in a folder on your Desktop, 
 Creating and activating a new application
 ------------------------------------------
 
+XXX Fixme.. need to update these notes
+
 Use the `bottle starter app`_
 
-Do this in your code folder.
+Download it and place it in your code folder.
 
+When you want to start a new bottle application unzip and rename the application
 You can do this by launching the commandline and running the following commands:
 ::
-
-	cd Desktop\code
-
-
-Then activate the new package using the following commands:
-::
-
-	cd MyRecipe
-	python setup.py develop
-
-View the result in your file browser:
-::
-
-	explorer .\
-
-.. image:: ../images/explorerview.png
-
-To launch the new application run the following command:
-::
-
-	pserve development.ini 
-
-Then visit http://localhost:6543 in your webbrowser. The application will look like this::
-
-.. image:: ../images/pyramidonwindows.png
 
 Important notes about Windows
 --------------------------------

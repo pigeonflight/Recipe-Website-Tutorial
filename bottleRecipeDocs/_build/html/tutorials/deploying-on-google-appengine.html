@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Deploying on Google App Engine &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
+    <link rel="next" title="Starting the Project, Routes and Static Resources" href="starting-routes-static-resources.html" />
+    <link rel="prev" title="Organizing your Project" href="arranging-your-resources.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="starting-routes-static-resources.html" title="Starting the Project, Routes and Static Resources"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="arranging-your-resources.html" title="Organizing your Project"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="deploying-on-google-app-engine">
+<span id="setting-gae-chapter"></span><span id="index-0"></span><h1>Deploying on Google App Engine<a class="headerlink" href="#deploying-on-google-app-engine" title="Permalink to this headline">¶</a></h1>
+<p>Google App Engine (GAE) is sometimes called a
+platform as a service (PAAS) because it provides specific utilities for things like data persistence, authentication and user management. If you don&#8217;t mind following &#8220;the App Engine way&#8221; the benefit is a free platform for deploying webscale applications on infrastructure managed by Google. App Engine has a threshold at which point you will need to pay about USD $9 per month, this fee increases as you consume more resources.</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">App Engine is not perfect for every type of solution this <a class="reference external" href="http://news.ycombinator.com/item?id=3431132">discussion about App Engine charges</a> illustrates clearly that some applications don&#8217;t match very well with GAE.</p>
+</div>
+<div class="section" id="setting-up-the-bottle-gae-scaffold">
+<h2>Setting up the Bottle GAE Scaffold<a class="headerlink" href="#setting-up-the-bottle-gae-scaffold" title="Permalink to this headline">¶</a></h2>
+<p>The directory structure that we use is borrowed from this <a class="reference external" href="http://www.joemartaganna.com/web-development/how-to-build-a-web-app-using-bottle-with-jinja2-in-google-app-engine/">blog post about using bottle on GAE</a>.
+It provides a standard way of arranging directories for applications that will be deployed to GAE.
+We also include the App Engine Software Development Kit (SDK).</p>
+<p>We will refer to this as the <strong>bottle_gae scaffold</strong>. Download it from <a class="reference external" href="http://dl.dropbox.com/u/1004432/bottle_gae.zip">http://dl.dropbox.com/u/1004432/bottle_gae.zip</a></p>
+<p>The unzipped directory structure looks something like this:</p>
+<div class="highlight-python"><pre>bottle_gae
+├── app_template
+│   ├── app
+│   ├── media
+│   └── packages
+└── google_appengine
+    ├── demos
+    ├── google
+    ├── lib
+    ├── new_project_template
+    └── tools</pre>
+</div>
+</div>
+<div class="section" id="what-you-will-need">
+<h2>What you will need<a class="headerlink" href="#what-you-will-need" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">The Bottle GAE Scaffold <a class="reference external" href="http://dl.dropbox.com/u/1004432/bottle_gae.zip">http://dl.dropbox.com/u/1004432/bottle_gae.zip</a></p>
+</li>
+<li><dl class="first docutils">
+<dt>Python 2.5</dt>
+<dd><p class="first last">Google App Engine is designed to work with Python 2.5 newer versions of Python are known to have issues. Ensure that you have this installed, on Windows you may consider using <a class="reference external" href="http://www.portablepython.com/wiki/PortablePython1.1Py2.5.4">Portable Python 2.5</a>.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">Virtualenv</p>
+</li>
+</ul>
+</div>
+<div class="section" id="summary-of-develop-deploy-cycle">
+<h2>Summary of develop/deploy cycle<a class="headerlink" href="#summary-of-develop-deploy-cycle" title="Permalink to this headline">¶</a></h2>
+<p>Download the Bottle GAE Scaffold and Unzip it.
+Here is how we will work with the Bottle GAE Scaffold. The instructions below are for Unix, but
+similar steps can be taken on Windows.</p>
+<ol class="arabic">
+<li><p class="first">Copy <cite>app_template</cite> to <cite>MyApp</cite>:</p>
+<div class="highlight-python"><pre>cp app_template MyApp</pre>
+</div>
+</li>
+<li><p class="first">Activate your Python 2.5 virtual environment:</p>
+<div class="highlight-python"><pre>. ~/Code/py25env/bin/activate</pre>
+</div>
+</li>
+<li><p class="first">Test that it is working by running the run.sh script:</p>
+<div class="highlight-python"><pre>sh run.sh</pre>
+</div>
+</li>
+</ol>
+<p>If you are on a network with a proxy then pay careful attention to the next section.</p>
+</div>
+<div class="section" id="dealing-with-on-campus-proxies">
+<h2>Dealing with on campus proxies<a class="headerlink" href="#dealing-with-on-campus-proxies" title="Permalink to this headline">¶</a></h2>
+<p>locations that use a proxy on their network.</p>
+<dl class="docutils">
+<dt><strong>Known UWI proxies</strong></dt>
+<dd>scalpel, proxy-cluster, proxy1, proxy3, sword
+while we use <cite>scalpel</cite> in our examples
+any of the ones listed should work</dd>
+</dl>
+<ul class="simple">
+<li>All proxies are configured to run on port 8080.</li>
+</ul>
+<p>After launching the terminal (or commandline) it is important to set the http_proxy
+environmental variable, BEFORE running any other command</p>
+<p><strong>On Unix</strong></p>
+<div class="highlight-python"><pre>export http_proxy=proxy3:8080</pre>
+</div>
+<p><strong>On Windows</strong></p>
+<p>the same can be acheived by using <cite>set</cite> instead of <cite>export</cite>:</p>
+<div class="highlight-python"><pre>set http_proxy=proxy3:8080</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For persons using <cite>sudo</cite> on Unix. Be careful if you use <cite>sudo</cite> on Unix, <cite>sudo</cite> may not inherit the http_proxy environment variable if you set it without <cite>sudo</cite>.</p>
+</div>
+</div>
+<div class="section" id="using-virtualenv">
+<h2>Using Virtualenv<a class="headerlink" href="#using-virtualenv" title="Permalink to this headline">¶</a></h2>
+<p>Virtualenv allows you to create complete python environment without the need for administrative access.</p>
+<p>To install Bottle, create a virtualenv:</p>
+<div class="highlight-python"><pre>mkdir venv
+cd venv
+virtualenv --no-site-packages .</pre>
+</div>
+<p>When ever you need to use this environment use the command:</p>
+<div class="highlight-python"><pre>cd venv
+source bin/activate</pre>
+</div>
+<p>On Windows the following is enough:</p>
+<div class="highlight-python"><pre>cd venv
+Scripts/activate</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="docutils">
+<dt>Remember to activate your virtual environment!</dt>
+<dd><img alt="../_images/activate.gif" class="first last" src="../_images/activate.gif" />
+</dd>
+</dl>
+<p class="last">If you neglect this, <cite>pip</cite> will behave in unpredictable ways,
+you will get permission errors
+and other strange behaviour.</p>
+</div>
+<p>Then install bottle using the pip command:</p>
+<div class="highlight-python"><pre>pip install bottle</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><cite>pip</cite> stands for &#8220;Pip Installs Packages&#8221;, it is a package installer designed to install python packages (similar to apt-get on Debian or Ubuntu).
+It has been affectionately referred to as <a class="reference external" href="http://s3.pixane.com/pip_distribute.png">the new hotness</a>.</p>
+</div>
+</div>
+<div class="section" id="using-the-bottle-starter-app">
+<h2>Using the bottle starter app<a class="headerlink" href="#using-the-bottle-starter-app" title="Permalink to this headline">¶</a></h2>
+<p>Establishing conventions help to make source code more maintainable, while bottle does not provide a standard approach to managing our code. We will use a standard folder structure.</p>
+<p>You can download our <a class="reference external" href="http://dl.dropbox.com/u/1004432/bottle-app.zip">bottle starter app</a> to get going.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the term &#8220;scaffold&#8221; comes from the construction industry and roughly means &#8220;structure&#8221;.</p>
+</div>
+<p>We will use the following directory structure:</p>
+<div class="highlight-python"><pre>RecipeWebsite/
+└── recipewebsite
+    ├── static
+    └── templates</pre>
+</div>
+<p>This structure will be very useful if we later on decided to make our site into a full python packages.</p>
+<p>Enter the <cite>RecipeWebsite/recipewebsite</cite> folder</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<img alt="../_images/activate.gif" src="../_images/activate.gif" />
+<p class="last">Remember to activate your virtual environment!</p>
+</div>
+<p>Create a file called <cite>app.py</cite>
+Your directory will now look like this</p>
+<div class="highlight-python"><pre>RecipeWebsite/
+└── recipewebsite
+    ├── app.py
+    ├── static
+    └── templates</pre>
+</div>
+<p>To view the new application in your browser run the following command:</p>
+<div class="highlight-python"><pre>python app.py</pre>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">sometimes this will will fail because another service on your machine may already be running on the port  (you can change the port in the <cite>app.py</cite> file or stop the conflicting service).</p>
+</div>
+<p>Visiting <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> in your browser will display the following text in your browser:</p>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>What is the benefit have a standard directory structure?</li>
+<li>We used pip to install the Bottle package, in python circles packages are often called <cite>eggs</cite>, can you guess why?</li>
+<li>In what way do conventions make source code more maintainable?</li>
+<li>Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</li>
+<li>What do you think happens when you set the <cite>http_proxy</cite> environment variable.?</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Deploying on Google App Engine</a><ul>
+<li><a class="reference internal" href="#setting-up-the-bottle-gae-scaffold">Setting up the Bottle GAE Scaffold</a></li>
+<li><a class="reference internal" href="#what-you-will-need">What you will need</a></li>
+<li><a class="reference internal" href="#summary-of-develop-deploy-cycle">Summary of develop/deploy cycle</a></li>
+<li><a class="reference internal" href="#dealing-with-on-campus-proxies">Dealing with on campus proxies</a></li>
+<li><a class="reference internal" href="#using-virtualenv">Using Virtualenv</a></li>
+<li><a class="reference internal" href="#using-the-bottle-starter-app">Using the bottle starter app</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="arranging-your-resources.html"
+                        title="previous chapter">Organizing your Project</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="starting-routes-static-resources.html"
+                        title="next chapter">Starting the Project, Routes and Static Resources</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorials/deploying-on-google-appengine.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="starting-routes-static-resources.html" title="Starting the Project, Routes and Static Resources"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="arranging-your-resources.html" title="Organizing your Project"
+             >previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, David Bain.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

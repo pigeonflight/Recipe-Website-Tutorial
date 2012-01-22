@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Setting up your development environment &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    <title>Part 2 - Setting up your development environment &mdash; Recipe Website Tutorial 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,8 +26,8 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
-    <link rel="next" title="Starting the Project, Routes and Static Resources" href="starting-routes-static-resources.html" />
-    <link rel="prev" title="Planning and Mockups" href="planning-and-mockups.html" /> 
+    <link rel="next" title="Part 3 - Basic Application" href="basic-bottle-application.html" />
+    <link rel="prev" title="Part 1 - Planning and Mockups" href="planning-and-mockups.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,10 +37,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="starting-routes-static-resources.html" title="Starting the Project, Routes and Static Resources"
+          <a href="basic-bottle-application.html" title="Part 3 - Basic Application"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="planning-and-mockups.html" title="Planning and Mockups"
+          <a href="planning-and-mockups.html" title="Part 1 - Planning and Mockups"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -51,24 +51,36 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="setting-up-your-development-environment">
-<span id="setting-up-dev-chapter"></span><span id="index-0"></span><h1>Setting up your development environment<a class="headerlink" href="#setting-up-your-development-environment" title="Permalink to this headline">¶</a></h1>
-<p>In this tutorial we gather our tools. We assume that you already have a trusted text editor.
-So we will focus on the tools needed to build out the new application.
+  <div class="section" id="part-2-setting-up-your-development-environment">
+<span id="setting-up-dev-chapter"></span><span id="index-0"></span><h1>Part 2 - Setting up your development environment<a class="headerlink" href="#part-2-setting-up-your-development-environment" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial we gather our tools. We assume that you already have a trusted text editor,
+so we will focus on the tools needed to build out your web applications.
 It is recommended that you use a UNIX/Linux environment, though everything should also work on Windows.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>Deployment</strong> - We will deploy our earlier projects on Fluxflex (a cloud hosting platform) and later we will use Google App Engine (GAE). Google App Engine is sometimes called a
+platform as a service (PAAS) because it provides specific utilities for things like data persistence, authentication and user management. If you don&#8217;t mind following &#8220;the Google way&#8221; the benefit is a free option for getting started on infrastructure provided by Google.</p>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">App Engine is not perfect for every type of solution, a recent <a class="reference external" href="http://news.ycombinator.com/item?id=3431132">discussion about App Engine charges</a> illustrates clearly that some applications don&#8217;t match very well with GAE.</p>
+</div>
 <div class="section" id="installing-the-bottle-web-framework">
 <h2>Installing the Bottle web framework<a class="headerlink" href="#installing-the-bottle-web-framework" title="Permalink to this headline">¶</a></h2>
 <p>You will need the following:</p>
 <ul class="simple">
 <li>A python interpreter</li>
-<li>The ability to compile source code</li>
 <li>and the python virtualenv package</li>
 </ul>
 <p>If you are on a network with a proxy then pay careful attention to the next section.</p>
 </div>
 <div class="section" id="dealing-with-on-campus-proxies">
-<h2>Dealing with on campus proxies<a class="headerlink" href="#dealing-with-on-campus-proxies" title="Permalink to this headline">¶</a></h2>
-<p>locations that use a proxy on their network.</p>
+<span id="dealing-with-proxies"></span><h2>Dealing with on campus proxies<a class="headerlink" href="#dealing-with-on-campus-proxies" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All the examples below are specific to the UWI Mona network, but should be applicable to other
+locations that use a proxy on their network.</p>
+</div>
 <dl class="docutils">
 <dt><strong>Known UWI proxies</strong></dt>
 <dd>scalpel, proxy-cluster, proxy1, proxy3, sword
@@ -92,15 +104,17 @@ environmental variable, BEFORE running any other command</p>
 <p class="last">For persons using <cite>sudo</cite> on Unix. Be careful if you use <cite>sudo</cite> on Unix, <cite>sudo</cite> may not inherit the http_proxy environment variable if you set it without <cite>sudo</cite>.</p>
 </div>
 </div>
-<div class="section" id="using-virtualenv">
-<h2>Using Virtualenv<a class="headerlink" href="#using-virtualenv" title="Permalink to this headline">¶</a></h2>
-<p>Virtualenv allows you to create complete python environment without the need for administrative access.</p>
-<p>To install Bottle, create a virtualenv:</p>
-<div class="highlight-python"><pre>mkdir venv
-cd venv
-virtualenv --no-site-packages .</pre>
+<div class="section" id="using-bootstrapbot-py-to-setup-a-virtualenv">
+<span id="virtualenv-section"></span><h2>Using Bootstrapbot.py to setup a Virtualenv<a class="headerlink" href="#using-bootstrapbot-py-to-setup-a-virtualenv" title="Permalink to this headline">¶</a></h2>
+<p>Bootstrapbot.py is a single file which creates a complete python environment with the
+bottle package installed without the need for administrative access.</p>
+<p>Download <a class="reference external" href="http://dl.dropbox.com/u/1004432/bootstrapbot.py">http://dl.dropbox.com/u/1004432/bootstrapbot.py</a></p>
+<p>Then follow the instructions below:</p>
+<p>To install bottle  and virtualenv place bootstrapbot.py in the target folder of your choice and run:</p>
+<div class="highlight-python"><pre>python bootstrapbot.py</pre>
 </div>
-<p>When ever you need to use this environment use the command:</p>
+<p>This creates a virtual environment called <tt class="docutils literal"><span class="pre">venv</span></tt>.
+When ever you need to use this environment it can be activated using the following commands:</p>
 <div class="highlight-python"><pre>cd venv
 source bin/activate</pre>
 </div>
@@ -110,49 +124,36 @@ Scripts/activate</pre>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<img alt="../_images/activate.gif" src="../_images/activate.gif" />
-<p class="last">Remember to activate your virtual environment!
-If you neglect this, <cite>pip</cite> will behave in unpredictable ways,
-you will get permission errors
-and other strange behaviour.</p>
-</div>
-<p>Then install bottle using the pip command:</p>
-<div class="highlight-python"><pre>pip install bottle</pre>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><cite>pip</cite> stands for &#8220;Pip Installs Packages&#8221;, it is a package installer designed to install python packages (similar to apt-get on Debian or Ubuntu).
-It has been affectionately referred to as <a class="reference external" href="http://s3.pixane.com/pip_distribute.png">the new hotness</a>.</p>
+<dl class="docutils">
+<dt>Remember to activate your virtual environment!</dt>
+<dd><img alt="../_images/activate.gif" class="first last" src="../_images/activate.gif" />
+</dd>
+</dl>
+<p class="last">If you don&#8217;t use an active virtual environment
+things may deviate from behaviour outlined in this documentation
+for example you will get permission errors and other strange behaviour.</p>
 </div>
 </div>
-<div class="section" id="using-the-bottle-starter-app">
-<h2>Using the bottle starter app<a class="headerlink" href="#using-the-bottle-starter-app" title="Permalink to this headline">¶</a></h2>
-<p>Establishing conventions help to make source code more maintainable, while bottle does not provide a standard approach to managing our code. We will use a standard folder structure.</p>
-<p>You can download our <a class="reference external" href="http://dl.dropbox.com/u/1004432/bottle-app.zip">bottle starter app</a> to get going.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">the term &#8220;scaffold&#8221; comes from the construction industry and roughly means &#8220;structure&#8221;.</p>
-</div>
-<p>We will use the following directory structure:</p>
-<div class="highlight-python"><pre>RecipeWebsite/
-└── recipewebsite
-    ├── static
-    └── templates</pre>
-</div>
-<p>This structure will be very useful if we later on decided to make our site into a full python packages.</p>
-<p>Enter the <cite>RecipeWebsite/recipewebsite</cite> folder</p>
+<div class="section" id="trying-out-bottle">
+<h2>Trying out Bottle<a class="headerlink" href="#trying-out-bottle" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have bottle in a virtual environment (venv from running bootstrapbot.py above).
+We can begin try it out.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <img alt="../_images/activate.gif" src="../_images/activate.gif" />
 <p class="last">Remember to activate your virtual environment!</p>
 </div>
+<p>Let&#8217;s see that everything is working.</p>
 <p>Create a file called <cite>app.py</cite>
-Your directory will now look like this</p>
-<div class="highlight-python"><pre>RecipeWebsite/
-└── recipewebsite
-    ├── app.py
-    ├── static
-    └── templates</pre>
+And make it look like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bottle</span> <span class="kn">import</span> <span class="n">route</span><span class="p">,</span> <span class="n">run</span>
+
+<span class="nd">@route</span><span class="p">(</span><span class="s">&#39;/hello/:name&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;World&#39;</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">&#39;&lt;b&gt;Hello </span><span class="si">%s</span><span class="s">!&lt;/b&gt;&#39;</span> <span class="o">%</span> <span class="n">name</span>
+
+<span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">)</span>
+</pre></div>
 </div>
 <p>To view the new application in your browser run the following command:</p>
 <div class="highlight-python"><pre>python app.py</pre>
@@ -166,10 +167,9 @@ Your directory will now look like this</p>
 <div class="section" id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>What is the benefit have a standard directory structure?</li>
-<li>We used pip to install the Bottle package, in python circles packages are often called <cite>eggs</cite>, can you guess why?</li>
-<li>In what way do conventions make source code more maintainable?</li>
-<li>Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</li>
+<li>Where&#8217;s the webserver? How is it possible to access our application even though we haven&#8217;t set up a webserver?</li>
+<li>What is an environment variable?</li>
+<li>By now you should know how to set environment variables, how do you use the terminal (on UNIX or Windows) to display environment variables?</li>
 <li>What do you think happens when you set the <cite>http_proxy</cite> environment variable.?</li>
 </ul>
 </div>
@@ -183,11 +183,11 @@ Your directory will now look like this</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Setting up your development environment</a><ul>
+<li><a class="reference internal" href="#">Part 2 - Setting up your development environment</a><ul>
 <li><a class="reference internal" href="#installing-the-bottle-web-framework">Installing the Bottle web framework</a></li>
 <li><a class="reference internal" href="#dealing-with-on-campus-proxies">Dealing with on campus proxies</a></li>
-<li><a class="reference internal" href="#using-virtualenv">Using Virtualenv</a></li>
-<li><a class="reference internal" href="#using-the-bottle-starter-app">Using the bottle starter app</a></li>
+<li><a class="reference internal" href="#using-bootstrapbot-py-to-setup-a-virtualenv">Using Bootstrapbot.py to setup a Virtualenv</a></li>
+<li><a class="reference internal" href="#trying-out-bottle">Trying out Bottle</a></li>
 <li><a class="reference internal" href="#discussion">Discussion</a></li>
 </ul>
 </li>
@@ -195,10 +195,10 @@ Your directory will now look like this</p>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="planning-and-mockups.html"
-                        title="previous chapter">Planning and Mockups</a></p>
+                        title="previous chapter">Part 1 - Planning and Mockups</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="starting-routes-static-resources.html"
-                        title="next chapter">Starting the Project, Routes and Static Resources</a></p>
+  <p class="topless"><a href="basic-bottle-application.html"
+                        title="next chapter">Part 3 - Basic Application</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/tutorials/setting-up-dev-environment.txt"
@@ -228,10 +228,10 @@ Your directory will now look like this</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="starting-routes-static-resources.html" title="Starting the Project, Routes and Static Resources"
+          <a href="basic-bottle-application.html" title="Part 3 - Basic Application"
              >next</a> |</li>
         <li class="right" >
-          <a href="planning-and-mockups.html" title="Planning and Mockups"
+          <a href="planning-and-mockups.html" title="Part 1 - Planning and Mockups"
              >previous</a> |</li>
         <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>

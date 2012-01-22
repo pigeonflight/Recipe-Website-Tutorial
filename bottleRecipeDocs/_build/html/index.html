@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Recipe Website Tutorial &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    <title>Recipe Website Tutorials &mdash; Recipe Website Tutorial 1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="#" />
-    <link rel="next" title="Planning and Mockups" href="tutorials/planning-and-mockups.html" /> 
+    <link rel="next" title="Part 1 - Planning and Mockups" href="tutorials/planning-and-mockups.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="tutorials/planning-and-mockups.html" title="Planning and Mockups"
+          <a href="tutorials/planning-and-mockups.html" title="Part 1 - Planning and Mockups"
              accesskey="N">next</a> |</li>
         <li><a href="#">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -47,10 +47,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="recipe-website-tutorial">
-<span id="index"></span><h1>Recipe Website Tutorial<a class="headerlink" href="#recipe-website-tutorial" title="Permalink to this headline">¶</a></h1>
-<p>This tutorial is based on the <cite>Bottle</cite> web application
-development microframework.
+  <div class="section" id="recipe-website-tutorials">
+<span id="index"></span><h1>Recipe Website Tutorials<a class="headerlink" href="#recipe-website-tutorials" title="Permalink to this headline">¶</a></h1>
+<p>This is a series of tutorials which lay the foundation for using the <cite>Bottle</cite> web application framework
+to create a Recipe Website service.
 Learn more about Bottle at <a class="reference external" href="http://bottlepy.org/">The Bottle Website</a>.</p>
 <p>According to the Bottle documentation the following is the simplest Bottle application that you can make:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">bottle</span> <span class="kn">import</span> <span class="n">route</span><span class="p">,</span> <span class="n">run</span>
@@ -62,24 +62,36 @@ Learn more about Bottle at <a class="reference external" href="http://bottlepy.o
 <span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8080</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>When saved to <tt class="docutils literal"><span class="pre">helloworld.py</span></tt>, the above application can be run via:</p>
-<div class="highlight-text"><div class="highlight"><pre>$ pip install bottle
-$ python helloworld.py
-</pre></div>
+<p>When saved to <tt class="docutils literal"><span class="pre">helloworld.py</span></tt>. We&#8217;ve bundled all of this into a bootstrp script called <cite>bootstrapbot.sh</cite>, try it out by doing the following:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><strong>Want to see this in action now? Use the &#8216;bootstrapbot.sh&#8217; script</strong></p>
+<ol class="arabic">
+<li><p class="first">Download it if from: <a class="reference external" href="http://dl.dropbox.com/u/1004432/bootstrapbot.sh">http://dl.dropbox.com/u/1004432/bootstrapbot.sh</a></p>
+</li>
+<li><p class="first">Run it:</p>
+<div class="highlight-python"><pre>sh bootstrapbot.sh</pre>
 </div>
-<p>When you visit <tt class="docutils literal"><span class="pre">http://localhost:8080/hello/world</span></tt> in a browser, you will
+</li>
+<li><p class="first">Launch the script. You should now have a virtualenv called <tt class="docutils literal"><span class="pre">venv</span></tt>, change to the <cite>venv</cite> directory and launch the helloworld.py program:</p>
+<div class="highlight-python"><pre>cd venv
+bin/python helloworld.py</pre>
+</div>
+</li>
+</ol>
+<p class="last">When you visit <tt class="docutils literal"><span class="pre">http://localhost:8080/hello/world</span></tt> in a browser, you will
 see the text <tt class="docutils literal"><span class="pre">Hello</span> <span class="pre">world!</span></tt>.</p>
-<p>This is a simple single file application.
-As our tasks become more complex there comes a point
-when we will need supporting templates, CSS, JS and image files.
-This tutorial will focus on building a &#8220;Recipe Website&#8221; using the Bottle
-microframework.</p>
+</div>
+<p>Having trouble <a class="reference internal" href="tutorials/setting-up-dev-environment.html#dealing-with-proxies"><em>Dealing with on campus proxies</em></a></p>
+<p>As our tasks become more complex
+we will add supporting templates, CSS, JS and image files.
+All examples will be done on Unix/Linux and have not been thoroughly tested on Windows. If you want to use Windows there are notes available on <a class="reference internal" href="windows/index.html#setting-up-windows-dev-chapter"><em>Installing Bottle and Virtualenv on Windows behind the UWI proxy</em></a>.</p>
 <div class="section" id="tutorials">
 <h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h2>
 <p>Each tutorial includes discussion questions. It should be possible to work through the tutorial within 30 - 35 minutes and then spend 15 to 20 minutes in discussion, guided by the discussion questions.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/planning-and-mockups.html">Planning and Mockups</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/planning-and-mockups.html">Part 1 - Planning and Mockups</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/planning-and-mockups.html#why-do-this">Why do this?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/planning-and-mockups.html#mockup-up-tools">Mockup up tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/planning-and-mockups.html#the-design">The Design</a></li>
@@ -88,12 +100,38 @@ microframework.</p>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/planning-and-mockups.html#lab">Lab</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/setting-up-dev-environment.html">Setting up your development environment</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/setting-up-dev-environment.html">Part 2 - Setting up your development environment</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#installing-the-bottle-web-framework">Installing the Bottle web framework</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#dealing-with-on-campus-proxies">Dealing with on campus proxies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#using-virtualenv">Using Virtualenv</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#using-the-bottle-starter-app">Using the bottle starter app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#using-bootstrapbot-py-to-setup-a-virtualenv">Using Bootstrapbot.py to setup a Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#trying-out-bottle">Trying out Bottle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/setting-up-dev-environment.html#discussion">Discussion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/basic-bottle-application.html">Part 3 - Basic Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/basic-bottle-application.html#the-todo-list-app">The Todo list App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/basic-bottle-application.html#discussion">Discussion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/basic-bottle-application.html#lab-exercises">Lab Exercises</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/organizing-your-project.html">Part 4 - Organizing your Project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/organizing-your-project.html#the-scaffolds">The Scaffolds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/organizing-your-project.html#using-virtualenv">Using Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/organizing-your-project.html#setting-up-the-bottle-starter-scaffold">Setting up the Bottle Starter Scaffold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/organizing-your-project.html#summary-of-develop-deploy-cycle">Summary of develop/deploy cycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/organizing-your-project.html#dealing-with-on-campus-proxies">Dealing with on campus proxies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/organizing-your-project.html#beginning-our-recipewebsite-application">Beginning our RecipeWebsite application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/organizing-your-project.html#discussion">Discussion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/deploying-on-google-appengine.html">Deploying on Google App Engine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/deploying-on-google-appengine.html#setting-up-the-bottle-gae-scaffold">Setting up the Bottle GAE Scaffold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/deploying-on-google-appengine.html#what-you-will-need">What you will need</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/deploying-on-google-appengine.html#summary-of-develop-deploy-cycle">Summary of develop/deploy cycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/deploying-on-google-appengine.html#dealing-with-on-campus-proxies">Dealing with on campus proxies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/deploying-on-google-appengine.html#using-virtualenv">Using Virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/deploying-on-google-appengine.html#using-the-bottle-starter-app">Using the bottle starter app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/deploying-on-google-appengine.html#discussion">Discussion</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/starting-routes-static-resources.html">Starting the Project, Routes and Static Resources</a><ul>
@@ -148,7 +186,7 @@ microframework.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Recipe Website Tutorial</a><ul>
+<li><a class="reference internal" href="#">Recipe Website Tutorials</a><ul>
 <li><a class="reference internal" href="#tutorials">Tutorials</a><ul>
 </ul>
 </li>
@@ -162,7 +200,7 @@ microframework.</p>
 
   <h4>Next topic</h4>
   <p class="topless"><a href="tutorials/planning-and-mockups.html"
-                        title="next chapter">Planning and Mockups</a></p>
+                        title="next chapter">Part 1 - Planning and Mockups</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -192,7 +230,7 @@ microframework.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="tutorials/planning-and-mockups.html" title="Planning and Mockups"
+          <a href="tutorials/planning-and-mockups.html" title="Part 1 - Planning and Mockups"
              >next</a> |</li>
         <li><a href="#">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
