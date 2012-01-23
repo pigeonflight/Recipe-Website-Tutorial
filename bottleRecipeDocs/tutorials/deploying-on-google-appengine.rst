@@ -1,9 +1,11 @@
 .. index::
    single: development
+   single: app engine
+   single: gae
 
 .. _setting_gae_chapter:
 
-Deploying on Google App Engine
+Part 6 - Deploying on Google App Engine
 ===========================================
 
 Google App Engine (GAE) is sometimes called a 

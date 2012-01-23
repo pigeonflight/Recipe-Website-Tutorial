@@ -4,95 +4,46 @@
 
 .. _organizing_project_chapter:
 
-Part 4 - Organizing your Project
-===========================================
+Part 3 - Organizing your Project / UI and Simple Templating
+===============================================================
 
 At this point we have covered the following
 
 :ref:`planning_mockups_chapter`
     Where we looked at process of planning the user interface (UI) of your application
 :ref:`setting_up_dev_chapter`
-    This looked at things we may need on our computer to get started 
-:ref:`basic_application_chapter`
-    Here we gained some experience with the framework by creating a simple application 
+    This looked at what we needed on our computer to get started.
+    We also gained some experience with the framework by creating a simple application.
 
-You should feel comfortable creating a simple application now.
-
-
-The Scaffolds
-----------------
-
-In the context of this course, a scaffold refers to a predetermined structure around which you will build your applications.
-
-.. note:: **Why Scaffolds?** Glad you asked! Over the next couple weeks you will be submitting work to be assessed, to simplify things 
-    we've developed a standard approach for organizing your projects which we will call the `bottle starter scaffold`. By agreeing on a standard approach it means there is one less decision to make when building your applications. 
-
-There are two scaffolds to be used in this course we will be looking at the first today, the `bottle starter scaffold`. 
-In additon to the `bottle starter scaffold` future projects will be arranged around the `bottle gae scaffold`, these names will make more sense in time. 
-
-Starter Scaffold
-    This is a simple approach, just enough folders to keep things organized
-
-GAE Scaffold
-    This arrangement is meant to accomodate projects that will be deployed to Google App Engine, it will seem to be lots of folders, most of them play a supporting role, but all are useful.
-
-Today we will focus on the following:
-
-- Virtualenv
-- the Bottle Starter Scaffold
-
-Using Virtualenv
-------------------
-
-.. note:: This section assumes that you have Virtualenv installed. You may find it helpful to review the section entitled 
-:ref:`virtualenv_section`
-
-To install Bottle, create a virtualenv::
-
-   mkdir venv
-   cd venv
-   virtualenv --no-site-packages .
-
-When ever you need to use this environment use the command::
-
-   cd venv
-   source bin/activate
-
-On Windows there should be a `Scripts` directory not a `bin` directory, also there is no need for the
-`source` command, the following is enough::
-
-   cd venv
-   Scripts/activate
-
-.. note::  
-
-   Remember to activate your virtual environment!
-       .. image:: ../images/activate.gif
-
-   If you neglect this, `pip` will behave in unpredictable ways,
-   you will get permission errors
-   and other strange behaviour.
-
-Then install bottle using the pip command::
-
-    pip install bottle
-
-.. note:: `pip` stands for "Pip Installs Packages", it is a package installer designed to install python packages (similar to apt-get on Debian or Ubuntu).
-        It has been affectionately referred to as `the new hotness`_.
+You should be able to create a simple web application now.
 
 Setting up the Bottle Starter Scaffold 
 --------------------------------------------
 
-You will need
+A scaffold refers to a predetermined structure around which you will build your applications.
 
-- The Bottle GAE Scaffold http://dl.dropbox.com/u/1004432/bottle_starter.zip
-- Virtualenv
+.. note:: **Why Scaffolds?** Glad you asked! Over the next couple weeks you will be submitting work to be assessed, to simplify things 
+    We've developed a standard way of organizing your projects. Maintaining a standard approach means there is one less decision to make when building your applications. 
 
-Activate your virtual environment and, if you haven't done so yet, install Bottle::
+There are two scaffolds to be used in this course the names are listed below:
 
-   cd venv
-   source bin/activate
-   pip install bottle
+**Starter Scaffold**
+    This is a simple approach, just enough folders to keep things organized
+
+**GAE Scaffold**
+    This arrangement is meant to accomodate projects that will be deployed to Google App Engine, it will seem to be lots of folders, most of them play a supporting role, but all are useful.
+
+Today we will focus on the ``Starter Scaffold``.
+
+.. note:: This section assumes that you have Virtualenv installed. You may find it helpful to 
+          review the section entitled :ref:`virtualenv_section`
+
+You will need to download the Bottle Starter Scaffold http://dl.dropbox.com/u/1004432/bottle_starter.zip
+It is best to place it in the same folder where you have your `venv` folder.
+
+Activate your virtual environment (we're assuming that you already installed Bottle)::
+
+   source venv/bin/activate
 
 Download and unzip the starter scaffold http://dl.dropbox.com/u/1004432/bottle_starter.zip:
 
@@ -100,7 +51,6 @@ The unzipped directory structure looks something like this (for the sake of simp
 
 	bottle_starter
 	├── app.py
-	├── ez_setup.py
 	├── static
 	│   ├── css
 	│   ├── images
@@ -108,13 +58,7 @@ The unzipped directory structure looks something like this (for the sake of simp
 	└── templates
 	    └── index.tpl
 
-Check to see that the scaffold is working by running the following inside the `bottle_starter`::
-
-
-Summary of develop/deploy cycle
--------------------------------------
-
-By now you will have downloaded the starter scaffold and unzipped in to a convenient location.
+Check to see that the scaffold is working by running the following::
 
 The instructions below are for Unix, but
 similar steps can be taken on Windows.
@@ -123,7 +67,7 @@ similar steps can be taken on Windows.
 
        cp bottle_starter MyApp
 
-#. Activate your Python virtual environment::
+#. Activate your Python virtual environment (if you haven't done so already)::
 
        source venv/bin/activate
 
@@ -131,6 +75,11 @@ similar steps can be taken on Windows.
 
        cd MyApp
        python app.py
+
+Visit your browser at http://localhost:6543, you should see something like the
+image below:
+
+.. image:: ../images/scaffoldview.png
 
 If you are on a network with a proxy then pay careful attention to the next section.
 
@@ -168,51 +117,133 @@ the same can be acheived by using `set` instead of `export`::
 .. note:: For persons using `sudo` on Unix. Be careful if you use `sudo` on Unix, `sudo` may not inherit the http_proxy environment variable if you set it without `sudo`.
 
 
-Beginning our RecipeWebsite application
------------------------------------------
+Creating the views for our RecipeWebsite application
+-------------------------------------------------------
 
-Establishing conventions help to make source code more maintainable, while Bottle does not provide a standard approach to managing our code. Thanks to `bottle starter scaffold`_ we will have a standard folder structure. 
+Based on the nature of our application we can predict some of views
+that we will need.
+
+The names below represent reasonable descriptive choices for our Views:
+
+welcome
+    a view which shows a welcome or home page, it is associated with the root of the website.
+
+recipe
+    when viewing an individual recipe, this view will be used to display all the information for that recipe.
+
+ingredient
+    search by ingredient, this view will return a list of recipes that have the particular ingredient.
+
+submitrecipe
+    It should be possible to add a new recipe using the 'submit a recipe' link.
+
+registration
+    There needs to be a registration page, so that new users can sign up
+
+faq
+     This will be a simple view that lists common questions about the web application
+
+Bottle does not provide a standard way to manage our code, so we will rely on our `bottle starter scaffold`_ to ensure that our applications have a standard and predictable folder structure. 
+
+Our application will have the following sections
 
 You can download our `bottle starter app`_ to get going.
 
 .. note:: the term "scaffold" comes from the construction industry and roughly means "structure".
 
 
-We will use the following directory structure::
+Copy the bottle_starter folder to RecipeWebsite::
+
+       cp bottle_starter RecipeWebsite
     
-	RecipeWebsite/
-	└── recipewebsite
-	    ├── static
-	    └── templates
+Enter the `RecipeWebsite` folder
 
-This structure will be very useful if we later on decided to make our site into a full python packages.
+The 
 
-Enter the `RecipeWebsite/recipewebsite` folder
+Adding a template in the `templates` folder
+--------------------------------------------
 
-.. note::   .. image:: ../images/activate.gif
-   Remember to activate your virtual environment!
+In the `templates` folder we will add a new template called `recipe.pt`. To make it very 
+simple we will just put the phrase, "I am the recipe template".
 
-Create a file called `app.py`
-Your directory will now look like this
 ::
 
-	RecipeWebsite/
-	└── recipewebsite
-	    ├── app.py
-	    ├── static
-	    └── templates
+    <h1>I am the recipe template</h1>
 
-To view the new application in your browser run the following command::
+View the new view in your browser
+----------------------------------------
 
-    python app.py
+Start the application::
 
-.. literalblock:: ../bottleRecipeWebsite/app.py
+    pserve development.ini
+
+Then visit localhost:6543/recipe_view, you should see something like the image below.
+
+    .. image:: ../images/recipetemplate.jpg
+
+Passing variables to the template
+-----------------------------------
+
+Variables are generally passed to Chameleon templates as key value pairs of a python dictionary.
+Notice how this approach is used to define the 'project' in the root template `my_view`.
+
+::
+
+	@view_config(context=RecipeSite, renderer='templates/welcome.pt')
+		def my_view(request):
+		    return {'project':'RecipeWebsite'}
+
+Defining macros and slots, creating a master template
+--------------------------------------------------------
+
+After a while we begin to see things that are common to all templates. Instead of repeating these elements
+across different templates, we can share these elements by creating a global or master template.
+New templates can be made to inherit from the master template.
+In our case the `welcome.pt` template is a good starting point.
 
 
-.. warning:: sometimes this will will fail because another service on your machine may already be running on the port  (you can change the port in the `app.py` file or stop the conflicting service).
+Based on our mockups, most pages will be simpler than the front page so we will create a more generic template
+based on the `welcome.pt` template. 
+
+.. image:: ../images/recipewebsite-template-innerpage.png
+
+We'll create a new master template called 'global.pt' in the `templates` folder. We can use the `welcome.pt` template as the starting point.
+
+The simpler global template can be implemented with 3 rows instead of 5 in the welcome template.
+
+.. image:: ../images/simpletemplate.jpg
 
 
-Visiting http://localhost:8080 in your browser will display the following text in your browser::
+Pay attention to the following changes:
+
+- the addition of a `metal:define-macro` line
+
+- the addition of a `define-slot` which will act as a replaceable region.
+
+- in general this template is more generic
+
+We name our template `global.pt`::
+
+	<!DOCTYPE html>
+	<html
+	      xmlns:metal="http://xml.zope.org/namespaces/metal"
+	      xmlns:tal="http://xml.zope.org/namespaces/tal"
+	      metal:define-macro="layout">
+	<head>
+	<head>
+	     <style>
+		<!--
+		@import url(http://dl.dropbox.com/u/1004432/decogrids-12-gapless.css);
+		-->
+	      </style>
+	</head>
+	<body>
+
+	     <div id="row-1" class="row">
+		   <div class ="cell position-0 width-3">
+		       LOGO will go here
+		   </div>
+
 
 Discussion
 -----------

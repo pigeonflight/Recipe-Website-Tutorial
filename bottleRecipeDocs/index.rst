@@ -13,27 +13,25 @@ According to the Bottle documentation the following is the simplest Bottle appli
 
 .. literalinclude:: hello.py
 
-When saved to ``helloworld.py``. We've bundled all of this into a bootstrp script called `bootstrapbot.sh`, try it out by doing the following:
 
 .. note:: 
-	**Want to see this in action now? Use the 'bootstrapbot.sh' script**
+	**Want to see this in action now? Use the 'bootstrapbot.py' script**
 
-	#. Download it if from: http://dl.dropbox.com/u/1004432/bootstrapbot.sh
+        We've bundled all of this into a bootstrap script called `bootstrapbot.py`, try it out by doing the following:
+
+	#. Download it: http://dl.dropbox.com/u/1004432/bootstrapbot.py
 	#. Run it::
 
-	       sh bootstrapbot.sh 
+	       python bootstrapbot.py
 
-        #. Launch the script. You should now have a virtualenv called ``venv``, change to the `venv` directory and launch the helloworld.py program::
+        #. Launch it. From the directory where your ran the bootstrap launch the helloworld.py program::
 
-        	   cd venv
-        	   bin/python helloworld.py
+               venv/bin/python helloworld.py
 
 	When you visit ``http://localhost:8080/hello/world`` in a browser, you will
 	see the text ``Hello world!``.
 
-.. tip::
-Having trouble :ref:`dealing_with_proxies`
-
+        **Having trouble? Are you behind a proxy?** Read :ref:`dealing_with_proxies`
 
 
 As our tasks become more complex
@@ -50,8 +48,9 @@ Each tutorial includes discussion questions. It should be possible to work throu
 
    tutorials/planning-and-mockups
    tutorials/setting-up-dev-environment
-   tutorials/basic-bottle-application
    tutorials/organizing-your-project
+   tutorials/deploying-your-application
+   tutorials/common-application-features
    tutorials/deploying-on-google-appengine
    tutorials/starting-routes-static-resources
    tutorials/building-out-additional-views

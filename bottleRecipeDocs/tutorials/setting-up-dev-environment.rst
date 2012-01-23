@@ -123,6 +123,16 @@ To view the new application in your browser run the following command::
 
 Visiting http://localhost:8080 in your browser will display the following text in your browser::
 
+
+Building A Basic Application
+------------------------------
+
+As a final exercise we will work through the creation of a Todo list application.
+
+Follow the tutorial at http://bottlepy.org/docs/dev/tutorial_app.html
+
+Then come back to discuss what you've learnt.
+
 Discussion
 -----------
 
@@ -133,6 +143,8 @@ Discussion
 - By now you should know how to set environment variables, how do you use the terminal (on UNIX or Windows) to display environment variables?
 
 - What do you think happens when you set the `http_proxy` environment variable.?
+
+- Notice the effect of introducing the templating system, the application is now broken up into .py files and .tpl templates. What are your thoughts regarding this approach, compared to what you may know from using PHP?
 
 .. _the new hotness: http://s3.pixane.com/pip_distribute.png
 .. _bottle starter app: http://dl.dropbox.com/u/1004432/bottle-app.zip

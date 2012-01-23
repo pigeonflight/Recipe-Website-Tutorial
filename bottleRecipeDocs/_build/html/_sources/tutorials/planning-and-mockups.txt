@@ -3,6 +3,8 @@
    single: mockups
    single: css
    single: layout
+   single: convience class
+   single: grid framework
 
 .. _planning_mockups_chapter:
 
@@ -47,7 +49,7 @@ There are several CSS Frameworks which help to simplify the task of creating an 
 For this layout I've decided to use the deco.gs_ framework.
 In addition to these frameworks new applications like Initializr_ help to get you started quickly.
 
-The deco.gs system uses a combination of two CSS classes ".row" and ".cell" to acheive layout. The cells are supplemented by special `position-` and `width-` convenience classes, which determine **where** within a row a cell will be placed as well as **how much space** that cell takes up.
+The deco.gs system uses a combination of two CSS classes ".row" and ".cell" to acheive layout. The cells are supplemented by special `position-` and `width-` ``convenience classes``, which determine **where** within a row a cell will be placed as well as **how much space** that cell takes up.
 
 In the example below we use two different cell widths [#]_, `width-4` and `width-12` to create our layout. 
 
@@ -106,18 +108,22 @@ Discussion
 
 - What might be some pros and cons to presenting the mockup in a "sketchy" style?
 
-- How does a css grid framework simplify things?
+- The HTML snippets above are not complete HTML documents, what would we need to add to make them complete?
+
+- Why use a css grid framework when you can hand code everything yourself?
+
+- Most grid frameworks focus on organizing things into rows and cells, NOT rows and columns, what's the difference?
 
 - What does the term convenience class suggest?
 
-- Look at the proposed html code, is there anything interesting about 'row-4'?
-
-- The code shown represents snippets, what would we need to add to complete it?
+- Look at the proposed html code, do you notice anything different about the contents of 'row-4'?
 
 Lab
 ----
 
-- Create a mockup for a website
+- Using one of the tools mentioned above, create a mockup for a website.
+  While making the mockup, try to think about how many rows will be needed if
+  you were implementing the site using a grid framework.
 
 - Using Deco.gs (or a framework of your choice), implement a rough HTML version of that mockup.
 
