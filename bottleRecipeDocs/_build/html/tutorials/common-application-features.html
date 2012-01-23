@@ -66,14 +66,13 @@ for example if you need to manage users and user accounts or connect to a databa
 functionality built in.
 Below is a list of some of the common features that Bottle does not <cite>ship</cite> with:</p>
 <ul class="simple">
-<li>session management</li>
-<li>custom authentication and authorization</li>
+<li>user accounts (session management, authentication and authorization)</li>
 <li>database connections</li>
 </ul>
 <p>For these will have to rely on third-party modules.</p>
-<p>We will use:</p>
+<p>We will use the following modules to implement:</p>
 <ul class="simple">
-<li><strong>Authkit</strong> for session management and custom authentication</li>
+<li><strong>repoze.who</strong> and <strong>repoze.what</strong> for user account management</li>
 <li><strong>SQLAlchemy</strong> for database connectivity</li>
 </ul>
 <div class="section" id="adding-authentication-to-an-application">

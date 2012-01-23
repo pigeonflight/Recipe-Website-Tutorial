@@ -65,7 +65,7 @@ similar steps can be taken on Windows.
 
 #. Copy `bottle_starter` to `MyApp`::
 
-       cp bottle_starter MyApp
+       cp -r bottle_starter MyApp
 
 #. Activate your Python virtual environment (if you haven't done so already)::
 
@@ -154,7 +154,7 @@ You can download our `bottle starter app`_ to get going.
 
 Copy the bottle_starter folder to RecipeWebsite::
 
-       cp bottle_starter RecipeWebsite
+       cp -r bottle_starter RecipeWebsite
     
 Enter the `RecipeWebsite` folder
 

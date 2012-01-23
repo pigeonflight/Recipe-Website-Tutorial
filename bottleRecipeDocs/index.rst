@@ -52,9 +52,10 @@ Each tutorial includes discussion questions. It should be possible to work throu
    tutorials/deploying-your-application
    tutorials/common-application-features
    tutorials/deploying-on-google-appengine
-   tutorials/starting-routes-static-resources
-   tutorials/building-out-additional-views
-   tutorials/resources-urls-content-creation
+
+..   tutorials/starting-routes-static-resources
+..   tutorials/building-out-additional-views
+..   tutorials/resources-urls-content-creation
 
 
 Reference Material

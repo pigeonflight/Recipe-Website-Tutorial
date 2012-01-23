@@ -79,13 +79,11 @@ To install bottle  and virtualenv place bootstrapbot.py in the target folder of 
 This creates a virtual environment called ``venv``.
 When ever you need to use this environment it can be activated using the following commands::
 
-   cd venv
-   source bin/activate
+   source venv/bin/activate
 
 On Windows the following is enough::
 
-   cd venv
-   Scripts/activate
+   venv\Scripts\activate
 
 .. note::  
 

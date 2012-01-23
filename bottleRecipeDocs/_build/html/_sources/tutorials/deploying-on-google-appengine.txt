@@ -9,18 +9,20 @@ Part 6 - Deploying on Google App Engine
 ===========================================
 
 Google App Engine (GAE) is sometimes called a 
-platform as a service (PAAS) because it provides specific utilities for things like data persistence, authentication and user management. If you don't mind following "the App Engine way" the benefit is a free platform for deploying webscale applications on infrastructure managed by Google. App Engine has a threshold at which point you will need to pay about USD $9 per month, this fee increases as you consume more resources.
+platform as a service (PAAS) because it provides specific utilities for things like data persistence, authentication and user management. 
 
-.. attention:: App Engine is not perfect for every type of solution this `discussion about App Engine charges`_ illustrates clearly that some applications don't match very well with GAE.
+.. note:: If you don't mind following "the App Engine way" the benefit is a free platform for deploying webscale applications on infrastructure managed by Google. App Engine has a threshold at which point you will need to pay about USD $9 per month, this fee increases as you consume more resources.
+While App Engine is great for some application there has been `discussion about App Engine charges`_ which suggest some applications are not economical on GAE.
 
 Setting up the Bottle GAE Scaffold 
 --------------------------------------------
 
-The directory structure that we use is borrowed from this `blog post about using bottle on GAE`_. 
-It provides a standard way of arranging directories for applications that will be deployed to GAE.
-We also include the App Engine Software Development Kit (SDK).
+For working with App Engine we will use 
+a directory structure inspired by this `blog post about using bottle on GAE`_. 
+This will be our standard way of arranging directories for applications that we will deploy to GAE.
+The scaffold also includes the App Engine Software Development Kit (SDK).
 
-We will refer to this as the **bottle_gae scaffold**. Download it from http://dl.dropbox.com/u/1004432/bottle_gae.zip
+We will refer to this as the **GAE scaffold**. Download it from http://dl.dropbox.com/u/1004432/bottle_gae.zip
 
 The unzipped directory structure looks something like this::
 
@@ -37,163 +39,101 @@ The unzipped directory structure looks something like this::
 	    └── tools
 
 
-What you will need
--------------------
+What you will need:
 
+- An account with App Engine (visit http://appengine.google.com to sign up)
 - The Bottle GAE Scaffold http://dl.dropbox.com/u/1004432/bottle_gae.zip
 - Python 2.5 
     Google App Engine is designed to work with Python 2.5 newer versions of Python are known to have issues. Ensure that you have this installed, on Windows you may consider using `Portable Python 2.5 <http://www.portablepython.com/wiki/PortablePython1.1Py2.5.4>`_.
-- Virtualenv
+- bootstrapbot.py http://dl.dropbox.com/u/1004432/bootstrapbot.py
+
+Sign up with App Engine
+------------------------
+
+Visit http://appengine.google.com and sign up by creating a new application.
+
+.. image:: ../images/appenginestart.png
+
+For each application that you create on App Engine there is an ``Administration`` section where you can manage 
+``Application Settings``. The most import setting for us is the ``Application Identifier``, we will need to know this name.
+
+Use Python 2.5 to bootstrap bottle
+------------------------------------
+
+To install bottle  and virtualenv place bootstrapbot.py in the target folder of your choice and run, be sure
+to use Python 2.5::
+
+   python2.5 bootstrapbot.py
+
+This creates a virtual environment called ``venv``.
+When ever you need to use this environment it can be activated using the following commands::
+
+   source venv/bin/activate
+
+.. warning:: Are you sure you used Python 2.5? There will be issues is you didn't!
 
 Summary of develop/deploy cycle
 -------------------------------------
 
-Download the Bottle GAE Scaffold and Unzip it.
-Here is how we will work with the Bottle GAE Scaffold. The instructions below are for Unix, but
-similar steps can be taken on Windows.
+Download the Bottle GAE Scaffold to the target folder (the same one target folder used above) and unzip it.
+
+The instructions below are for Unix, we assume that `bottle_gae` and `venv` are in the same target folder.
+Start in your target folder (the folder containing both venv and bottle_gae).
+
+#. Activate the Python 2.5 virtual environment
+
+       venv/bin/activate
 
 #. Copy `app_template` to `MyApp`::
 
-       cp app_template MyApp
-
-#. Activate your Python 2.5 virtual environment::
-
-       . ~/Code/py25env/bin/activate
+       cp -r bottle_gae/app_template bottle_gae/MyApp
 
 #. Test that it is working by running the run.sh script::
 
+       cd bottle_gae/MyApp
        sh run.sh 
 
-If you are on a network with a proxy then pay careful attention to the next section.
+#. Edit the `app.yaml` file (ensure that the value for ``application`` matches your ``Application Identifier``.
 
-Dealing with on campus proxies
--------------------------------
+#. Deploy your application to Google App Engine 
 
-.. note: All the examples below are specific to the UWI Mona network, but should be applicable to other 
-locations that use a proxy on their network.
+        sh deploy.sh
 
-**Known UWI proxies** 
-	scalpel, proxy-cluster, proxy1, proxy3, sword
-        while we use `scalpel` in our examples
-        any of the ones listed should work
+.. note:: Proxy issues? check out :ref:`dealing_with_proxies`
 
-- All proxies are configured to run on port 8080. 
+app.yaml and App Engine Versions
+----------------------------------
 
-After launching the terminal (or commandline) it is important to set the http_proxy
-environmental variable, BEFORE running any other command
+Your applications can be given new version numbers by configuring them in the ``app.yaml`` file.
 
-**On Unix** 
+After deploying a new version you will need to set it to be the default version, in order to see the changes.
 
-::
+.. image:: ../images/appengineversions.png
 
-   export http_proxy=proxy3:8080
+Taking advantage of the GAE users api and Datastore api
+---------------------------------------------------------
 
-**On Windows** 
+Since we will be deploying to GAE, we might as well take advantage of features that GAE provides, especially those
+features that Bottle does not provide, specifically:
 
-the same can be acheived by using `set` instead of `export`::
+- User account management (Authentication, Sessions, Login)
+- Database backend
 
+We will use App Engine's ``Datastore`` and ``Users`` API, read about both in `getting started with App Engine`_.
 
-   set http_proxy=proxy3:8080
+Adding Third Party Auth
+--------------------------
 
-.. note:: For persons using `sudo` on Unix. Be careful if you use `sudo` on Unix, `sudo` may not inherit the http_proxy environment variable if you set it without `sudo`.
+http://engineauth.readthedocs.org
 
-Using Virtualenv
-------------------
-
-Virtualenv allows you to create complete python environment without the need for administrative access.
-
-To install Bottle, create a virtualenv::
-
-   mkdir venv
-   cd venv
-   virtualenv --no-site-packages .
-
-When ever you need to use this environment use the command::
-
-   cd venv
-   source bin/activate
-
-On Windows the following is enough::
-
-   cd venv
-   Scripts/activate
-
-.. note::  
-
-   Remember to activate your virtual environment!
-       .. image:: ../images/activate.gif
-
-   If you neglect this, `pip` will behave in unpredictable ways,
-   you will get permission errors
-   and other strange behaviour.
-
-Then install bottle using the pip command::
-
-    pip install bottle
-
-.. note:: `pip` stands for "Pip Installs Packages", it is a package installer designed to install python packages (similar to apt-get on Debian or Ubuntu).
-        It has been affectionately referred to as `the new hotness`_.
-
-Using the bottle starter app
------------------------------------------
-
-Establishing conventions help to make source code more maintainable, while bottle does not provide a standard approach to managing our code. We will use a standard folder structure. 
-
-You can download our `bottle starter app`_ to get going.
-
-.. note:: the term "scaffold" comes from the construction industry and roughly means "structure".
-
-
-We will use the following directory structure::
-    
-	RecipeWebsite/
-	└── recipewebsite
-	    ├── static
-	    └── templates
-
-This structure will be very useful if we later on decided to make our site into a full python packages.
-
-Enter the `RecipeWebsite/recipewebsite` folder
-
-.. note::   .. image:: ../images/activate.gif
-   Remember to activate your virtual environment!
-
-Create a file called `app.py`
-Your directory will now look like this
-::
-
-	RecipeWebsite/
-	└── recipewebsite
-	    ├── app.py
-	    ├── static
-	    └── templates
-
-To view the new application in your browser run the following command::
-
-    python app.py
-
-.. literalinclude:: ../bottleRecipeWebsite/tutorial1/RecipeWebsite/recipewebsite/app.py
-
-
-.. warning:: sometimes this will will fail because another service on your machine may already be running on the port  (you can change the port in the `app.py` file or stop the conflicting service).
-
-
-Visiting http://localhost:8080 in your browser will display the following text in your browser::
 
 Discussion
 -----------
 
-- What is the benefit have a standard directory structure?
+- What does PAAS mean? How is a PAAS different from normal webhosting? 
 
-- We used pip to install the Bottle package, in python circles packages are often called `eggs`, can you guess why?
+- One feature of App Engine is application version management. What would you use this for?
 
-- In what way do conventions make source code more maintainable?
-
-- Any thoughts on what happens when you use virtualenv and the `source bin/activate` command? 
-
-- What do you think happens when you set the `http_proxy` environment variable.?
-
-.. _the new hotness: http://s3.pixane.com/pip_distribute.png
-.. _bottle starter app: http://dl.dropbox.com/u/1004432/bottle-app.zip
 .. _discussion about App Engine charges: http://news.ycombinator.com/item?id=3431132
 .. _blog post about using bottle on GAE: http://www.joemartaganna.com/web-development/how-to-build-a-web-app-using-bottle-with-jinja2-in-google-app-engine/
+.. _getting started with App Engine: http://code.google.com/appengine/docs/python/gettingstarted/
