@@ -5,35 +5,36 @@
 
 .. _common_features_chapter:
 
-Part 5 - Common Application Features 
-===========================================
+Part 5 - Common Application Features/Adding Features to the Recipe Website 
+============================================================================
 
-Bottle is a very simple micro-framework and as a result it is easy to get started quickly without having to learn
-lots of additional concepts. So far we have been able to manage with the functionality that Bottle provides
+Flask is a very simple micro-framework and as a result it is easy to get started quickly without having to learn
+lots of additional concepts. So far we have been able to manage with the functionality that Flask provides
 such as:
 
-- routing
+- routing (or some other equivalent way of resolving URLs)
 - templating engines (simple template, jinja2 and mako)
 - request and response data management
-
-At some point you hit the limitations of working with micro-framework. There are things that Bottle cannot do!
-for example if you need to manage users and user accounts or connect to a database Bottle doesn't have that
-functionality built in.
-Below is a list of some of the common features that Bottle does not `ship` with:
-
-- user accounts (session management, authentication and authorization)
+- login 
 - database connections
 
-For these will have to rely on third-party modules.
+When we come upon something that Flask cannot do we then import modules.
+For example if you need to provide third part authentication for facebook, twitter and google, Flask doesn't have that
+functionality built in.
+For these additional features we will rely on third-party modules.
 
 We will use the following modules to implement:
 
-- **repoze.who** and **repoze.what** for user account management
-- **SQLAlchemy** for database connectivity 
+XXX Fixme
+
+Submitting and Displaying a recipe
+---------------------------------------
 
 
-Adding Authentication to an Application
-----------------------------------------
+Adding Third party Authentication to an Application
+-------------------------------------------------------
+
+Facebook and Twitter login to support comments
 
 XXX Fixme, need
 
@@ -44,4 +45,5 @@ XXX Fixme, need
 
 Discussion
 -----------
+
 
