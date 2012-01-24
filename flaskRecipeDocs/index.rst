@@ -6,8 +6,8 @@ Recipe Website Tutorials
 
 This is a series of tutorials which lay the foundation for using the `Flask` web application framework
 to create a Recipe Website service. 
-Learn more about Flask at `The Flask Website
-http://flask.pocoopy.org/>`_.  
+Learn more about Flask at `The Flask Website <http://flask.pocoo.org/>`_.  
+
 
 According to the Flask documentation the following is the simplest Flask application that you can make:
 
