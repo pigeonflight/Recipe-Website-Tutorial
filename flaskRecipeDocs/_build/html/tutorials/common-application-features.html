@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Part 5 - Common Application Features &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
+    <link rel="next" title="Part 6 - Deploying on Google App Engine" href="deploying-on-google-appengine.html" />
+    <link rel="prev" title="Part 4 - Deploying your Application" href="deploying-your-application.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="deploying-on-google-appengine.html" title="Part 6 - Deploying on Google App Engine"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="deploying-your-application.html" title="Part 4 - Deploying your Application"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="part-5-common-application-features">
+<span id="common-features-chapter"></span><span id="index-0"></span><h1>Part 5 - Common Application Features<a class="headerlink" href="#part-5-common-application-features" title="Permalink to this headline">¶</a></h1>
+<p>Bottle is a very simple micro-framework and as a result it is easy to get started quickly without having to learn
+lots of additional concepts. So far we have been able to manage with the functionality that Bottle provides
+such as:</p>
+<ul class="simple">
+<li>routing</li>
+<li>templating engines (simple template, jinja2 and mako)</li>
+<li>request and response data management</li>
+</ul>
+<p>At some point you hit the limitations of working with micro-framework. There are things that Bottle cannot do!
+for example if you need to manage users and user accounts or connect to a database Bottle doesn&#8217;t have that
+functionality built in.
+Below is a list of some of the common features that Bottle does not <cite>ship</cite> with:</p>
+<ul class="simple">
+<li>user accounts (session management, authentication and authorization)</li>
+<li>database connections</li>
+</ul>
+<p>For these will have to rely on third-party modules.</p>
+<p>We will use the following modules to implement:</p>
+<ul class="simple">
+<li><strong>repoze.who</strong> and <strong>repoze.what</strong> for user account management</li>
+<li><strong>SQLAlchemy</strong> for database connectivity</li>
+</ul>
+<div class="section" id="adding-authentication-to-an-application">
+<h2>Adding Authentication to an Application<a class="headerlink" href="#adding-authentication-to-an-application" title="Permalink to this headline">¶</a></h2>
+<p>XXX Fixme, need</p>
+</div>
+<div class="section" id="working-with-databases">
+<h2>Working with Databases<a class="headerlink" href="#working-with-databases" title="Permalink to this headline">¶</a></h2>
+<p>XXX Fixme, need</p>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Part 5 - Common Application Features</a><ul>
+<li><a class="reference internal" href="#adding-authentication-to-an-application">Adding Authentication to an Application</a></li>
+<li><a class="reference internal" href="#working-with-databases">Working with Databases</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="deploying-your-application.html"
+                        title="previous chapter">Part 4 - Deploying your Application</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="deploying-on-google-appengine.html"
+                        title="next chapter">Part 6 - Deploying on Google App Engine</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorials/common-application-features.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="deploying-on-google-appengine.html" title="Part 6 - Deploying on Google App Engine"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="deploying-your-application.html" title="Part 4 - Deploying your Application"
+             >previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, David Bain.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+Just for my reference
+x    attention
+x    caution
+x   danger
+    error
+x    hint
+x    important
+    note
+x   tip
+    warning
+

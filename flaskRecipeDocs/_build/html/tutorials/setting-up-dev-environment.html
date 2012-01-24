@@ -1,0 +1,241 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Part 2 - Setting up your development environment &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
+    <link rel="next" title="Part 3 - Organizing your Project / UI and Simple Templating" href="organizing-your-project.html" />
+    <link rel="prev" title="Part 1 - Planning and Mockups" href="planning-and-mockups.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="organizing-your-project.html" title="Part 3 - Organizing your Project / UI and Simple Templating"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="planning-and-mockups.html" title="Part 1 - Planning and Mockups"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="part-2-setting-up-your-development-environment">
+<span id="setting-up-dev-chapter"></span><span id="index-0"></span><h1>Part 2 - Setting up your development environment<a class="headerlink" href="#part-2-setting-up-your-development-environment" title="Permalink to this headline">¶</a></h1>
+<p>In this tutorial we gather our tools. We assume that you already have a trusted text editor,
+so we will focus on the tools needed to build out your web applications.
+It is recommended that you use a UNIX/Linux environment, though everything should also work on Windows.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>Deployment</strong> - We will deploy our earlier projects on Fluxflex (a cloud hosting platform) and later we will use Google App Engine (GAE). Google App Engine is sometimes called a
+platform as a service (PAAS) because it provides specific utilities for things like data persistence, authentication and user management. If you don&#8217;t mind following &#8220;the Google way&#8221; the benefit is a free option for getting started on infrastructure provided by Google.</p>
+</div>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">App Engine is not perfect for every type of solution, a recent <a class="reference external" href="http://news.ycombinator.com/item?id=3431132">discussion about App Engine charges</a> illustrates clearly that some applications don&#8217;t match very well with GAE.</p>
+</div>
+<div class="section" id="installing-the-flask-web-framework">
+<h2>Installing the Flask web framework<a class="headerlink" href="#installing-the-flask-web-framework" title="Permalink to this headline">¶</a></h2>
+<p>You will need the following:</p>
+<ul class="simple">
+<li>A python interpreter</li>
+<li>and the python virtualenv package</li>
+</ul>
+<p>If you are on a network with a proxy then pay careful attention to the next section.</p>
+</div>
+<div class="section" id="dealing-with-on-campus-proxies">
+<span id="dealing-with-proxies"></span><h2>Dealing with on campus proxies<a class="headerlink" href="#dealing-with-on-campus-proxies" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All the examples below are specific to the UWI Mona network, but should be applicable to other
+locations that use a proxy on their network.</p>
+</div>
+<dl class="docutils">
+<dt><strong>Known UWI proxies</strong></dt>
+<dd>scalpel, proxy-cluster, proxy1, proxy3, sword
+while we use <cite>scalpel</cite> in our examples
+any of the ones listed should work</dd>
+</dl>
+<ul class="simple">
+<li>All proxies are configured to run on port 8080.</li>
+</ul>
+<p>After launching the terminal (or commandline) it is important to set the http_proxy
+environmental variable, BEFORE running any other command</p>
+<p><strong>On Unix</strong></p>
+<div class="highlight-python"><pre>export http_proxy=proxy3:8080</pre>
+</div>
+<p><strong>On Windows</strong></p>
+<p>the same can be acheived by using <cite>set</cite> instead of <cite>export</cite>:</p>
+<div class="highlight-python"><pre>set http_proxy=proxy3:8080</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For persons using <cite>sudo</cite> on Unix. Be careful if you use <cite>sudo</cite> on Unix, <cite>sudo</cite> may not inherit the http_proxy environment variable if you set it without <cite>sudo</cite>.</p>
+</div>
+</div>
+<div class="section" id="using-bootstrapflask-py-to-setup-a-virtualenv">
+<span id="virtualenv-section"></span><h2>Using Bootstrapflask.py to setup a Virtualenv<a class="headerlink" href="#using-bootstrapflask-py-to-setup-a-virtualenv" title="Permalink to this headline">¶</a></h2>
+<p>Bootstrapflask.py is a single file which creates a complete python environment with the
+flask package installed without the need for administrative access.</p>
+<p>Download <a class="reference external" href="http://dl.dropbox.com/u/1004432/bootstrapflask.py">http://dl.dropbox.com/u/1004432/bootstrapflask.py</a></p>
+<p>Then follow the instructions below:</p>
+<p>To install flask  and virtualenv place bootstrapflask.py in the target folder of your choice and run:</p>
+<div class="highlight-python"><pre>python bootstrapflask.py</pre>
+</div>
+<p>This creates a virtual environment called <tt class="docutils literal"><span class="pre">venv</span></tt>.
+When ever you need to use this environment it can be activated using the following commands:</p>
+<div class="highlight-python"><pre>source venv/bin/activate</pre>
+</div>
+<p>On Windows the following is enough:</p>
+<div class="highlight-python"><pre>venv\Scripts\activate</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="docutils">
+<dt>Remember to activate your virtual environment!</dt>
+<dd><img alt="../_images/activate.gif" class="first last" src="../_images/activate.gif" />
+</dd>
+</dl>
+<p class="last">If you don&#8217;t use an active virtual environment
+things may deviate from behaviour outlined in this documentation
+for example you will get permission errors and other strange behaviour.</p>
+</div>
+</div>
+<div class="section" id="trying-out-flask">
+<h2>Trying out Flask<a class="headerlink" href="#trying-out-flask" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have flask in a virtual environment (venv from running bootstrapflask.py above).
+We can begin try it out.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<img alt="../_images/activate.gif" src="../_images/activate.gif" />
+<p class="last">Remember to activate your virtual environment!</p>
+</div>
+<p>Let&#8217;s see that everything is working.</p>
+<p>Create a file called <cite>app.py</cite>
+And make it look like this:</p>
+<p>To view the new application in your browser run the following command:</p>
+<div class="highlight-python"><pre>python app.py</pre>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">sometimes this will will fail because another service on your machine may already be running on the port  (you can change the port in the <cite>app.py</cite> file or stop the conflicting service).</p>
+</div>
+<p>Visiting <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> in your browser will display the following text in your browser:</p>
+</div>
+<div class="section" id="building-a-basic-application">
+<h2>Building A Basic Application<a class="headerlink" href="#building-a-basic-application" title="Permalink to this headline">¶</a></h2>
+<p>As a final exercise we will work through the creation of a Todo list application.</p>
+<p>Follow the tutorial at <a class="reference external" href="http://flaskpy.org/docs/dev/tutorial_app.html">http://flaskpy.org/docs/dev/tutorial_app.html</a></p>
+<p>Then come back to discuss what you&#8217;ve learnt.</p>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Where&#8217;s the webserver? How is it possible to access our application even though we haven&#8217;t set up a webserver?</li>
+<li>What is an environment variable?</li>
+<li>By now you should know how to set environment variables, how do you use the terminal (on UNIX or Windows) to display environment variables?</li>
+<li>What do you think happens when you set the <cite>http_proxy</cite> environment variable.?</li>
+<li>Notice the effect of introducing the templating system, the application is now broken up into .py files and .tpl templates. What are your thoughts regarding this approach, compared to what you may know from using PHP?</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Part 2 - Setting up your development environment</a><ul>
+<li><a class="reference internal" href="#installing-the-flask-web-framework">Installing the Flask web framework</a></li>
+<li><a class="reference internal" href="#dealing-with-on-campus-proxies">Dealing with on campus proxies</a></li>
+<li><a class="reference internal" href="#using-bootstrapflask-py-to-setup-a-virtualenv">Using Bootstrapflask.py to setup a Virtualenv</a></li>
+<li><a class="reference internal" href="#trying-out-flask">Trying out Flask</a></li>
+<li><a class="reference internal" href="#building-a-basic-application">Building A Basic Application</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="planning-and-mockups.html"
+                        title="previous chapter">Part 1 - Planning and Mockups</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="organizing-your-project.html"
+                        title="next chapter">Part 3 - Organizing your Project / UI and Simple Templating</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorials/setting-up-dev-environment.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="organizing-your-project.html" title="Part 3 - Organizing your Project / UI and Simple Templating"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="planning-and-mockups.html" title="Part 1 - Planning and Mockups"
+             >previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, David Bain.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

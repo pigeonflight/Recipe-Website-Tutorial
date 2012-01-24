@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Part 6 - Deploying on Google App Engine &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
+    <link rel="prev" title="Part 5 - Common Application Features" href="common-application-features.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="common-application-features.html" title="Part 5 - Common Application Features"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="part-6-deploying-on-google-app-engine">
+<span id="setting-gae-chapter"></span><span id="index-0"></span><h1>Part 6 - Deploying on Google App Engine<a class="headerlink" href="#part-6-deploying-on-google-app-engine" title="Permalink to this headline">¶</a></h1>
+<p>Google App Engine (GAE) is sometimes called a
+platform as a service (PAAS) because it provides specific utilities for things like data persistence, authentication and user management.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you don&#8217;t mind following &#8220;the App Engine way&#8221; the benefit is a free platform for deploying webscale applications on infrastructure managed by Google. App Engine has a threshold at which point you will need to pay about USD $9 per month, this fee increases as you consume more resources.</p>
+</div>
+<p>While App Engine is great for some application there has been <a class="reference external" href="http://news.ycombinator.com/item?id=3431132">discussion about App Engine charges</a> which suggest some applications are not economical on GAE.</p>
+<div class="section" id="setting-up-the-bottle-gae-scaffold">
+<h2>Setting up the Bottle GAE Scaffold<a class="headerlink" href="#setting-up-the-bottle-gae-scaffold" title="Permalink to this headline">¶</a></h2>
+<p>For working with App Engine we will use
+a directory structure inspired by this <a class="reference external" href="http://www.joemartaganna.com/web-development/how-to-build-a-web-app-using-bottle-with-jinja2-in-google-app-engine/">blog post about using bottle on GAE</a>.
+This will be our standard way of arranging directories for applications that we will deploy to GAE.
+The scaffold also includes the App Engine Software Development Kit (SDK).</p>
+<p>We will refer to this as the <strong>GAE scaffold</strong>. Download it from <a class="reference external" href="http://dl.dropbox.com/u/1004432/bottle_gae.zip">http://dl.dropbox.com/u/1004432/bottle_gae.zip</a></p>
+<p>The unzipped directory structure looks something like this:</p>
+<div class="highlight-python"><pre>bottle_gae
+├── app_template
+│   ├── app
+│   ├── media
+│   └── packages
+└── google_appengine
+    ├── demos
+    ├── google
+    ├── lib
+    ├── new_project_template
+    └── tools</pre>
+</div>
+<p>What you will need:</p>
+<ul>
+<li><p class="first">An account with App Engine (visit <a class="reference external" href="http://appengine.google.com">http://appengine.google.com</a> to sign up)</p>
+</li>
+<li><p class="first">The Bottle GAE Scaffold <a class="reference external" href="http://dl.dropbox.com/u/1004432/bottle_gae.zip">http://dl.dropbox.com/u/1004432/bottle_gae.zip</a></p>
+</li>
+<li><dl class="first docutils">
+<dt>Python 2.5</dt>
+<dd><p class="first last">Google App Engine is designed to work with Python 2.5 newer versions of Python are known to have issues. Ensure that you have this installed, on Windows you may consider using <a class="reference external" href="http://www.portablepython.com/wiki/PortablePython1.1Py2.5.4">Portable Python 2.5</a>.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">bootstrapbot.py <a class="reference external" href="http://dl.dropbox.com/u/1004432/bootstrapbot.py">http://dl.dropbox.com/u/1004432/bootstrapbot.py</a></p>
+</li>
+</ul>
+</div>
+<div class="section" id="sign-up-with-app-engine">
+<h2>Sign up with App Engine<a class="headerlink" href="#sign-up-with-app-engine" title="Permalink to this headline">¶</a></h2>
+<p>Visit <a class="reference external" href="http://appengine.google.com">http://appengine.google.com</a> and sign up by creating a new application.</p>
+<img alt="../_images/appenginestart.png" src="../_images/appenginestart.png" />
+<p>For each application that you create on App Engine there is an <tt class="docutils literal"><span class="pre">Administration</span></tt> section where you can manage
+<tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Settings</span></tt>. The most import setting for us is the <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Identifier</span></tt>, we will need to know this name.</p>
+</div>
+<div class="section" id="use-python-2-5-to-bootstrap-bottle">
+<h2>Use Python 2.5 to bootstrap bottle<a class="headerlink" href="#use-python-2-5-to-bootstrap-bottle" title="Permalink to this headline">¶</a></h2>
+<p>To install bottle  and virtualenv place bootstrapbot.py in the target folder of your choice and run, be sure
+to use Python 2.5:</p>
+<div class="highlight-python"><pre>python2.5 bootstrapbot.py</pre>
+</div>
+<p>This creates a virtual environment called <tt class="docutils literal"><span class="pre">venv</span></tt>.
+When ever you need to use this environment it can be activated using the following commands:</p>
+<div class="highlight-python"><pre>source venv/bin/activate</pre>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Are you sure you used Python 2.5? There will be issues is you didn&#8217;t!</p>
+</div>
+</div>
+<div class="section" id="summary-of-develop-deploy-cycle">
+<h2>Summary of develop/deploy cycle<a class="headerlink" href="#summary-of-develop-deploy-cycle" title="Permalink to this headline">¶</a></h2>
+<p>Download the Bottle GAE Scaffold to the target folder (the same one target folder used above) and unzip it.</p>
+<p>The instructions below are for Unix, we assume that <cite>bottle_gae</cite> and <cite>venv</cite> are in the same target folder.
+Start in your target folder (the folder containing both venv and bottle_gae).</p>
+<ol class="arabic">
+<li><p class="first">Activate the Python 2.5 virtual environment</p>
+<blockquote>
+<div><p>venv/bin/activate</p>
+</div></blockquote>
+</li>
+<li><p class="first">Copy <cite>app_template</cite> to <cite>MyApp</cite>:</p>
+<div class="highlight-python"><pre>cp -r bottle_gae/app_template bottle_gae/MyApp</pre>
+</div>
+</li>
+<li><p class="first">Test that it is working by running the run.sh script:</p>
+<div class="highlight-python"><pre>cd bottle_gae/MyApp
+sh run.sh</pre>
+</div>
+</li>
+<li><p class="first">Edit the <cite>app.yaml</cite> file (ensure that the value for <tt class="docutils literal"><span class="pre">application</span></tt> matches your <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Identifier</span></tt>.</p>
+</li>
+<li><p class="first">Deploy your application to Google App Engine</p>
+<blockquote>
+<div><p>sh deploy.sh</p>
+</div></blockquote>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Proxy issues? check out <a class="reference internal" href="setting-up-dev-environment.html#dealing-with-proxies"><em>Dealing with on campus proxies</em></a></p>
+</div>
+</div>
+<div class="section" id="app-yaml-and-app-engine-versions">
+<h2>app.yaml and App Engine Versions<a class="headerlink" href="#app-yaml-and-app-engine-versions" title="Permalink to this headline">¶</a></h2>
+<p>Your applications can be given new version numbers by configuring them in the <tt class="docutils literal"><span class="pre">app.yaml</span></tt> file.</p>
+<p>After deploying a new version you will need to set it to be the default version, in order to see the changes.</p>
+<img alt="../_images/appengineversions.png" src="../_images/appengineversions.png" />
+</div>
+<div class="section" id="taking-advantage-of-the-gae-users-api-and-datastore-api">
+<h2>Taking advantage of the GAE users api and Datastore api<a class="headerlink" href="#taking-advantage-of-the-gae-users-api-and-datastore-api" title="Permalink to this headline">¶</a></h2>
+<p>Since we will be deploying to GAE, we might as well take advantage of features that GAE provides, especially those
+features that Bottle does not provide, specifically:</p>
+<ul class="simple">
+<li>User account management (Authentication, Sessions, Login)</li>
+<li>Database backend</li>
+</ul>
+<p>We will use App Engine&#8217;s <tt class="docutils literal"><span class="pre">Datastore</span></tt> and <tt class="docutils literal"><span class="pre">Users</span></tt> API, read about both in <a class="reference external" href="http://code.google.com/appengine/docs/python/gettingstarted/">getting started with App Engine</a>.</p>
+</div>
+<div class="section" id="adding-third-party-auth">
+<h2>Adding Third Party Auth<a class="headerlink" href="#adding-third-party-auth" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://engineauth.readthedocs.org">http://engineauth.readthedocs.org</a></p>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>What does PAAS mean? How is a PAAS different from normal webhosting?</li>
+<li>One feature of App Engine is application version management. What would you use this for?</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Part 6 - Deploying on Google App Engine</a><ul>
+<li><a class="reference internal" href="#setting-up-the-bottle-gae-scaffold">Setting up the Bottle GAE Scaffold</a></li>
+<li><a class="reference internal" href="#sign-up-with-app-engine">Sign up with App Engine</a></li>
+<li><a class="reference internal" href="#use-python-2-5-to-bootstrap-bottle">Use Python 2.5 to bootstrap bottle</a></li>
+<li><a class="reference internal" href="#summary-of-develop-deploy-cycle">Summary of develop/deploy cycle</a></li>
+<li><a class="reference internal" href="#app-yaml-and-app-engine-versions">app.yaml and App Engine Versions</a></li>
+<li><a class="reference internal" href="#taking-advantage-of-the-gae-users-api-and-datastore-api">Taking advantage of the GAE users api and Datastore api</a></li>
+<li><a class="reference internal" href="#adding-third-party-auth">Adding Third Party Auth</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="common-application-features.html"
+                        title="previous chapter">Part 5 - Common Application Features</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorials/deploying-on-google-appengine.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="common-application-features.html" title="Part 5 - Common Application Features"
+             >previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, David Bain.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
