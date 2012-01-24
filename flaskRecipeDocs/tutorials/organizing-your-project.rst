@@ -158,40 +158,48 @@ Copy the flask_starter folder to RecipeWebsite::
     
 Enter the `RecipeWebsite` folder
 
-The 
 
 Adding a template in the `templates` folder
 --------------------------------------------
 
-In the `templates` folder we will add a new template called `recipe.pt`. To make it very 
+In the `templates` folder we will add a new template called `recipe.html`. To make it very 
 simple we will just put the phrase, "I am the recipe template".
 
 ::
 
     <h1>I am the recipe template</h1>
 
+We will need a new route before this will work::
+
+	@app.route('/recipe')
+	def recipe():
+	    return template('recipe.html')
+
+
 View the new view in your browser
 ----------------------------------------
 
 Start the application::
 
-    pserve development.ini
+    python app.py
 
-Then visit localhost:6543/recipe_view, you should see something like the image below.
+Then visit localhost:6543/recipe, you should see something like the image below.
 
     .. image:: ../images/recipetemplate.jpg
 
 Passing variables to the template
 -----------------------------------
 
-Variables are generally passed to Chameleon templates as key value pairs of a python dictionary.
-Notice how this approach is used to define the 'project' in the root template `my_view`.
-
+Flask uses Jinja2 templates by default.
+Variables are generally passed to Jinja2 templates as key value pairs of a python dictionary.
+Notice how this approach is used in the app.py file to pass the value of `name` to the index.html template. 
 ::
 
-	@view_config(context=RecipeSite, renderer='templates/welcome.pt')
-		def my_view(request):
-		    return {'project':'RecipeWebsite'}
+	@app.route('/')
+	@app.route('/<name>')
+	def index(name='Earth'):
+	    return template('index.html',name=name)
+
 
 Defining macros and slots, creating a master template
 --------------------------------------------------------
@@ -199,36 +207,32 @@ Defining macros and slots, creating a master template
 After a while we begin to see things that are common to all templates. Instead of repeating these elements
 across different templates, we can share these elements by creating a global or master template.
 New templates can be made to inherit from the master template.
-In our case the `welcome.pt` template is a good starting point.
+In our case the `index.html` template is a good starting point.
 
 
 Based on our mockups, most pages will be simpler than the front page so we will create a more generic template
-based on the `welcome.pt` template. 
+based on the `index.html` template. 
 
 .. image:: ../images/recipewebsite-template-innerpage.png
 
-We'll create a new master template called 'global.pt' in the `templates` folder. We can use the `welcome.pt` template as the starting point.
+We'll create a new master template called 'global.html' in the `templates` folder. We can use the `index.html` template as the starting point.
 
 The simpler global template can be implemented with 3 rows instead of 5 in the welcome template.
 
 .. image:: ../images/simpletemplate.jpg
 
 
-Pay attention to the following changes:
+XXX Fix me
+need to say something about template inheritance
 
-- the addition of a `metal:define-macro` line
+We will pull this off using template inheritance
 
-- the addition of a `define-slot` which will act as a replaceable region.
+see: http://flask.pocoo.org/docs/patterns/templateinheritance/
 
-- in general this template is more generic
-
-We name our template `global.pt`::
+We name our template `global.html`::
 
 	<!DOCTYPE html>
-	<html
-	      xmlns:metal="http://xml.zope.org/namespaces/metal"
-	      xmlns:tal="http://xml.zope.org/namespaces/tal"
-	      metal:define-macro="layout">
+	<html>
 	<head>
 	<head>
 	     <style>
@@ -248,15 +252,15 @@ We name our template `global.pt`::
 Discussion
 -----------
 
-- What is the benefit have a standard directory structure?
-
-- We used pip to install the Flask package, in python circles packages are often called `eggs`, can you guess why?
-
-- In what way do conventions make source code more maintainable?
-
 - Any thoughts on what happens when you use virtualenv and the `source bin/activate` command? 
 
 - What do you think happens when you set the `http_proxy` environment variable.?
+
+- What benefits are there in having a standard directory structure?
+
+- Did we need to declare where to look for templates and static files?
+
+- In what way do conventions make source code more maintainable?
 
 .. _the new hotness: http://s3.pixane.com/pip_distribute.png
 .. _flask starter scaffold: http://dl.dropbox.com/u/1004432/flask_starter.zip
