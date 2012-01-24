@@ -17,7 +17,7 @@ At this point we have covered the following
 
 You should be able to create a simple web application now.
 
-Setting up the Bottle Starter Scaffold 
+Setting up the Flask Starter Scaffold 
 --------------------------------------------
 
 A scaffold refers to a predetermined structure around which you will build your applications.
@@ -38,18 +38,18 @@ Today we will focus on the ``Starter Scaffold``.
 .. note:: This section assumes that you have Virtualenv installed. You may find it helpful to 
           review the section entitled :ref:`virtualenv_section`
 
-You will need to download the Bottle Starter Scaffold http://dl.dropbox.com/u/1004432/bottle_starter.zip
+You will need to download the Flask Starter Scaffold http://dl.dropbox.com/u/1004432/flask_starter.zip
 It is best to place it in the same folder where you have your `venv` folder.
 
-Activate your virtual environment (we're assuming that you already installed Bottle)::
+Activate your virtual environment (we're assuming that you already installed Flask)::
 
    source venv/bin/activate
 
-Download and unzip the starter scaffold http://dl.dropbox.com/u/1004432/bottle_starter.zip:
+Download and unzip the starter scaffold http://dl.dropbox.com/u/1004432/flask_starter.zip:
 
 The unzipped directory structure looks something like this (for the sake of simplicity, only the key files and folders are listed below)::
 
-	bottle_starter
+	flask_starter
 	├── app.py
 	├── static
 	│   ├── css
@@ -63,9 +63,9 @@ Check to see that the scaffold is working by running the following::
 The instructions below are for Unix, but
 similar steps can be taken on Windows.
 
-#. Copy `bottle_starter` to `MyApp`::
+#. Copy `flask_starter` to `MyApp`::
 
-       cp -r bottle_starter MyApp
+       cp -r flask_starter MyApp
 
 #. Activate your Python virtual environment (if you haven't done so already)::
 
@@ -143,18 +143,18 @@ registration
 faq
      This will be a simple view that lists common questions about the web application
 
-Bottle does not provide a standard way to manage our code, so we will rely on our `bottle starter scaffold`_ to ensure that our applications have a standard and predictable folder structure. 
+Flask does not provide a standard way to manage our code, so we will rely on our `flask starter scaffold`_ to ensure that our applications have a standard and predictable folder structure. 
 
 Our application will have the following sections
 
-You can download our `bottle starter app`_ to get going.
+You can download our `flask starter app`_ to get going.
 
 .. note:: the term "scaffold" comes from the construction industry and roughly means "structure".
 
 
-Copy the bottle_starter folder to RecipeWebsite::
+Copy the flask_starter folder to RecipeWebsite::
 
-       cp -r bottle_starter RecipeWebsite
+       cp -r flask_starter RecipeWebsite
     
 Enter the `RecipeWebsite` folder
 
@@ -250,7 +250,7 @@ Discussion
 
 - What is the benefit have a standard directory structure?
 
-- We used pip to install the Bottle package, in python circles packages are often called `eggs`, can you guess why?
+- We used pip to install the Flask package, in python circles packages are often called `eggs`, can you guess why?
 
 - In what way do conventions make source code more maintainable?
 
@@ -259,6 +259,6 @@ Discussion
 - What do you think happens when you set the `http_proxy` environment variable.?
 
 .. _the new hotness: http://s3.pixane.com/pip_distribute.png
-.. _bottle starter scaffold: http://dl.dropbox.com/u/1004432/bottle_starter.zip
+.. _flask starter scaffold: http://dl.dropbox.com/u/1004432/flask_starter.zip
 .. _article about App Engine charges: http://news.ycombinator.com/item?id=3431132
-.. _blog post about using bottle on GAE: http://www.joemartaganna.com/web-development/how-to-build-a-web-app-using-bottle-with-jinja2-in-google-app-engine/
+.. _blog post about using flask on GAE: http://www.joemartaganna.com/web-development/how-to-build-a-web-app-using-flask-with-jinja2-in-google-app-engine/
