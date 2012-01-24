@@ -114,7 +114,7 @@ Let's see that everything is working.
 Create a file called `app.py`
 And make it look like this:
 
-.. literalinclude:: ../../flaskRecipeWebsite/tutorial1/app.py
+.. literalinclude:: ../hello.py
 
 To view the new application in your browser run the following command::
 
@@ -122,7 +122,7 @@ To view the new application in your browser run the following command::
 
 .. warning:: sometimes this will will fail because another service on your machine may already be running on the port  (you can change the port in the `app.py` file or stop the conflicting service).
 
-Visiting http://localhost:8080 in your browser will display the following text in your browser::
+Visiting http://localhost:8080 in your browser will show the result of the code.
 
 
 Building A Basic Application
