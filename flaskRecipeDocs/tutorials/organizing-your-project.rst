@@ -71,7 +71,7 @@ similar steps can be taken on Windows.
 
        source venv/bin/activate
 
-#. Test that it is working by running launching the app::
+#. Test that it is working by launching the default app::
 
        cd MyApp
        python app.py
