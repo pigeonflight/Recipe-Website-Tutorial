@@ -14,38 +14,41 @@ platform as a service (PAAS) because it provides specific utilities for things l
 .. note:: If you don't mind following "the App Engine way" the benefit is a free platform for deploying webscale applications on infrastructure managed by Google. App Engine has a threshold at which point you will need to pay about USD $9 per month, this fee increases as you consume more resources.
 While App Engine is great for some application there has been `discussion about App Engine charges`_ which suggest some applications are not economical on GAE.
 
-Setting up the Bottle GAE Scaffold 
+Setting up the Flask GAE Scaffold 
 --------------------------------------------
 
 For working with App Engine we will use 
-a directory structure inspired by this `blog post about using bottle on GAE`_. 
+a directory structure inspired by this `github repository with a flask template for GAE`_. 
 This will be our standard way of arranging directories for applications that we will deploy to GAE.
 The scaffold also includes the App Engine Software Development Kit (SDK).
 
-We will refer to this as the **GAE scaffold**. Download it from http://dl.dropbox.com/u/1004432/bottle_gae.zip
+We will refer to this as the **GAE scaffold**. Download it from http://dl.dropbox.com/u/1004432/flask_gae.zip
 
 The unzipped directory structure looks something like this::
 
-	bottle_gae
+	flask_gae
 	├── app_template
-	│   ├── app
-	│   ├── media
-	│   └── packages
-	└── google_appengine
-	    ├── demos
-	    ├── google
-	    ├── lib
-	    ├── new_project_template
-	    └── tools
-
+	│   ├── application
+	│   ├── packages
+	│   └── tests
+	├── docs
+	├── google_appengine
+	│   ├── demos
+	│   ├── google
+	│   ├── lib
+	│   ├── new_project_template
+	│   └── tools
+	└── licenses
+	
+It bundles the app engine deployment tools and provides two convenience scripts (run.sh and deploy.sh in the app_template)
 
 What you will need:
 
 - An account with App Engine (visit http://appengine.google.com to sign up)
-- The Bottle GAE Scaffold http://dl.dropbox.com/u/1004432/bottle_gae.zip
+- The Flask GAE Scaffold http://dl.dropbox.com/u/1004432/flask_gae.zip
 - Python 2.5 
     Google App Engine is designed to work with Python 2.5 newer versions of Python are known to have issues. Ensure that you have this installed, on Windows you may consider using `Portable Python 2.5 <http://www.portablepython.com/wiki/PortablePython1.1Py2.5.4>`_.
-- bootstrapbot.py http://dl.dropbox.com/u/1004432/bootstrapbot.py
+- bootstrapflask.py http://dl.dropbox.com/u/1004432/bootstrapflask.py
 
 Sign up with App Engine
 ------------------------
@@ -57,13 +60,13 @@ Visit http://appengine.google.com and sign up by creating a new application.
 For each application that you create on App Engine there is an ``Administration`` section where you can manage 
 ``Application Settings``. The most import setting for us is the ``Application Identifier``, we will need to know this name.
 
-Use Python 2.5 to bootstrap bottle
+Use Python 2.5 to bootstrap flask
 ------------------------------------
 
-To install bottle  and virtualenv place bootstrapbot.py in the target folder of your choice and run, be sure
+To install flask  and virtualenv place bootstrapbot.py in the target folder of your choice and run, be sure
 to use Python 2.5::
 
-   python2.5 bootstrapbot.py
+   python2.5 bootstrapflask.py
 
 This creates a virtual environment called ``venv``.
 When ever you need to use this environment it can be activated using the following commands::
@@ -75,10 +78,10 @@ When ever you need to use this environment it can be activated using the followi
 Summary of develop/deploy cycle
 -------------------------------------
 
-Download the Bottle GAE Scaffold to the target folder (the same one target folder used above) and unzip it.
+Download the Flask GAE Scaffold to the target folder (the same one target folder used above) and unzip it.
 
-The instructions below are for Unix, we assume that `bottle_gae` and `venv` are in the same target folder.
-Start in your target folder (the folder containing both venv and bottle_gae).
+The instructions below are for Unix, we assume that `flask_gae` and `venv` are in the same target folder.
+Start in your target folder (the folder containing both venv and flask_gae).
 
 #. Activate the Python 2.5 virtual environment
 
@@ -86,11 +89,11 @@ Start in your target folder (the folder containing both venv and bottle_gae).
 
 #. Copy `app_template` to `MyApp`::
 
-       cp -r bottle_gae/app_template bottle_gae/MyApp
+       cp -r flask_gae/app_template flask_gae/MyApp
 
 #. Test that it is working by running the run.sh script::
 
-       cd bottle_gae/MyApp
+       cd flask_gae/MyApp
        sh run.sh 
 
 #. Edit the `app.yaml` file (ensure that the value for ``application`` matches your ``Application Identifier``.
@@ -114,15 +117,17 @@ Taking advantage of the GAE users api and Datastore api
 ---------------------------------------------------------
 
 Since we will be deploying to GAE, we might as well take advantage of features that GAE provides, especially those
-features that Bottle does not provide, specifically:
+features that Flask does not provide, specifically:
 
 - User account management (Authentication, Sessions, Login)
 - Database backend
 
 We will use App Engine's ``Datastore`` and ``Users`` API, read about both in `getting started with App Engine`_.
 
-Adding Third Party Auth
+Adding Third Party Auth 
 --------------------------
+
+XXX Fixme discuss engineauth and the need for app engine python 2. 7 version
 
 http://engineauth.readthedocs.org
 
@@ -135,5 +140,5 @@ Discussion
 - One feature of App Engine is application version management. What would you use this for?
 
 .. _discussion about App Engine charges: http://news.ycombinator.com/item?id=3431132
-.. _blog post about using bottle on GAE: http://www.joemartaganna.com/web-development/how-to-build-a-web-app-using-bottle-with-jinja2-in-google-app-engine/
+.. _github repository with a flask template for GAE: https://github.com/kamalgill/flask-appengine-template 
 .. _getting started with App Engine: http://code.google.com/appengine/docs/python/gettingstarted/
