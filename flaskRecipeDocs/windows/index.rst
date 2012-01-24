@@ -5,7 +5,7 @@
 
 .. _setting_up_windows_dev_chapter:
 
-Installing Bottle and Virtualenv on Windows behind the UWI proxy
+Installing Flask and Virtualenv on Windows behind the UWI proxy
 ==================================================================
 
 Before attempting any of the instructions below, `download and install python`_. 
@@ -53,33 +53,19 @@ Create and activate a virtualenv:
    you will get permission errors
    and other strange behaviour.
 
-You can now install bottle using the following commands:
+You can now install flask using the following commands:
 ::
  
-	pip install bottle
+	pip install flask
 
 .. note:: The `pip` command depends on the Python Packaging Index (PYPI).
             If the `pip install` command fails try specifying a pypi mirror.
-                `pip install -i http://d.pypi.python.org/simple bottle`
+                `pip install -i http://d.pypi.python.org/simple flask`
 
 
 We recommended that you do all your development in a folder on your Desktop, create a folder called `code`. This is where you will create your custom packages.
 
 .. image:: ../images/createcodefolder.jpg
-
- 
-Creating and activating a new application
-------------------------------------------
-
-XXX Fixme.. need to update these notes
-
-Use the `bottle starter app`_
-
-Download it and place it in your code folder.
-
-When you want to start a new bottle application unzip and rename the application
-You can do this by launching the commandline and running the following commands:
-::
 
 Important notes about Windows
 --------------------------------
@@ -91,6 +77,19 @@ The set http_proxy command is very important on campus
 Use your 'Desktop' as recommended, NOT 'My Documents', we don't want to have any issues 
 due to working with paths that have spaces, we haven't confirmed this to be an issue, but 
 we don't recommend that you test it.
+
+ 
+Creating and activating a new application
+------------------------------------------
+
+XXX Fixme.. need to update these notes
+
+Download it and place it in your code folder.
+
+When you want to start a new flask application unzip and rename the application
+You can do this by launching the commandline and running the following commands:
+::
+
 
 Useful tips
 ----------------
@@ -114,4 +113,4 @@ Now right click on Start, you should have a new drop down option. Open explorer 
 Read this thread for some information on how to remove the context menu:
 
 .. _download and install python: http://python.org/download/
-.. _bottle starter app: http://dl.dropbox.com/u/1004432/bottle-app.zip
+.. _flask starter app: http://dl.dropbox.com/u/1004432/flask-app.zip
