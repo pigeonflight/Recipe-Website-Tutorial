@@ -48,8 +48,8 @@ Each tutorial includes discussion questions. It should be possible to work throu
 
    tutorials/planning-and-mockups
    tutorials/setting-up-dev-environment
-   tutorials/deploying-your-application
    tutorials/organizing-your-project
+   tutorials/deploying-your-application
    tutorials/common-application-features
    tutorials/deploying-on-google-appengine
 

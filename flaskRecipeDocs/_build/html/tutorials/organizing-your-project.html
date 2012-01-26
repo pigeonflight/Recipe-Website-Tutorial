@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Part 3 - Organizing your Project / UI and Simple Templating &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
+    <link rel="next" title="Part 4 - Deploying your Application" href="deploying-your-application.html" />
+    <link rel="prev" title="Part 2 - Setting up your development environment and starting and application" href="setting-up-dev-environment.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="deploying-your-application.html" title="Part 4 - Deploying your Application"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="setting-up-dev-environment.html" title="Part 2 - Setting up your development environment and starting and application"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="part-3-organizing-your-project-ui-and-simple-templating">
+<span id="organizing-project-chapter"></span><span id="index-0"></span><h1>Part 3 - Organizing your Project / UI and Simple Templating<a class="headerlink" href="#part-3-organizing-your-project-ui-and-simple-templating" title="Permalink to this headline">¶</a></h1>
+<p>At this point we have covered the following</p>
+<dl class="docutils">
+<dt><a class="reference internal" href="planning-and-mockups.html#planning-mockups-chapter"><em>Part 1 - Planning and Mockups</em></a></dt>
+<dd>Where we looked at process of planning the user interface (UI) of your application</dd>
+<dt><a class="reference internal" href="setting-up-dev-environment.html#setting-up-dev-chapter"><em>Part 2 - Setting up your development environment and starting and application</em></a></dt>
+<dd>This looked at what we needed on our computer to get started.
+We also gained some experience with the framework by creating a simple application.</dd>
+</dl>
+<p>You should be able to create a simple web application now.</p>
+<div class="section" id="setting-up-the-flask-starter-scaffold">
+<h2>Setting up the Flask Starter Scaffold<a class="headerlink" href="#setting-up-the-flask-starter-scaffold" title="Permalink to this headline">¶</a></h2>
+<p>A scaffold refers to a predetermined structure around which you will build your applications.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>Why Scaffolds?</strong> Glad you asked! Over the next couple weeks you will be submitting work to be assessed, to simplify things
+We&#8217;ve developed a standard way of organizing your projects. Maintaining a standard approach means there is one less decision to make when building your applications.</p>
+</div>
+<p>There are two scaffolds to be used in this course the names are listed below:</p>
+<dl class="docutils">
+<dt><strong>Starter Scaffold</strong></dt>
+<dd>This is a simple approach, just enough folders to keep things organized</dd>
+<dt><strong>GAE Scaffold</strong></dt>
+<dd>This arrangement is meant to accomodate projects that will be deployed to Google App Engine, it will seem to be lots of folders, most of them play a supporting role, but all are useful.</dd>
+</dl>
+<p>Today we will focus on the <tt class="docutils literal"><span class="pre">Starter</span> <span class="pre">Scaffold</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This section assumes that you have Virtualenv installed. You may find it helpful to
+review the section entitled <a class="reference internal" href="setting-up-dev-environment.html#virtualenv-section"><em>Using Bootstrapflask.py to setup Flask and Virtualenv</em></a></p>
+</div>
+<p>You will need to download the Flask Starter Scaffold <a class="reference external" href="http://dl.dropbox.com/u/1004432/flask_starter.zip">http://dl.dropbox.com/u/1004432/flask_starter.zip</a>
+It is best to place it in the same folder where you have your <cite>venv</cite> folder.</p>
+<p>Activate your virtual environment (we&#8217;re assuming that you already installed Flask):</p>
+<div class="highlight-python"><pre>source venv/bin/activate</pre>
+</div>
+<p>Download and unzip the starter scaffold <a class="reference external" href="http://dl.dropbox.com/u/1004432/flask_starter.zip">http://dl.dropbox.com/u/1004432/flask_starter.zip</a>:</p>
+<p>The unzipped directory structure looks something like this (for the sake of simplicity, only the key files and folders are listed below):</p>
+<div class="highlight-python"><pre>flask_starter
+├── app.py
+├── static
+│   ├── css
+│   ├── images
+│   └── js
+└── templates</pre>
+</div>
+<p>Check to see that the scaffold is working by running the following:</p>
+<p>The instructions below are for Unix, but
+similar steps can be taken on Windows.</p>
+<ol class="arabic">
+<li><p class="first">Copy <cite>flask_starter</cite> to <cite>MyApp</cite>:</p>
+<div class="highlight-python"><pre>cp -r flask_starter MyApp</pre>
+</div>
+</li>
+<li><p class="first">Activate your Python virtual environment (if you haven&#8217;t done so already):</p>
+<div class="highlight-python"><pre>source venv/bin/activate</pre>
+</div>
+</li>
+<li><p class="first">Test that it is working by launching the default app:</p>
+<div class="highlight-python"><pre>cd MyApp
+python app.py</pre>
+</div>
+</li>
+</ol>
+<p>Visit your browser at <a class="reference external" href="http://localhost:6543">http://localhost:6543</a>, you should see something like the
+image below:</p>
+<img alt="../_images/scaffoldview.png" src="../_images/scaffoldview.png" />
+<p>If you are on a network with a proxy then pay careful attention to the next section.</p>
+</div>
+<div class="section" id="creating-the-views-for-our-recipewebsite-application">
+<h2>Creating the views for our RecipeWebsite application<a class="headerlink" href="#creating-the-views-for-our-recipewebsite-application" title="Permalink to this headline">¶</a></h2>
+<p>Based on the nature of our application we can predict some of our views
+that we will need.</p>
+<p>The names below represent reasonable descriptive choices for our Views:</p>
+<dl class="docutils">
+<dt>welcome</dt>
+<dd>a view which shows a welcome or home page, it is associated with the root of the website.</dd>
+<dt>recipe</dt>
+<dd>when viewing an individual recipe, this view will be used to display all the information for that recipe.</dd>
+<dt>ingredient</dt>
+<dd>search by ingredient, this view will return a list of recipes that have the particular ingredient.</dd>
+<dt>submitrecipe</dt>
+<dd>It should be possible to add a new recipe using the &#8216;submit a recipe&#8217; link.</dd>
+<dt>registration</dt>
+<dd>There needs to be a registration page, so that new users can sign up</dd>
+<dt>faq</dt>
+<dd>This will be a simple view that lists common questions about the web application</dd>
+</dl>
+<p>Flask does not provide a standard way to manage our code, so we will rely on our <a class="reference external" href="http://dl.dropbox.com/u/1004432/flask_starter.zip">flask starter scaffold</a> to ensure that our applications have a standard and predictable folder structure.</p>
+<p>Our application will have the following sections</p>
+<p>You can download our <a href="#id1"><span class="problematic" id="id2">`flask starter app`_</span></a> to get going.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the term &#8220;scaffold&#8221; comes from the construction industry and roughly means &#8220;structure&#8221;.</p>
+</div>
+<p>Copy the flask_starter folder to RecipeWebsite:</p>
+<div class="highlight-python"><pre>cp -r flask_starter RecipeWebsite</pre>
+</div>
+<p>Enter the <cite>RecipeWebsite</cite> folder</p>
+</div>
+<div class="section" id="adding-a-template-in-the-templates-folder">
+<h2>Adding a template in the <cite>templates</cite> folder<a class="headerlink" href="#adding-a-template-in-the-templates-folder" title="Permalink to this headline">¶</a></h2>
+<p>In the <cite>templates</cite> folder we will add a new template called <cite>recipe.html</cite>. To make it very
+simple we will just put the phrase, &#8220;I am the recipe template&#8221;.</p>
+<div class="highlight-python"><pre>&lt;h1&gt;I am the recipe template&lt;/h1&gt;</pre>
+</div>
+<p>We will need a new route before this will work:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/recipe&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">recipe</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">template</span><span class="p">(</span><span class="s">&#39;recipe.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="view-the-new-view-in-your-browser">
+<h2>View the new view in your browser<a class="headerlink" href="#view-the-new-view-in-your-browser" title="Permalink to this headline">¶</a></h2>
+<p>Start the application:</p>
+<div class="highlight-python"><pre>python app.py</pre>
+</div>
+<p>Then visit localhost:6543/recipe, you should see something like the image below.</p>
+<blockquote>
+<div><img alt="../_images/recipetemplate.jpg" src="../_images/recipetemplate.jpg" />
+</div></blockquote>
+</div>
+<div class="section" id="passing-variables-to-the-template">
+<h2>Passing variables to the template<a class="headerlink" href="#passing-variables-to-the-template" title="Permalink to this headline">¶</a></h2>
+<p>Flask uses Jinja2 templates by default.
+Variables are generally passed to Jinja2 templates as key value pairs of a python dictionary.
+Notice how this approach is used in the app.py file to pass the value of <cite>name</cite> to the index.html template.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/&lt;name&gt;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;Earth&#39;</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-macros-and-slots-creating-a-master-template">
+<h2>Defining macros and slots, creating a master template<a class="headerlink" href="#defining-macros-and-slots-creating-a-master-template" title="Permalink to this headline">¶</a></h2>
+<p>After a while we begin to see things that are common to all templates. Instead of repeating these elements
+across different templates, we can share these elements by creating a global or master template.
+New templates can be made to inherit from the master template.
+In our case the <cite>index.html</cite> template is a good starting point.</p>
+<p>Based on our mockups, most pages will be simpler than the front page so we will create a more generic template
+based on the <cite>index.html</cite> template.</p>
+<img alt="../_images/recipewebsite-template-innerpage.png" src="../_images/recipewebsite-template-innerpage.png" />
+<p>We&#8217;ll create a new master template called &#8216;global.html&#8217; in the <cite>templates</cite> folder. We can use the <cite>index.html</cite> template as the starting point.</p>
+<p>The simpler global template can be implemented with 3 rows instead of 5 in the welcome template.</p>
+<img alt="../_images/simpletemplate.jpg" src="../_images/simpletemplate.jpg" />
+<p>XXX Fix me
+need to say something about template inheritance</p>
+<p>We will pull this off using template inheritance</p>
+<p>see: <a class="reference external" href="http://flask.pocoo.org/docs/patterns/templateinheritance/">http://flask.pocoo.org/docs/patterns/templateinheritance/</a></p>
+<p>We name our template <cite>global.html</cite>:</p>
+<div class="highlight-python"><pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;head&gt;
+     &lt;style&gt;
+        &lt;!--
+        @import url(http://dl.dropbox.com/u/1004432/decogrids-12-gapless.css);
+        --&gt;
+      &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+     &lt;div id="row-1" class="row"&gt;
+           &lt;div class ="cell position-0 width-3"&gt;
+               LOGO will go here
+           &lt;/div&gt;</pre>
+</div>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</li>
+<li>What do you think happens when you set the <cite>http_proxy</cite> environment variable.?</li>
+<li>What benefits are there in having a standard directory structure?</li>
+<li>Did we need to declare where to look for templates and static files?</li>
+<li>In what way do conventions make source code more maintainable?</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Part 3 - Organizing your Project / UI and Simple Templating</a><ul>
+<li><a class="reference internal" href="#setting-up-the-flask-starter-scaffold">Setting up the Flask Starter Scaffold</a></li>
+<li><a class="reference internal" href="#creating-the-views-for-our-recipewebsite-application">Creating the views for our RecipeWebsite application</a></li>
+<li><a class="reference internal" href="#adding-a-template-in-the-templates-folder">Adding a template in the <cite>templates</cite> folder</a></li>
+<li><a class="reference internal" href="#view-the-new-view-in-your-browser">View the new view in your browser</a></li>
+<li><a class="reference internal" href="#passing-variables-to-the-template">Passing variables to the template</a></li>
+<li><a class="reference internal" href="#defining-macros-and-slots-creating-a-master-template">Defining macros and slots, creating a master template</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="setting-up-dev-environment.html"
+                        title="previous chapter">Part 2 - Setting up your development environment and starting and application</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="deploying-your-application.html"
+                        title="next chapter">Part 4 - Deploying your Application</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorials/organizing-your-project.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="deploying-your-application.html" title="Part 4 - Deploying your Application"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="setting-up-dev-environment.html" title="Part 2 - Setting up your development environment and starting and application"
+             >previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, David Bain.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

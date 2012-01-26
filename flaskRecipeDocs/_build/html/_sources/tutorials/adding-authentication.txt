@@ -1,9 +1,9 @@
 .. index::
    single: deployment
 
-.. _deploying_application_chapter:
+.. _adding_authentication_chapter:
 
-Part 3 - Deploying your Application
+Part 5  - Adding Authentication
 ===========================================
 
 XXX Deployment of your application

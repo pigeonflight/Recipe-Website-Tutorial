@@ -4,7 +4,7 @@
 
 .. _organizing_project_chapter:
 
-Part 4 - Organizing your Project / UI and Simple Templating
+Part 3 - Organizing your Project / UI and Simple Templating
 ===============================================================
 
 At this point we have covered the following
@@ -13,9 +13,9 @@ At this point we have covered the following
     Where we looked at process of planning the user interface (UI) of your application
 :ref:`setting_up_dev_chapter`
     This looked at what we needed on our computer to get started.
-    We also gained some experience with configuring views (routes) and templates by working on a simple application.
+    We also gained some experience with the framework by creating a simple application.
 
-You should know enough to begin working on the prototype for our Recipe Website.
+You should be able to create a simple web application now.
 
 Setting up the Flask Starter Scaffold 
 --------------------------------------------
@@ -23,7 +23,7 @@ Setting up the Flask Starter Scaffold
 A scaffold refers to a predetermined structure around which you will build your applications.
 
 .. note:: **Why Scaffolds?** Glad you asked! Over the next couple weeks you will be submitting work to be assessed, to simplify things 
-    We've developed a standard way of starting and organizing your projects. Maintaining a standard approach means there is one less decision to make when building your applications. 
+    We've developed a standard way of organizing your projects. Maintaining a standard approach means there is one less decision to make when building your applications. 
 
 There are two scaffolds to be used in this course the names are listed below:
 
@@ -31,41 +31,48 @@ There are two scaffolds to be used in this course the names are listed below:
     This is a simple approach, just enough folders to keep things organized
 
 **GAE Scaffold**
-    This arrangement is meant to accomodate projects that will be deployed to Google App Engine, due to the nature of GAE it is necessary to bundles more utilities in our package.
+    This arrangement is meant to accomodate projects that will be deployed to Google App Engine, it will seem to be lots of folders, most of them play a supporting role, but all are useful.
 
 Today we will focus on the ``Starter Scaffold``.
 
 .. note:: This section assumes that you have Virtualenv installed. You may find it helpful to 
           review the section entitled :ref:`virtualenv_section`
 
-.. note:: You will need to download the Flask Starter Scaffold http://dl.dropbox.com/u/1004432/flask_starter.zip. If you are using Windows, just download it with your webbrowser.
+You will need to download the Flask Starter Scaffold http://dl.dropbox.com/u/1004432/flask_starter.zip
+It is best to place it in the same folder where you have your `venv` folder.
 
-1. Download and unzip the starter scaffold http://dl.dropbox.com/u/1004432/flask_starter.zip
-copy `flask_starter` to `recipe_website` this effectively uses the flask_starter folder as a template::
+Activate your virtual environment (we're assuming that you already installed Flask)::
 
-   wget http://dl.dropbox.com/u/1004432/flask_starter.zip
-   unzip flask_starter
-   cp flask_starter recipe_website
-
-1. Enter the new `recipe_website` folder, bootstrap flask and activate your virtual environment::
-
-   cd recipe_website
-   python bootstrapflask.py
    source venv/bin/activate
+
+Download and unzip the starter scaffold http://dl.dropbox.com/u/1004432/flask_starter.zip:
 
 The unzipped directory structure looks something like this (for the sake of simplicity, only the key files and folders are listed below)::
 
-	recipe_website
+	flask_starter
 	├── app.py
 	├── static
 	│   ├── css
 	│   ├── images
 	│   └── js
-	├── templates
-	└── venv
+	└── templates
 
-Check to see that everything is working by running the following::
+Check to see that the scaffold is working by running the following::
 
+The instructions below are for Unix, but
+similar steps can be taken on Windows.
+
+#. Copy `flask_starter` to `MyApp`::
+
+       cp -r flask_starter MyApp
+
+#. Activate your Python virtual environment (if you haven't done so already)::
+
+       source venv/bin/activate
+
+#. Test that it is working by launching the default app::
+
+       cd MyApp
        python app.py
 
 Visit your browser at http://localhost:6543, you should see something like the
@@ -73,15 +80,15 @@ image below:
 
 .. image:: ../images/scaffoldview.png
 
-If you are on a network with a proxy you will need to review :ref:`dealing_with_proxies` for setting your http_proxy environment variable.
+If you are on a network with a proxy then pay careful attention to the next section.
 
 Creating the views for our RecipeWebsite application
 -------------------------------------------------------
 
-Based on the nature of our application we can predict some of our required views.
+Based on the nature of our application we can predict some of our views
+that we will need.
 
-The names below represent reasonably descriptive choices for our Views, (later on, we may choose to use different names for our views):
-
+The names below represent reasonable descriptive choices for our Views:
 
 welcome
     a view which shows a welcome or home page, it is associated with the root of the website.
@@ -89,7 +96,7 @@ welcome
 recipe
     when viewing an individual recipe, this view will be used to display all the information for that recipe.
 
-queryby_ingredient
+ingredient
     search by ingredient, this view will return a list of recipes that have the particular ingredient.
 
 submitrecipe
@@ -101,15 +108,26 @@ registration
 faq
      This will be a simple view that lists common questions about the web application
 
-.. note:: Point of Interest - the term "scaffold" comes from the construction industry and roughly means "structure".
+Flask does not provide a standard way to manage our code, so we will rely on our `flask starter scaffold`_ to ensure that our applications have a standard and predictable folder structure. 
+
+Our application will have the following sections
+
+You can download our `flask starter app`_ to get going.
+
+.. note:: the term "scaffold" comes from the construction industry and roughly means "structure".
+
+
+Copy the flask_starter folder to RecipeWebsite::
+
+       cp -r flask_starter RecipeWebsite
+    
+Enter the `RecipeWebsite` folder
 
 
 Adding a template in the `templates` folder
 --------------------------------------------
 
-.. note:: Templates go in the `templates` directory ``by convention``, it is not necessary to declare this anywhere in your code or configuration. Placing your templates in the the `templates` folder is enough.
-
-We will start by adding a new template called `recipe.html`. To make it very 
+In the `templates` folder we will add a new template called `recipe.html`. To make it very 
 simple we will just put the phrase, "I am the recipe template".
 
 ::
@@ -133,13 +151,6 @@ Start the application::
 Then visit localhost:6543/recipe, you should see something like the image below.
 
     .. image:: ../images/recipetemplate.jpg
-
-Template inheritance
------------------------------------
-
-A common pattern seen in application development, is to have a layout or master template. The other templates can then be configured to inherit from this global layout.
-
-You can read more about the `template inheritance pattern`_ at the Flask website.
 
 Passing variables to the template
 -----------------------------------
@@ -206,16 +217,17 @@ We name our template `global.html`::
 Discussion
 -----------
 
+- Any thoughts on what happens when you use virtualenv and the `source bin/activate` command? 
+
+- What do you think happens when you set the `http_proxy` environment variable.?
+
+- What benefits are there in having a standard directory structure?
+
 - Did we need to declare where to look for templates and static files?
 
-- What does the phrase "by convention" mean? What conventions have we seen today? What's the purpose of having conventions?
-
 - In what way do conventions make source code more maintainable?
-
-
 
 .. _the new hotness: http://s3.pixane.com/pip_distribute.png
 .. _flask starter scaffold: http://dl.dropbox.com/u/1004432/flask_starter.zip
 .. _article about App Engine charges: http://news.ycombinator.com/item?id=3431132
 .. _blog post about using flask on GAE: http://www.joemartaganna.com/web-development/how-to-build-a-web-app-using-flask-with-jinja2-in-google-app-engine/
-.. _template inheritance pattern: http://flask.pocoo.org/docs/patterns/templateinheritance/

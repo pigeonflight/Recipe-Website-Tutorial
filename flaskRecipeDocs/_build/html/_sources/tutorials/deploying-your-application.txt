@@ -3,7 +3,7 @@
 
 .. _deploying_application_chapter:
 
-Part 3 - Deploying your Application
+Part 4 - Deploying your Application
 ===========================================
 
 XXX Deployment of your application
