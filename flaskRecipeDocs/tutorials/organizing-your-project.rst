@@ -15,7 +15,7 @@ At this point we have covered the following
     This looked at what we needed on our computer to get started.
     We also gained some experience with configuring views (routes) and templates by working on a simple application.
 :ref:`deploying_application_chapter`
-    We hav explored the details of publishing your application to the web
+    We have explored the details of publishing your application to the web
 
 You should now know enough to begin working on the prototype for our Recipe Website.
 
