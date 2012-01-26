@@ -5,25 +5,20 @@
 .. _setting_up_dev_chapter:
 
 Part 2 - Setting up your development environment
-===========================================
+===================================================
 
 We have a lot to cover today including:
 
-It is recommended that you use a UNIX/Linux environment, though everything should also work on Windows.
-
 - Installing Flask using our bootstrapflask.py method
-- 
+- Trying out Flask
+- Building A Basic Application
+
+It is recommended that you use a UNIX/Linux environment, though everything should also work on Windows.
 
 .. note:: **Deployment** - We will deploy our earlier projects on Fluxflex (a cloud hosting platform) and later we will use Google App Engine (GAE). Google App Engine is sometimes called a 
  platform as a service (PAAS) because it provides specific utilities for things like data persistence, authentication and user management. If you don't mind following "the Google way" the benefit is a free option for getting started on infrastructure provided by Google. 
 
 .. attention:: App Engine is not perfect for every type of solution, a recent `discussion about App Engine charges`_ illustrates clearly that some applications don't match very well with GAE.
-
-Installing the Flask web framework
------------------------------------------
-
-You will need the following:
-
 
 If you are on a network with a proxy then pay careful attention to the next section.
 
@@ -62,8 +57,8 @@ the same can be acheived by using `set` instead of `export`::
 
 .. _virtualenv_section:
 
-Using Bootstrapflask.py to setup a Virtualenv
-----------------------------------------------
+Using Bootstrapflask.py to setup Flask and Virtualenv
+-------------------------------------------------------
 
 Bootstrapflask.py is a single file which creates a complete python environment with the 
 flask package installed without the need for administrative access.
@@ -99,7 +94,7 @@ On Windows the following is enough::
    for example you will get permission errors and other strange behaviour.
 
 Trying out Flask
------------------------------------------
+-----------------
 
 Now that you have flask in a virtual environment (venv from running bootstrapflask.py above).
 
@@ -120,7 +115,7 @@ To view the new application in your browser run the following command::
 
     python app.py
 
-.. warning:: sometimes this will will fail because another service on your machine may already be running on the port  (you can change the port in the `app.py` file or stop the conflicting service).
+.. warning:: sometimes this will fail because another service on your machine may already be running on the port  (you can change the port in the `app.py` file or stop the conflicting service).
 
 Visiting http://localhost:8080 in your browser will show the result of the code.
 
@@ -128,27 +123,58 @@ Visiting http://localhost:8080 in your browser will show the result of the code.
 Building A Basic Application
 ------------------------------
 
-Now it's time to build your first simple application.
+Let's continue by building our first simple application. To make things easier we'll borrow from a tutorial in the `Flask documentation`_ in which we create a new application called `Flaskr`.
 
-Follow the tutorial at http://flask.pocoo.org/docs/tutorial/
+.. note::  .. image:: ../images/activate.gif
+   Remember to activate your virtual environment!
+   also review :ref:`dealing_with_proxies` for setting your http_proxy
+   environment variable
 
-Then come back to discuss what you've learnt.
+1. Download and unzip the Recipe tutorial 2 http://dl.dropbox.com/u/1004432/recipe_tut2.zip
+
+2. Change to the recipe_tut2 directory (for your convenience we've included bootstrapflask.py, so you can get started quickly and activate a virtualenv)::
+
+      cd recipe_tut2
+      python bootstrapflask.py
+      source venv/bin/activate
+
+   The resulting directory structure will look something like::
+
+	recipe_tut2/
+	├── static
+	│   ├── css
+	│   ├── images
+	│   └── js
+	│       └── libs
+	└── templates
+	└── venv
+
+3. Most of the steps are already complete in the package, we'll need to pick up from Step 5
+at http://flask.pocoo.org/docs/tutorial/views/ by configuring the views (routes). 
+
+Once we have everything working, we'll come back to discuss what we've learnt.
 
 Discussion
 -----------
+A lot has been done for us today (database configuration, templates, login and logout). In future tutorials we'll look at these aspects.
 
 - Where's the webserver? How is it possible to access our application even though we haven't set up a webserver?
 
-- What is an environment variable?
-
 - By now you should know how to set environment variables, how do you use the terminal (on UNIX or Windows) to display environment variables?
 
-- What do you think happens when you set the `http_proxy` environment variable.?
+- What happens when you set the `http_proxy` environment variable?
 
-- Notice the effect of introducing the templating system, the application is now broken up into .py files and .tpl templates. What are your thoughts regarding this approach, compared to what you may know from using PHP?
+- We worked with `routes` and `templates` today look back at the code. 
+    - Note how we rely on the following methods::
 
-- How would create a login and logout system without a framework? What are the key ingredients of a login/logout system?
+        @app.route, render_template
+
+    - Look for the `redirect` and `url_for`, note how they work together, what are they doing?
+
+- By default templates go in the `templates` folder, where is this configured in our .py application? Or is this something that is a default behaviour? 
+
+- Just from experience, what would you say are the key ingredients of a login/logout system?
 
 .. _the new hotness: http://s3.pixane.com/pip_distribute.png
-.. _flask starter app: http://dl.dropbox.com/u/1004432/flask-app.zip
 .. _discussion about App Engine charges: http://news.ycombinator.com/item?id=3431132
+.. _Flask documentation: http://flask.pocoo.org/docs/tutorial/
