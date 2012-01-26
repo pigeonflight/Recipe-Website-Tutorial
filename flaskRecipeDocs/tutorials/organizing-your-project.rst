@@ -14,8 +14,9 @@ At this point we have covered the following
 :ref:`setting_up_dev_chapter`
     This looked at what we needed on our computer to get started.
     We also gained some experience with configuring views (routes) and templates by working on a simple application.
+:ref:`_deploying_application_chapter`
 
-You should know enough to begin working on the prototype for our Recipe Website.
+You should now know enough to begin working on the prototype for our Recipe Website.
 
 Setting up the Flask Starter Scaffold 
 --------------------------------------------
