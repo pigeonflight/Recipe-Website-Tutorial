@@ -68,7 +68,7 @@ The result will be a directory structure something like this::
    so it is important that you activate your virtual environment!
        .. image:: ../images/activate.gif
 
-3. Download flaskflex.py to your fluxflex project directory and run flaskflex.py
+3. Download flaskflex.py to your fluxflex project directory and run flaskflex.py.
    flaskflex.py prepares your project for deployment to fluxflex::
    
      cd yourprojectname
