@@ -14,13 +14,13 @@ Part 1 - Planning and Mockups
 Why do this?
 --------------
 
-Because most customers are visual, we work with them to develop something that will give them a good idea of how their application will behave. This course focuses mostly on development not design, so we will use "shortcuts" for our design work. For a full project there will be need for a UI designer to
+Most customers are visual, as a result we work with them to develop something that will give them a good idea of how their application will behave. This course focuses mostly on development not design, so we will use "shortcuts" for our design work. For a full project there will be need for a UI designer to
 layout the look to the satisfaction of the customer.
 
 Mockup up tools
 ------------------
 
-Some tools that I have worked with are:
+Some useful online tools for creating mockup include:
 
  - LucidChart_  - an HTML5 based diagram tool
 
@@ -35,7 +35,7 @@ password to worry about)
 The Design
 ------------
 
-Our UI person (me in this case) has decided to use Cacoo to come up with the following layout:
+We will imagine that our UI person has decided to use Cacoo to come up with the following layout:
 
 .. image:: /images/recipe-website-wireframe.png
 
@@ -45,11 +45,11 @@ Notice the use of a sketchy style.
 Layout using a CSS Framework
 ------------------------------
 
-There are several CSS Frameworks which help to simplify the task of creating an HTML layout. 
+A CSS Framework is designed, among other things, to simplify tasks associating with layout of an HTML page.
 For this layout I've decided to use the deco.gs_ framework.
 In addition to these frameworks new applications like Initializr_ help to get you started quickly.
 
-The deco.gs system uses a combination of two CSS classes ".row" and ".cell" to acheive layout. The cells are supplemented by special `position-` and `width-` ``convenience classes``, which determine **where** within a row a cell will be placed as well as **how much space** that cell takes up.
+The deco.gs system uses a combination of two base CSS classes ".row" and ".cell" to acheive layout. The cells are supplemented by special `position-` and `width-` ``convenience classes``, which determine **where** within a row a cell will be placed as well as **how much space** that cell takes up.
 
 In the example below we use two different cell widths [#]_, `width-4` and `width-12` to create our layout. 
 
@@ -135,6 +135,6 @@ Lab
 .. _Initializr: http://www.initializr.com
 .. [#] Note that the cell convenience classes are added to the same div tag as the cell.
 .. _the result of this code at dabblet: http://dabblet.com/result/gist/1636270
-.. _the code at dabblet: http://dabblet.com/1636270
+.. _the code at dabblet: http://dabblet.com/gist/1636270
 .. _the code from github.com: https://gist.github.com/1636270
 .. _live version of the mockup: https://cacoo.com/diagrams/qb2bRi32AHGvzlef

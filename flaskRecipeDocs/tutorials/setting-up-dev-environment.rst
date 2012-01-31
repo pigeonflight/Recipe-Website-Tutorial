@@ -39,7 +39,7 @@ Dealing with on campus proxies
 - All proxies are configured to run on port 8080. 
 
 After launching the terminal (or commandline) it is important to set the http_proxy
-environmental variable, BEFORE running any other command
+environmental variable, BEFORE running any command that requires internet access.
 
 **On Unix** 
 
@@ -140,6 +140,7 @@ Let's continue by building our first simple application. We'll borrow from a tut
    The resulting directory structure will look something like::
 
 	recipe_tut2/
+	├── flaskr.py
 	├── static
 	│   ├── css
 	│   ├── images
@@ -148,8 +149,16 @@ Let's continue by building our first simple application. We'll borrow from a tut
 	└── templates
 	└── venv
 
-3. Most of the tutorial steps for building Flaskr are already complete in the package, we'll need to pick up from Step 5
+3. You will need to modify the flaskr.py file. Most of the tutorial steps for building Flaskr are already complete in the package, we'll need to pick up from Step 5
 at http://flask.pocoo.org/docs/tutorial/views/ by configuring the views (routes). 
+
+This involves using the @app.routes decorator to register new routes and, where relevant, changing the name of the templates that each route will use.
+
+4. Activate the virtual environment and then launch the flaskr.py app::
+
+      source venv/bin/activate
+      python flaskr.py
+
 
 Once we have everything working, we'll come back to discuss what we've learnt.
 
@@ -174,7 +183,9 @@ A lot has been done for us today (database configuration, templates, login and l
    
      They appear to work together in our application. What are they doing?
 
-- By default templates go in the `templates` folder, where is this configured in our .py application? Or is this something that is a default behaviour? 
+- Templates go in the `templates` folder, where is this configured in our .py application? Or is this something that is a default behaviour? 
+
+- There is a template called 'layout.html', but it isn't referred to in the .py file, how is it utilized (hint look at: http://flask.pocoo.org/docs/tutorial/templates/#tutorial-templates)
 
 - How does the application get all styles that make it look less plain, where is that information stored?
 

@@ -1,25 +1,134 @@
 .. index::
    single: deployment
+   single: flaskflex
+   single: git
 
 .. _deploying_application_chapter:
 
 Part 3 - Deploying your Application
 ===========================================
 
-XXX Deployment of your application
+Deployment may seem overly involved at first, just remember that the items noted as setup steps are almost never repeated. Those items noted as initial steps are done once for a project.
 
-Configuring Your SSH Key
--------------------------------------
+Sign up with Fluxflex and create a new project [setup step]
+--------------------------------------------------------------
+1. Register an account with http://fluxflex.com,
+   log in and "create a new project".
 
-XXX steps for deployment
+.. image:: ../images/flux-new-project.png
 
+2. You can check out your new project by name using git. For example if you project is called ``yourprojectname``::
+
+   git clone ssh://git@git.fluxflex.com:443/yourprojectname
+
+ To confirm the proper procedure, go to "Setup" > "Git" and copy the code for downloading your project.
+
+.. image:: ../images/flux-gitsetup.png
+
+Registering a Public SSH Key [setup step]
+---------------------------------------------------
+This step is done once per machine.
+If you haven't done it before, or if you want to create a new key, use ``ssh-keygen`` to generate a public key.
+::
+
+    ssh-keygen
+
+Accept all the defaults.
+
+.. note:: If you are on Windows, follow the information here: http://doc.fluxflex.com/pubkey
+
+To view and copy your public key use the ``cat`` command to dump the contents of the public key to the terminal::
+
+    cat ~/.ssh/id_rsa.pub
+
+.. image:: ../images/cat-ssh-rsapub.png
+
+Then paste the resulting output to your fluxflex key list by going to "Plan & Settings" > "Public Keys" > "SSH Public Keys List" and click "Save".
+
+.. image:: ../images/fluxflex-add-key.png
+
+
+Preparing the directory for publishing to fluxflex [initial step]
+-------------------------------------------------------------------
+The flaskflex.py tool is a quick way to prepare a brand new fluxflex project for deployment as a flask application to fluxflex.
+
+1. Use git to download yourproject by name (eg. if it is called `yourprojectname` it may look like this
+::
+
+   git clone ssh://git@git.fluxflex.com:443/yourprojectname
+
+The result will be a directory structure something like this::
+
+.. image:: ../images/flux-checkout-after.png
+
+2. You will need to activate the virtual environment that you've been using for your application.
+
+.. note::
+   flaskflex.py generates a req.txt file which is based on your virtual environment
+   so it is important that you activate your virtual environment!
+       .. image:: ../images/activate.gif
+
+3. Download flaskflex.py to your fluxflex project directory and run flaskflex.py
+   flaskflex.py prepares your project for deployment to fluxflex::
+   
+     cd yourprojectname
+     wget http://dl.dropbox.com/u/1004432/flaskflex.py
+     python flaskflex.py 
+
+.. note:: flaskflex.py adds the directory structure and 
+    files needed to deploy your application to fluxflex. 
+    You should now see the following files added to your project::
+
+	.flx
+	public_html
+	    ├── .htaccess
+	    └── dispatch.fcgi
+        req.txt
+
+
+Add your application to the fluxflex project [initial step]
+----------------------------------------------------------------
+``flaskflex.py`` follows the following conventions:
+
+1. It expects your application to exist in a folder called ``application`` and to be called ``app.py`` (look at the public_html/dispatch.fcgi file for this information).
+
+2. It expects all the requirements for your application to be listed in req.txt
+
+The steps for deployment are as follows:
+
+1. Copy your flask application to the fluxflex project folder, such that your application's folder will be called `application`. 
+2. If necessary rename the contained application to `app.py`.
+
+If your fluxflex project folder is called `yourprojectname` and your flask application is called `yourflaskapplication`, you might so something like this::
+
+   cp -r yourflaskapplication yourprojectname/application
+
+If the .py file in `yourflaskapplication` was named `myapp.py`, then you might do something like::
+
+  cd yourprojectname/application
+  mv myapp.py app.py
+
+Use git to update and publish your application [initial step]
+------------------------------------------------------------------
+::
+
+   git add .
+   git commit -a -m 'initial deployment'
+   git push
+
+Visit your application to see it working
+------------------------------------------
+Allow 1 to 2 minutes for the application to be available online. You should be able to visit your new application at `yourapplicationname`.fluxflex.com.
+
+The Update and Deploy cycle
+------------------------------
+New deployments are basically done after changes have been committed and a `git push` is 
+initiated.
 
 Discussion
 -----------
 
 - What is the benefit have a standard directory structure?
-
-- We used pip to install the Bottle package, in python circles packages are often called `eggs`, can you guess why?
 
 - In what way do conventions make source code more maintainable?
 

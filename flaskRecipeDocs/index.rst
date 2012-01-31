@@ -24,7 +24,7 @@ According to the Flask documentation the following is the simplest Flask applica
 
 	       python bootstrapflask.py
 
-        #. Launch it. From the directory where your ran the bootstrap launch the helloflask.py program::
+        #. Launch it. From the directory where you ran the bootstrap launch the helloflask.py program::
 
                venv/bin/python helloflask.py
 
