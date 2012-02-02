@@ -12,18 +12,18 @@ Deployment may seem overly involved at first, just remember that the items noted
 
 Once a project is initialized, the commands that you will use most regularly are as summarized below:
 
-When you modified the source code::
+When you modify source code::
 
 	git commit -a
 	git push
 
-When you added a file::
+When you add a file::
 
 	git add filename
 	git commit
 	git push
 
-When you deleted a file::
+When you delete a file::
 
 	git rm filename
 	git commit
