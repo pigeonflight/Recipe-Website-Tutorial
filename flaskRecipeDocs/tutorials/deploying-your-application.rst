@@ -87,7 +87,7 @@ The flaskflex.py tool is a quick way to prepare a brand new fluxflex project for
 
    git clone ssh://git@git.fluxflex.com:443/yourprojectname
 
-The result will be a directory structure something like this::
+The result will be a directory structure something like this:
 
 .. image:: ../images/flux-checkout-after.png
 
