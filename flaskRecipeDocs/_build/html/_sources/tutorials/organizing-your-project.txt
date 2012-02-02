@@ -136,13 +136,6 @@ Then visit localhost:6543/recipe, you should see something like the image below.
 
     .. image:: ../images/recipetemplate.jpg
 
-Template inheritance
------------------------------------
-
-A common pattern seen in application development, is to have a layout or master template. The other templates can then be configured to inherit from this global layout.
-
-You can read more about the `template inheritance pattern`_ at the Flask website.
-
 Passing variables to the template
 -----------------------------------
 
@@ -156,36 +149,33 @@ Notice how this approach is used in the app.py file to pass the value of `name` 
 	def index(name='Earth'):
 	    return template('index.html',name=name)
 
+We will find this useful later.
 
-Defining macros and slots, creating a master template
---------------------------------------------------------
+Template inheritance and a master (layout) template
+-------------------------------------------------------
 
 After a while we begin to see things that are common to all templates. Instead of repeating these elements
 across different templates, we can share these elements by creating a global or master template.
-New templates can be made to inherit from the master template.
-In our case the `index.html` template is a good starting point.
 
+A common pattern seen in application development, is to have a layout or master template. The other templates can then be configured to inherit from this global layout.
+
+You can read more about the `template inheritance pattern`_ at the Flask website. 
+
+In this step, we will create a master template called ``layout.html``. Our other templates will inherit common elements from the layout template.
 
 Based on our mockups, most pages will be simpler than the front page so we will create a more generic template
 based on the `index.html` template. 
 
 .. image:: ../images/recipewebsite-template-innerpage.png
 
-We'll create a new master template called 'global.html' in the `templates` folder. We can use the `index.html` template as the starting point.
+We'll create a new master template called 'layout.html' in the `templates` folder. We can use the `index.html` template as the starting point.
 
-The simpler global template can be implemented with 3 rows instead of 5 in the welcome template.
+The simpler global template can be implemented with 3 rows instead of the 5 that we identified for the welcome template.
 
 .. image:: ../images/simpletemplate.jpg
 
 
-XXX Fix me
-need to say something about template inheritance
-
-We will pull this off using template inheritance
-
-see: http://flask.pocoo.org/docs/patterns/templateinheritance/
-
-We name our template `global.html`::
+We name our template `layout.html`::
 
 	<!DOCTYPE html>
 	<html>
@@ -205,6 +195,8 @@ We name our template `global.html`::
 		   </div>
 
 
+XXX show inheritance
+
 Discussion
 -----------
 
@@ -214,6 +206,7 @@ Discussion
 
 - In what way do conventions make source code more maintainable?
 
+- Read the import statements in the app.py file, what's the original name of the the ``template`` method? Can all of this be rewritten as a single import statement?
 
 
 .. _the new hotness: http://s3.pixane.com/pip_distribute.png

@@ -4,7 +4,7 @@
 
 .. _setting_up_dev_chapter:
 
-Part 2 - Setting up your development environment and starting and application 
+Part 2 - Setting up your development environment and starting an application 
 ===============================================================================
 
 We have a lot to cover today including:
@@ -170,7 +170,9 @@ A lot has been done for us today (database configuration, templates, login and l
 
 - By now you should know how to set environment variables, how do you use the terminal (on UNIX or Windows) to display environment variables?
 
-- What happens when you set the `http_proxy` environment variable?
+- The documentation constantly emphasizes that the virtual environment must be activated. Try the following command `echo $PATH` (use `echo %PATH%` on Windows). Is the output of the PATH variable different when the virtual environment is activated versus when it is not? Discuss the significance of your findings.
+
+- What do you think happens when you set the `http_proxy` environment variable, how does it affect programmes that are subsequently launched?
 
 - We worked with `routes` and `templates` today look back at the code. 
     - Note how we rely on the following methods::
@@ -185,11 +187,11 @@ A lot has been done for us today (database configuration, templates, login and l
 
 - Templates go in the `templates` folder, where is this configured in our .py application? Or is this something that is a default behaviour? 
 
-- There is a template called 'layout.html', but it isn't referred to in the .py file, how is it utilized (hint look at: http://flask.pocoo.org/docs/tutorial/templates/#tutorial-templates)
+- There is a template called 'layout.html', but it isn't referred to in the .py file, how is it utilized (HINT: look at: http://flask.pocoo.org/docs/tutorial/templates/#tutorial-templates)
 
-- How does the application get all styles that make it look less plain, where is that information stored?
+- The application uses a stylesheet (it's mentioned in the layout.html document), where is the stylesheet stored?
 
-- Just from experience, what would you say are the key ingredients of a login/logout system?
+- Just from experience, what would you say are the key ingredients of a login/logout system? This doesn't need to be an indepth answer, we just want you to start thinking about what is needed.
 
 .. _the new hotness: http://s3.pixane.com/pip_distribute.png
 .. _discussion about App Engine charges: http://news.ycombinator.com/item?id=3431132

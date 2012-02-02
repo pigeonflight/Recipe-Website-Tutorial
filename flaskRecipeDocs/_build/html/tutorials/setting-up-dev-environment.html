@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Part 2 - Setting up your development environment and starting and application &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    <title>Part 2 - Setting up your development environment and starting an application &mdash; Recipe Website Tutorial 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -51,8 +51,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="part-2-setting-up-your-development-environment-and-starting-and-application">
-<span id="setting-up-dev-chapter"></span><span id="index-0"></span><h1>Part 2 - Setting up your development environment and starting and application<a class="headerlink" href="#part-2-setting-up-your-development-environment-and-starting-and-application" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="part-2-setting-up-your-development-environment-and-starting-an-application">
+<span id="setting-up-dev-chapter"></span><span id="index-0"></span><h1>Part 2 - Setting up your development environment and starting an application<a class="headerlink" href="#part-2-setting-up-your-development-environment-and-starting-an-application" title="Permalink to this headline">¶</a></h1>
 <p>We have a lot to cover today including:</p>
 <ul class="simple">
 <li>Installing Flask using our bootstrapflask.py method</li>
@@ -217,7 +217,9 @@ python flaskr.py</pre>
 </li>
 <li><p class="first">By now you should know how to set environment variables, how do you use the terminal (on UNIX or Windows) to display environment variables?</p>
 </li>
-<li><p class="first">What happens when you set the <cite>http_proxy</cite> environment variable?</p>
+<li><p class="first">The documentation constantly emphasizes that the virtual environment must be activated. Try the following command <cite>echo $PATH</cite> (use <cite>echo %PATH%</cite> on Windows). Is the output of the PATH variable different when the virtual environment is activated versus when it is not? Discuss the significance of your findings.</p>
+</li>
+<li><p class="first">What do you think happens when you set the <cite>http_proxy</cite> environment variable, how does it affect programmes that are subsequently launched?</p>
 </li>
 <li><dl class="first docutils">
 <dt>We worked with <cite>routes</cite> and <cite>templates</cite> today look back at the code.</dt>
@@ -240,11 +242,11 @@ python flaskr.py</pre>
 </li>
 <li><p class="first">Templates go in the <cite>templates</cite> folder, where is this configured in our .py application? Or is this something that is a default behaviour?</p>
 </li>
-<li><p class="first">There is a template called &#8216;layout.html&#8217;, but it isn&#8217;t referred to in the .py file, how is it utilized (hint look at: <a class="reference external" href="http://flask.pocoo.org/docs/tutorial/templates/#tutorial-templates">http://flask.pocoo.org/docs/tutorial/templates/#tutorial-templates</a>)</p>
+<li><p class="first">There is a template called &#8216;layout.html&#8217;, but it isn&#8217;t referred to in the .py file, how is it utilized (HINT: look at: <a class="reference external" href="http://flask.pocoo.org/docs/tutorial/templates/#tutorial-templates">http://flask.pocoo.org/docs/tutorial/templates/#tutorial-templates</a>)</p>
 </li>
-<li><p class="first">How does the application get all styles that make it look less plain, where is that information stored?</p>
+<li><p class="first">The application uses a stylesheet (it&#8217;s mentioned in the layout.html document), where is the stylesheet stored?</p>
 </li>
-<li><p class="first">Just from experience, what would you say are the key ingredients of a login/logout system?</p>
+<li><p class="first">Just from experience, what would you say are the key ingredients of a login/logout system? This doesn&#8217;t need to be an indepth answer, we just want you to start thinking about what is needed.</p>
 </li>
 </ul>
 </div>
@@ -258,7 +260,7 @@ python flaskr.py</pre>
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Part 2 - Setting up your development environment and starting and application</a><ul>
+<li><a class="reference internal" href="#">Part 2 - Setting up your development environment and starting an application</a><ul>
 <li><a class="reference internal" href="#dealing-with-on-campus-proxies">Dealing with on campus proxies</a></li>
 <li><a class="reference internal" href="#using-bootstrapflask-py-to-setup-flask-and-virtualenv">Using Bootstrapflask.py to setup Flask and Virtualenv</a></li>
 <li><a class="reference internal" href="#trying-out-flask">Trying out Flask</a></li>

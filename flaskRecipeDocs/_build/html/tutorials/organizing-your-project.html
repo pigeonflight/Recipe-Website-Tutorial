@@ -57,7 +57,7 @@
 <dl class="docutils">
 <dt><a class="reference internal" href="planning-and-mockups.html#planning-mockups-chapter"><em>Part 1 - Planning and Mockups</em></a></dt>
 <dd>Where we looked at process of planning the user interface (UI) of your application</dd>
-<dt><a class="reference internal" href="setting-up-dev-environment.html#setting-up-dev-chapter"><em>Part 2 - Setting up your development environment and starting and application</em></a></dt>
+<dt><a class="reference internal" href="setting-up-dev-environment.html#setting-up-dev-chapter"><em>Part 2 - Setting up your development environment and starting an application</em></a></dt>
 <dd>This looked at what we needed on our computer to get started.
 We also gained some experience with configuring views (routes) and templates by working on a simple application.</dd>
 <dt><a class="reference internal" href="deploying-your-application.html#deploying-application-chapter"><em>Part 3 - Deploying your Application</em></a></dt>
@@ -170,11 +170,6 @@ simple we will just put the phrase, &#8220;I am the recipe template&#8221;.</p>
 <div><img alt="../_images/recipetemplate.jpg" src="../_images/recipetemplate.jpg" />
 </div></blockquote>
 </div>
-<div class="section" id="template-inheritance">
-<h2>Template inheritance<a class="headerlink" href="#template-inheritance" title="Permalink to this headline">¶</a></h2>
-<p>A common pattern seen in application development, is to have a layout or master template. The other templates can then be configured to inherit from this global layout.</p>
-<p>You can read more about the <a class="reference external" href="http://flask.pocoo.org/docs/patterns/templateinheritance/">template inheritance pattern</a> at the Flask website.</p>
-</div>
 <div class="section" id="passing-variables-to-the-template">
 <h2>Passing variables to the template<a class="headerlink" href="#passing-variables-to-the-template" title="Permalink to this headline">¶</a></h2>
 <p>Flask uses Jinja2 templates by default.
@@ -186,24 +181,22 @@ Notice how this approach is used in the app.py file to pass the value of <cite>n
     <span class="k">return</span> <span class="n">template</span><span class="p">(</span><span class="s">&#39;index.html&#39;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>We will find this useful later.</p>
 </div>
-<div class="section" id="defining-macros-and-slots-creating-a-master-template">
-<h2>Defining macros and slots, creating a master template<a class="headerlink" href="#defining-macros-and-slots-creating-a-master-template" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="template-inheritance-and-a-master-layout-template">
+<h2>Template inheritance and a master (layout) template<a class="headerlink" href="#template-inheritance-and-a-master-layout-template" title="Permalink to this headline">¶</a></h2>
 <p>After a while we begin to see things that are common to all templates. Instead of repeating these elements
-across different templates, we can share these elements by creating a global or master template.
-New templates can be made to inherit from the master template.
-In our case the <cite>index.html</cite> template is a good starting point.</p>
+across different templates, we can share these elements by creating a global or master template.</p>
+<p>A common pattern seen in application development, is to have a layout or master template. The other templates can then be configured to inherit from this global layout.</p>
+<p>You can read more about the <a class="reference external" href="http://flask.pocoo.org/docs/patterns/templateinheritance/">template inheritance pattern</a> at the Flask website.</p>
+<p>In this step, we will create a master template called <tt class="docutils literal"><span class="pre">layout.html</span></tt>. Our other templates will inherit common elements from the layout template.</p>
 <p>Based on our mockups, most pages will be simpler than the front page so we will create a more generic template
 based on the <cite>index.html</cite> template.</p>
 <img alt="../_images/recipewebsite-template-innerpage.png" src="../_images/recipewebsite-template-innerpage.png" />
-<p>We&#8217;ll create a new master template called &#8216;global.html&#8217; in the <cite>templates</cite> folder. We can use the <cite>index.html</cite> template as the starting point.</p>
-<p>The simpler global template can be implemented with 3 rows instead of 5 in the welcome template.</p>
+<p>We&#8217;ll create a new master template called &#8216;layout.html&#8217; in the <cite>templates</cite> folder. We can use the <cite>index.html</cite> template as the starting point.</p>
+<p>The simpler global template can be implemented with 3 rows instead of the 5 that we identified for the welcome template.</p>
 <img alt="../_images/simpletemplate.jpg" src="../_images/simpletemplate.jpg" />
-<p>XXX Fix me
-need to say something about template inheritance</p>
-<p>We will pull this off using template inheritance</p>
-<p>see: <a class="reference external" href="http://flask.pocoo.org/docs/patterns/templateinheritance/">http://flask.pocoo.org/docs/patterns/templateinheritance/</a></p>
-<p>We name our template <cite>global.html</cite>:</p>
+<p>We name our template <cite>layout.html</cite>:</p>
 <div class="highlight-python"><pre>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -221,6 +214,7 @@ need to say something about template inheritance</p>
                LOGO will go here
            &lt;/div&gt;</pre>
 </div>
+<p>XXX show inheritance</p>
 </div>
 <div class="section" id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
@@ -228,6 +222,7 @@ need to say something about template inheritance</p>
 <li>Did we need to declare where to look for templates and static files?</li>
 <li>What does the phrase &#8220;by convention&#8221; mean? What conventions have we seen today? What&#8217;s the purpose of having conventions?</li>
 <li>In what way do conventions make source code more maintainable?</li>
+<li>Read the import statements in the app.py file, what&#8217;s the original name of the the <tt class="docutils literal"><span class="pre">template</span></tt> method? Can all of this be rewritten as a single import statement?</li>
 </ul>
 </div>
 </div>
@@ -245,9 +240,8 @@ need to say something about template inheritance</p>
 <li><a class="reference internal" href="#creating-the-views-for-our-recipewebsite-application">Creating the views for our RecipeWebsite application</a></li>
 <li><a class="reference internal" href="#adding-a-template-in-the-templates-folder">Adding a template in the <cite>templates</cite> folder</a></li>
 <li><a class="reference internal" href="#view-the-new-view-in-your-browser">View the new view in your browser</a></li>
-<li><a class="reference internal" href="#template-inheritance">Template inheritance</a></li>
 <li><a class="reference internal" href="#passing-variables-to-the-template">Passing variables to the template</a></li>
-<li><a class="reference internal" href="#defining-macros-and-slots-creating-a-master-template">Defining macros and slots, creating a master template</a></li>
+<li><a class="reference internal" href="#template-inheritance-and-a-master-layout-template">Template inheritance and a master (layout) template</a></li>
 <li><a class="reference internal" href="#discussion">Discussion</a></li>
 </ul>
 </li>

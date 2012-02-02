@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
     <link rel="next" title="Part 4 - Organizing your Project / UI and Simple Templating" href="organizing-your-project.html" />
-    <link rel="prev" title="Part 2 - Setting up your development environment and starting and application" href="setting-up-dev-environment.html" /> 
+    <link rel="prev" title="Part 2 - Setting up your development environment and starting an application" href="setting-up-dev-environment.html" /> 
   </head>
   <body>
     <div class="related">
@@ -40,7 +40,7 @@
           <a href="organizing-your-project.html" title="Part 4 - Organizing your Project / UI and Simple Templating"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="setting-up-dev-environment.html" title="Part 2 - Setting up your development environment and starting and application"
+          <a href="setting-up-dev-environment.html" title="Part 2 - Setting up your development environment and starting an application"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -53,7 +53,22 @@
             
   <div class="section" id="part-3-deploying-your-application">
 <span id="deploying-application-chapter"></span><span id="index-0"></span><h1>Part 3 - Deploying your Application<a class="headerlink" href="#part-3-deploying-your-application" title="Permalink to this headline">¶</a></h1>
-<p>Deployment may seem overly involved at first, just remember that the items noted as setup steps are almost never repeated. Those items noted as initial steps are done once for a project.</p>
+<p>Deployment may seem overly involved at first, just remember that the items noted as <tt class="docutils literal"><span class="pre">setup</span> <span class="pre">steps</span></tt> are almost never repeated. Those items noted as <tt class="docutils literal"><span class="pre">initial</span> <span class="pre">steps</span></tt> are done once for each new project.</p>
+<p>Once a project is initialized, the commands that you will use most regularly are as summarized below:</p>
+<p>When you modify source code:</p>
+<div class="highlight-python"><pre>git commit -a
+git push</pre>
+</div>
+<p>When you add a file:</p>
+<div class="highlight-python"><pre>git add filename
+git commit
+git push</pre>
+</div>
+<p>When you delete a file:</p>
+<div class="highlight-python"><pre>git rm filename
+git commit
+git push</pre>
+</div>
 <div class="section" id="sign-up-with-fluxflex-and-create-a-new-project-setup-step">
 <h2>Sign up with Fluxflex and create a new project [setup step]<a class="headerlink" href="#sign-up-with-fluxflex-and-create-a-new-project-setup-step" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
@@ -81,12 +96,15 @@ The methodology depends on the ssh protocol and public keys. A provider, such as
 the server using an appropriate <tt class="docutils literal"><span class="pre">Public</span> <span class="pre">Key</span></tt>. Only a machine configured with the correct <tt class="docutils literal"><span class="pre">Private</span> <span class="pre">Key</span></tt> can send a suitable response.
 If a suitable <tt class="docutils literal"><span class="pre">Key</span> <span class="pre">Response</span></tt> is made authorization is allowed. Authorization is denied if there is no suitable response.</p>
 </div>
-<p>This step is done once per machine.
+<p>When we register a public key in our fluxflex account, we are telling fluxflex that a machine with the corresponding private key should be allowed to
+update code on our fluxflex projects.</p>
+<p>In this step we prepare our machine for ssh key based authentication by generating a public key and private key, this is done once per machine.
+If you already have a public and private key you should probably use those.
 If you haven&#8217;t done it before, or if you want to create a new key, use <tt class="docutils literal"><span class="pre">ssh-keygen</span></tt> to generate a public key.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span>
 </pre></div>
 </div>
-<p>Accept all the defaults.</p>
+<p>Accept all the defaults (there is no need to add a passphrase, however it does add one more layer of security).</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If you are on Windows, follow the information here: <a class="reference external" href="http://doc.fluxflex.com/pubkey">http://doc.fluxflex.com/pubkey</a></p>
@@ -105,8 +123,7 @@ If you haven&#8217;t done it before, or if you want to create a new key, use <tt
 <div class="highlight-python"><pre>git clone ssh://git@git.fluxflex.com:443/yourprojectname</pre>
 </div>
 <p>The result will be a directory structure something like this:</p>
-<div class="highlight-python"><pre>.. image:: ../images/flux-checkout-after.png</pre>
-</div>
+<img alt="../_images/flux-checkout-after.png" src="../_images/flux-checkout-after.png" />
 <ol class="arabic simple" start="2">
 <li>You will need to activate the virtual environment that you&#8217;ve been using for your application.</li>
 </ol>
@@ -131,6 +148,8 @@ python flaskflex.py</pre>
 <p class="first admonition-title">Note</p>
 <p>flaskflex.py adds the directory structure and
 files needed to deploy your application to fluxflex.
+These files provide the configuration needed for a WSGI based application to
+pass instructions via FCGI to a webserver.
 You should now see the following files added to your project:</p>
 <div class="last highlight-python"><pre>.flx
 public_html
@@ -179,10 +198,13 @@ initiated.</p>
 <div class="section" id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Fluxflex doesn&#8217;t use passwords for autWhat is the benefit have a standard directory structure?</li>
-<li>In what way do conventions make source code more maintainable?</li>
-<li>Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</li>
-<li>What do you think happens when you set the <cite>http_proxy</cite> environment variable.?</li>
+<li>A brute force attack uses repeated attempts with a dictionary of passwords until one is correct, how would public key based authentication protect against brute force attacks?</li>
+<li>Why use git to deploy your code? Why not FTP?</li>
+<li>An .htaccess file passes instructions to an apache (or similar) webserver. If it exists, it is consulted by the webserver to determine how that server sould behave. Look at the contents of the .htaccess file, give your best guess as to what each line is doing.</li>
+<li>The dispatch.fcgi file acts as bridge between our WSGI based flask app and the webserver. What is WSGI? What is FCGI?</li>
+<li>The req.txt file was generated when you ran flaskflex.py. What is in the req.txt file? Why was it important that your virtual enviroment be activated? HINT: you may need to remind yourself about the purpose of a Python virtualenv.</li>
+<li>For &#8220;bonus points&#8221;, there are two more files involved in the deployment, the .flx file and the req.txt file. They can be considered to be configuration files. Take a look at them and discuss how they contribute to configuration off the application on the server. HINT: there is documentation at fluxflex.com that explains the .flx file.</li>
+<li>For &#8220;bonus, bonus points&#8221;, try to draw a diagram that summarizes ALL the &#8220;pieces&#8221; of the deployment.</li>
 </ul>
 </div>
 </div>
@@ -210,7 +232,7 @@ initiated.</p>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="setting-up-dev-environment.html"
-                        title="previous chapter">Part 2 - Setting up your development environment and starting and application</a></p>
+                        title="previous chapter">Part 2 - Setting up your development environment and starting an application</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="organizing-your-project.html"
                         title="next chapter">Part 4 - Organizing your Project / UI and Simple Templating</a></p>
@@ -246,7 +268,7 @@ initiated.</p>
           <a href="organizing-your-project.html" title="Part 4 - Organizing your Project / UI and Simple Templating"
              >next</a> |</li>
         <li class="right" >
-          <a href="setting-up-dev-environment.html" title="Part 2 - Setting up your development environment and starting and application"
+          <a href="setting-up-dev-environment.html" title="Part 2 - Setting up your development environment and starting an application"
              >previous</a> |</li>
         <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
