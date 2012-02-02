@@ -25,6 +25,9 @@ For these additional features we will rely on third-party modules.
 
 We will use the following modules to implement:
 
+- Flask-SQLAlchmey
+XXX Fixme (complete this section)
+
 Reviewing the Recipe Page
 ----------------------------
 
