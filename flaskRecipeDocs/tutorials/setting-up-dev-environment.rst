@@ -4,7 +4,7 @@
 
 .. _setting_up_dev_chapter:
 
-Part 2 - Setting up your development environment and starting and application 
+Part 2 - Setting up your development environment and starting an application 
 ===============================================================================
 
 We have a lot to cover today including:
