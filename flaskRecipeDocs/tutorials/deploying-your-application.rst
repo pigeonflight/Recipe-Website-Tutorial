@@ -23,7 +23,7 @@ When you added a file::
 	git commit
 	git push
 
-When you deleted a file:
+When you deleted a file::
 
 	git rm filename
 	git commit
