@@ -63,14 +63,24 @@ We also gained some experience with configuring views (routes) and templates by 
 <dt><a class="reference internal" href="deploying-your-application.html#deploying-application-chapter"><em>Part 3 - Deploying your Application</em></a></dt>
 <dd>We have explored the details of publishing your application to the web</dd>
 </dl>
-<p>You should now know enough to begin working on the prototype for our Recipe Website.</p>
+<p>You should now know enough to begin working on the prototype for our Recipe Website.
+The prototype will implement the layout.</p>
+<p>We only want to worry about putting placeholder text in in the grids.
+We will NOT concern ourselves with fancy css or images yet.</p>
+<p>By the end of this tutorial you will have reviewed the following topics:</p>
+<ul class="simple">
+<li>Use the starter scaffold as a starting point for our application</li>
+<li>Create a global layout using the jinja2 templating language</li>
+<li>Make use of jsonify and request methods</li>
+<li>Use the <a class="reference external" href="https://github.com/defunkt/jquery-pjax">pjax</a> library for smart ajax based page reloads</li>
+</ul>
 <div class="section" id="setting-up-the-flask-starter-scaffold">
 <h2>Setting up the Flask Starter Scaffold<a class="headerlink" href="#setting-up-the-flask-starter-scaffold" title="Permalink to this headline">¶</a></h2>
 <p>A scaffold refers to a predetermined structure around which you will build your applications.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last"><strong>Why Scaffolds?</strong> Glad you asked! Over the next couple weeks you will be submitting work to be assessed, to simplify things
-We&#8217;ve developed a standard way of starting and organizing your projects. Maintaining a standard approach means there is one less decision to make when building your applications.</p>
+we&#8217;ve developed a standard way of starting and organizing your projects. Maintaining a standard approach means there is one less decision to make when building your applications.</p>
 </div>
 <p>There are two scaffolds to be used in this course the names are listed below:</p>
 <dl class="docutils">
@@ -90,10 +100,10 @@ review the section entitled <a class="reference internal" href="setting-up-dev-e
 <p class="last">You will need to download the Flask Starter Scaffold <a class="reference external" href="http://dl.dropbox.com/u/1004432/flask_starter.zip">http://dl.dropbox.com/u/1004432/flask_starter.zip</a>. If you are using Windows, just download it with your webbrowser.</p>
 </div>
 <p>1. Download and unzip the starter scaffold <a class="reference external" href="http://dl.dropbox.com/u/1004432/flask_starter.zip">http://dl.dropbox.com/u/1004432/flask_starter.zip</a>
-copy <cite>flask_starter</cite> to <cite>recipe_website</cite> this effectively uses the flask_starter folder as a template:</p>
+copy <cite>flask_starter</cite> to <cite>recipe_website</cite> this effectively uses the flask_starter folder as the &#8220;blueprint&#8221; for your projects:</p>
 <div class="highlight-python"><pre>wget http://dl.dropbox.com/u/1004432/flask_starter.zip
 unzip flask_starter
-cp flask_starter recipe_website</pre>
+cp -r flask_starter recipe_website</pre>
 </div>
 <ol class="arabic">
 <li><p class="first">Enter the new <cite>recipe_website</cite> folder, bootstrap flask and activate your virtual environment:</p>
@@ -122,7 +132,7 @@ image below:</p>
 </div>
 <div class="section" id="creating-the-views-for-our-recipewebsite-application">
 <h2>Creating the views for our RecipeWebsite application<a class="headerlink" href="#creating-the-views-for-our-recipewebsite-application" title="Permalink to this headline">¶</a></h2>
-<p>Based on the nature of our application we can predict some of our required views.</p>
+<p>Based on what we know about our application we can predict some of our required views.</p>
 <p>The names below represent reasonably descriptive choices for our Views, (later on, we may choose to use different names for our views):</p>
 <dl class="docutils">
 <dt>welcome</dt>
@@ -194,8 +204,9 @@ across different templates, we can share these elements by creating a global or 
 based on the <cite>index.html</cite> template.</p>
 <img alt="../_images/recipewebsite-template-innerpage.png" src="../_images/recipewebsite-template-innerpage.png" />
 <p>We&#8217;ll create a new master template called &#8216;layout.html&#8217; in the <cite>templates</cite> folder. We can use the <cite>index.html</cite> template as the starting point.</p>
-<p>The simpler global template can be implemented with 3 rows instead of the 5 that we identified for the welcome template.</p>
+<p>The simpler global template can be implemented with 3 rows instead of the 5 that we identified for the welcome page.</p>
 <img alt="../_images/simpletemplate.jpg" src="../_images/simpletemplate.jpg" />
+<p>We will focus on row 2, we&#8217;ll call the area highlighted in yellow <tt class="docutils literal"><span class="pre">content</span></tt>. We add a replaceable <tt class="docutils literal"><span class="pre">block</span></tt> to our template.</p>
 <p>We name our template <cite>layout.html</cite>:</p>
 <div class="highlight-python"><pre>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -209,12 +220,50 @@ based on the <cite>index.html</cite> template.</p>
 &lt;/head&gt;
 &lt;body&gt;
 
-     &lt;div id="row-1" class="row"&gt;
-           &lt;div class ="cell position-0 width-3"&gt;
-               LOGO will go here
-           &lt;/div&gt;</pre>
+        &lt;div id="row-1" class="row"&gt;
+              &lt;div class ="cell position-0 width-3"&gt;logo&lt;/div&gt;
+              &lt;div class ="cell position-3 width-6"&gt;the menu&lt;/div&gt;
+              &lt;div class ="cell position-9 width-3"&gt;search&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div id="row-2" class="row"&gt;
+              &lt;div class ="cell position-0 width-3"&gt;recipe sidebar&lt;/div&gt;
+              &lt;div class ="cell position-3 width-9"&gt;{% block content %}content goes here{% endblock %}&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div id="row-3" class="row"&gt;
+              &lt;div class ="cell position-0 width-3"&gt;popular ingredients&lt;/div&gt;
+              &lt;div class ="cell position-3 width-4"&gt;new recipes box&lt;/div&gt;
+              &lt;div class ="cell position-7 width-5"&gt;popular recipes box&lt;/div&gt;
+        &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
 </div>
-<p>XXX show inheritance</p>
+<p>We now have a <tt class="docutils literal"><span class="pre">content</span></tt> block.</p>
+</div>
+<div class="section" id="child-templates-using-our-template">
+<h2>Child templates - using our template<a class="headerlink" href="#child-templates-using-our-template" title="Permalink to this headline">¶</a></h2>
+<p>A child template inherits from the global template using a special <tt class="docutils literal"><span class="pre">extends</span></tt> tag.</p>
+<p>Our recipe template can now be implemented like this</p>
+<div class="highlight-python"><pre>{% extends "layout.html" %}
+
+        {% block content %}
+        &lt;h1&gt;I am the recipe template&lt;/h1&gt;
+        {% endblock %}</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">the indentation is optional but helps to make the child template more readable</p>
+</div>
+<p>It will look like this:</p>
+<img alt="../_images/recipetemplate-child.png" src="../_images/recipetemplate-child.png" />
+<p>Notice how the <tt class="docutils literal"><span class="pre">content</span></tt> block of the child, overrides the original content block.</p>
+</div>
+<div class="section" id="adding-ajax-to-the-template">
+<h2>Adding AJAX to the template<a class="headerlink" href="#adding-ajax-to-the-template" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>XXX Fixme ... add notes about implementing ajax Let&#8217;s add some AJAX functionality.....</div></blockquote>
+<p>this will also introduce the jsonify and request methods
+XXX we could use the github style page load</p>
 </div>
 <div class="section" id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
@@ -242,6 +291,8 @@ based on the <cite>index.html</cite> template.</p>
 <li><a class="reference internal" href="#view-the-new-view-in-your-browser">View the new view in your browser</a></li>
 <li><a class="reference internal" href="#passing-variables-to-the-template">Passing variables to the template</a></li>
 <li><a class="reference internal" href="#template-inheritance-and-a-master-layout-template">Template inheritance and a master (layout) template</a></li>
+<li><a class="reference internal" href="#child-templates-using-our-template">Child templates - using our template</a></li>
+<li><a class="reference internal" href="#adding-ajax-to-the-template">Adding AJAX to the template</a></li>
 <li><a class="reference internal" href="#discussion">Discussion</a></li>
 </ul>
 </li>

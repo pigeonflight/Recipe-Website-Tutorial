@@ -18,6 +18,18 @@ At this point we have covered the following
     We have explored the details of publishing your application to the web
 
 You should now know enough to begin working on the prototype for our Recipe Website.
+The prototype will implement the layout. 
+
+We only want to worry about putting placeholder text in in the grids.
+We will NOT concern ourselves with fancy css or images yet.
+
+By the end of this tutorial you will have reviewed the following topics:
+
+- Use the starter scaffold as a starting point for our application
+- Create a global layout using the jinja2 templating language
+- Make use of jsonify and request methods
+- Use the `pjax`_ library for smart ajax based page reloads
+
 
 Setting up the Flask Starter Scaffold 
 --------------------------------------------
@@ -25,7 +37,7 @@ Setting up the Flask Starter Scaffold
 A scaffold refers to a predetermined structure around which you will build your applications.
 
 .. note:: **Why Scaffolds?** Glad you asked! Over the next couple weeks you will be submitting work to be assessed, to simplify things 
-    We've developed a standard way of starting and organizing your projects. Maintaining a standard approach means there is one less decision to make when building your applications. 
+    we've developed a standard way of starting and organizing your projects. Maintaining a standard approach means there is one less decision to make when building your applications. 
 
 There are two scaffolds to be used in this course the names are listed below:
 
@@ -43,11 +55,11 @@ Today we will focus on the ``Starter Scaffold``.
 .. note:: You will need to download the Flask Starter Scaffold http://dl.dropbox.com/u/1004432/flask_starter.zip. If you are using Windows, just download it with your webbrowser.
 
 1. Download and unzip the starter scaffold http://dl.dropbox.com/u/1004432/flask_starter.zip
-copy `flask_starter` to `recipe_website` this effectively uses the flask_starter folder as a template::
+copy `flask_starter` to `recipe_website` this effectively uses the flask_starter folder as the "blueprint" for your projects::
 
    wget http://dl.dropbox.com/u/1004432/flask_starter.zip
    unzip flask_starter
-   cp flask_starter recipe_website
+   cp -r flask_starter recipe_website
 
 1. Enter the new `recipe_website` folder, bootstrap flask and activate your virtual environment::
 
@@ -80,7 +92,7 @@ If you are on a network with a proxy you will need to review :ref:`dealing_with_
 Creating the views for our RecipeWebsite application
 -------------------------------------------------------
 
-Based on the nature of our application we can predict some of our required views.
+Based on what we know about our application we can predict some of our required views.
 
 The names below represent reasonably descriptive choices for our Views, (later on, we may choose to use different names for our views):
 
@@ -170,10 +182,11 @@ based on the `index.html` template.
 
 We'll create a new master template called 'layout.html' in the `templates` folder. We can use the `index.html` template as the starting point.
 
-The simpler global template can be implemented with 3 rows instead of the 5 that we identified for the welcome template.
+The simpler global template can be implemented with 3 rows instead of the 5 that we identified for the welcome page.
 
 .. image:: ../images/simpletemplate.jpg
 
+We will focus on row 2, we'll call the area highlighted in yellow ``content``. We add a replaceable ``block`` to our template.
 
 We name our template `layout.html`::
 
@@ -189,13 +202,53 @@ We name our template `layout.html`::
 	</head>
 	<body>
 
-	     <div id="row-1" class="row">
-		   <div class ="cell position-0 width-3">
-		       LOGO will go here
-		   </div>
+		<div id="row-1" class="row">
+		      <div class ="cell position-0 width-3">logo</div>
+		      <div class ="cell position-3 width-6">the menu</div>
+		      <div class ="cell position-9 width-3">search</div>
+		</div>
+		<div id="row-2" class="row">
+		      <div class ="cell position-0 width-3">recipe sidebar</div>
+		      <div class ="cell position-3 width-9">{% block content %}content goes here{% endblock %}</div>
+		</div>
+		<div id="row-3" class="row">
+		      <div class ="cell position-0 width-3">popular ingredients</div>
+		      <div class ="cell position-3 width-4">new recipes box</div>
+		      <div class ="cell position-7 width-5">popular recipes box</div>
+		</div>
+
+	</body>
+	</html>
 
 
-XXX show inheritance
+We now have a ``content`` block.
+
+Child templates - using our template
+-------------------------------------
+A child template inherits from the global template using a special ``extends`` tag.
+
+Our recipe template can now be implemented like this
+::
+
+    {% extends "layout.html" %}
+
+	    {% block content %}
+	    <h1>I am the recipe template</h1>
+	    {% endblock %}
+
+.. note:: the indentation is optional but helps to make the child template more readable
+
+It will look like this:
+
+.. image:: ../images/recipetemplate-child.png
+
+Notice how the ``content`` block of the child, overrides the original content block.
+
+Adding AJAX to the template
+---------------------------------
+ XXX Fixme ... add notes about implementing ajax Let's add some AJAX functionality.....
+this will also introduce the jsonify and request methods
+XXX we could use the github style page load
 
 Discussion
 -----------
@@ -209,8 +262,10 @@ Discussion
 - Read the import statements in the app.py file, what's the original name of the the ``template`` method? Can all of this be rewritten as a single import statement?
 
 
+
 .. _the new hotness: http://s3.pixane.com/pip_distribute.png
 .. _flask starter scaffold: http://dl.dropbox.com/u/1004432/flask_starter.zip
 .. _article about App Engine charges: http://news.ycombinator.com/item?id=3431132
 .. _blog post about using flask on GAE: http://www.joemartaganna.com/web-development/how-to-build-a-web-app-using-flask-with-jinja2-in-google-app-engine/
 .. _template inheritance pattern: http://flask.pocoo.org/docs/patterns/templateinheritance/
+.. _pjax: https://github.com/defunkt/jquery-pjax

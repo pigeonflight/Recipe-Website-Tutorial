@@ -68,17 +68,61 @@ For example if you need to provide third part authentication for facebook, twitt
 functionality built in.
 For these additional features we will rely on third-party modules.</p>
 <p>We will use the following modules to implement:</p>
-<p>XXX Fixme</p>
+<div class="section" id="reviewing-the-recipe-page">
+<h2>Reviewing the Recipe Page<a class="headerlink" href="#reviewing-the-recipe-page" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s review the recipe page, here is the mockup.</p>
+<img alt="../_images/recipe-page.png" src="../_images/recipe-page.png" />
+<p>Our recipe will have the following properties:</p>
+<ol class="arabic simple">
+<li>Picture</li>
+<li>Ingredients</li>
+<li>Directions</li>
+<li>Cooking Time</li>
+<li>Preparation Time</li>
+</ol>
+<p>Other properties might include:</p>
+<ol class="arabic simple">
+<li>Recipe Title</li>
+<li>Tags</li>
+</ol>
+</div>
+<div class="section" id="working-with-databases">
+<h2>Working with Databases<a class="headerlink" href="#working-with-databases" title="Permalink to this headline">¶</a></h2>
+<p>Our recipes will have the following features:</p>
+<p>We&#8217;ll create some supporting files: <cite>database.py</cite> and <cite>models.py</cite></p>
+<p>Install flask-sqlalchemy:</p>
+<div class="highlight-python"><pre>source venv/bin/activate
+pip install flask-sqlalchemy</pre>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">scoped_session</span><span class="p">,</span> <span class="n">sessionmaker</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s">&#39;sqlite:////tmp/test.db&#39;</span><span class="p">,</span> <span class="n">convert_unicode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">db_session</span> <span class="o">=</span> <span class="n">scoped_session</span><span class="p">(</span><span class="n">sessionmaker</span><span class="p">(</span><span class="n">autocommit</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                                         <span class="n">autoflush</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                                         <span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">))</span>
+<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+<span class="n">Base</span><span class="o">.</span><span class="n">query</span> <span class="o">=</span> <span class="n">db_session</span><span class="o">.</span><span class="n">query_property</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">init_db</span><span class="p">():</span>
+    <span class="c"># import all modules here that might define models so that</span>
+    <span class="c"># they will be registered properly on the metadata.  Otherwise</span>
+    <span class="c"># you will have to import them first before calling init_db()</span>
+    <span class="kn">import</span> <span class="nn">yourapplication.models</span>
+    <span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For more information on SQLAlchemy and Flask visit: <a class="reference external" href="http://flask.pocoo.org/docs/patterns/sqlalchemy/">http://flask.pocoo.org/docs/patterns/sqlalchemy/</a></p>
+<p>XXX FIXME, hook up our project to a mysql database need</p>
+</div>
 <div class="section" id="submitting-and-displaying-a-recipe">
 <h2>Submitting and Displaying a recipe<a class="headerlink" href="#submitting-and-displaying-a-recipe" title="Permalink to this headline">¶</a></h2>
+<p>XXX FIXME define the recipe content type</p>
 </div>
 <div class="section" id="adding-third-party-authentication-to-an-application">
 <h2>Adding Third party Authentication to an Application<a class="headerlink" href="#adding-third-party-authentication-to-an-application" title="Permalink to this headline">¶</a></h2>
 <p>Facebook and Twitter login to support comments</p>
-<p>XXX Fixme, need</p>
-</div>
-<div class="section" id="working-with-databases">
-<h2>Working with Databases<a class="headerlink" href="#working-with-databases" title="Permalink to this headline">¶</a></h2>
 <p>XXX Fixme, need</p>
 </div>
 <div class="section" id="discussion">
@@ -95,9 +139,10 @@ For these additional features we will rely on third-party modules.</p>
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Part 5 - Common Application Features/Adding Features to the Recipe Website</a><ul>
+<li><a class="reference internal" href="#reviewing-the-recipe-page">Reviewing the Recipe Page</a></li>
+<li><a class="reference internal" href="#working-with-databases">Working with Databases</a></li>
 <li><a class="reference internal" href="#submitting-and-displaying-a-recipe">Submitting and Displaying a recipe</a></li>
 <li><a class="reference internal" href="#adding-third-party-authentication-to-an-application">Adding Third party Authentication to an Application</a></li>
-<li><a class="reference internal" href="#working-with-databases">Working with Databases</a></li>
 <li><a class="reference internal" href="#discussion">Discussion</a></li>
 </ul>
 </li>
