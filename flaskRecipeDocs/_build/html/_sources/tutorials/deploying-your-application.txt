@@ -8,26 +8,7 @@
 Part 3 - Deploying your Application
 ===========================================
 
-Deployment may seem overly involved at first, just remember that the items noted as ``setup steps`` are almost never repeated. Those items noted as ``initial steps`` are done once for each new project.
-
-Once a project is initialized, the commands that you will use most regularly are as summarized below:
-
-When you modified the source code::
-
-	git commit -a
-	git push
-
-When you added a file::
-
-	git add filename
-	git commit
-	git push
-
-When you deleted a file:
-
-	git rm filename
-	git commit
-	git push
+Deployment may seem overly involved at first, just remember that the items noted as setup steps are almost never repeated. Those items noted as initial steps are done once for a project.
 
 Sign up with Fluxflex and create a new project [setup step]
 --------------------------------------------------------------
@@ -53,17 +34,13 @@ Registering a Public SSH Key [setup step]
           the server using an appropriate ``Public Key``. Only a machine configured with the correct ``Private Key`` can send a suitable response.
           If a suitable ``Key Response`` is made authorization is allowed. Authorization is denied if there is no suitable response.
 
-When we register a public key in our fluxflex account, we are telling fluxflex that a machine with the corresponding private key should be allowed to 
-update code on our fluxflex projects.
-
-In this step we prepare our machine for ssh key based authentication by generating a public key and private key, this is done once per machine.
-If you already have a public and private key you should probably use those.
+This step is done once per machine.
 If you haven't done it before, or if you want to create a new key, use ``ssh-keygen`` to generate a public key.
 ::
 
     ssh-keygen
 
-Accept all the defaults (there is no need to add a passphrase, however it does add one more layer of security).
+Accept all the defaults.
 
 .. note:: If you are on Windows, follow the information here: http://doc.fluxflex.com/pubkey
 
@@ -107,8 +84,6 @@ The result will be a directory structure something like this::
 
 .. note:: flaskflex.py adds the directory structure and 
     files needed to deploy your application to fluxflex. 
-    These files provide the configuration needed for a WSGI based application to 
-    pass instructions via FCGI to a webserver.
     You should now see the following files added to your project::
 
 	.flx
@@ -160,19 +135,13 @@ initiated.
 Discussion
 -----------
 
-- A brute force attack uses repeated attempts with a dictionary of passwords until one is correct, how would public key based authentication protect against brute force attacks?
+- Fluxflex doesn't use passwords for autWhat is the benefit have a standard directory structure?
 
-- Why use git to deploy your code? Why not FTP?
+- In what way do conventions make source code more maintainable?
 
-- An .htaccess file passes instructions to an apache (or similar) webserver. If it exists, it is consulted by the webserver to determine how that server sould behave. Look at the contents of the .htaccess file, give your best guess as to what each line is doing.
+- Any thoughts on what happens when you use virtualenv and the `source bin/activate` command? 
 
-- The dispatch.fcgi file acts as bridge between our WSGI based flask app and the webserver. What is WSGI? What is FCGI?
-
-- The req.txt file was generated when you ran flaskflex.py. What is in the req.txt file? Why was it important that your virtual enviroment be activated? HINT: you may need to remind yourself about the purpose of a Python virtualenv. 
-
-- For "bonus points", there are two more files involved in the deployment, the .flx file and the req.txt file. They can be considered to be configuration files. Take a look at them and discuss how they contribute to configuration off the application on the server. HINT: there is documentation at fluxflex.com that explains the .flx file.
-
-- For "bonus, bonus points", try to draw a diagram that summarizes ALL the "pieces" of the deployment.
+- What do you think happens when you set the `http_proxy` environment variable.?
 
 .. _the new hotness: http://s3.pixane.com/pip_distribute.png
 .. _bottle starter app: http://dl.dropbox.com/u/1004432/bottle-app.zip

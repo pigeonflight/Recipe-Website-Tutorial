@@ -1,0 +1,224 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Part 1 - Planning and Mockups &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
+    <link rel="next" title="Part 2 - Setting up your development environment and starting and application" href="setting-up-dev-environment.html" />
+    <link rel="prev" title="Recipe Website Tutorials" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="setting-up-dev-environment.html" title="Part 2 - Setting up your development environment and starting and application"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Recipe Website Tutorials"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="part-1-planning-and-mockups">
+<span id="planning-mockups-chapter"></span><span id="index-0"></span><h1>Part 1 - Planning and Mockups<a class="headerlink" href="#part-1-planning-and-mockups" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="why-do-this">
+<h2>Why do this?<a class="headerlink" href="#why-do-this" title="Permalink to this headline">¶</a></h2>
+<p>Most customers are visual, as a result we work with them to develop something that will give them a good idea of how their application will behave. This course focuses mostly on development not design, so we will use &#8220;shortcuts&#8221; for our design work. For a full project there will be need for a UI designer to
+layout the look to the satisfaction of the customer.</p>
+</div>
+<div class="section" id="mockup-up-tools">
+<h2>Mockup up tools<a class="headerlink" href="#mockup-up-tools" title="Permalink to this headline">¶</a></h2>
+<p>Some useful online tools for creating mockup include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://www.lucidchart.com">LucidChart</a>  - an HTML5 based diagram tool</li>
+<li><a class="reference external" href="http://cacoo.com">Cacoo</a> - a Flash based diagram tool (has a nice sketchy style for mockups)</li>
+<li><a class="reference external" href="http://www.gomockingbird.com">Mockingbird</a> - an HTML5 based diagram tool</li>
+</ul>
+</div></blockquote>
+<p>Browse their websites and sign up for one of the services (the first two allow
+you to log in with your google account, which means you will have one less
+password to worry about)</p>
+</div>
+<div class="section" id="the-design">
+<h2>The Design<a class="headerlink" href="#the-design" title="Permalink to this headline">¶</a></h2>
+<p>We will imagine that our UI person has decided to use Cacoo to come up with the following layout:</p>
+<img alt="../_images/recipe-website-wireframe.png" src="../_images/recipe-website-wireframe.png" />
+<p>You can also see the <a class="reference external" href="https://cacoo.com/diagrams/qb2bRi32AHGvzlef">live version of the mockup</a> at the Cacoo website.
+Notice the use of a sketchy style.</p>
+</div>
+<div class="section" id="layout-using-a-css-framework">
+<h2>Layout using a CSS Framework<a class="headerlink" href="#layout-using-a-css-framework" title="Permalink to this headline">¶</a></h2>
+<p>A CSS Framework is designed, among other things, to simplify tasks associating with layout of an HTML page.
+For this layout I&#8217;ve decided to use the <a class="reference external" href="http://limi.net/deco.gs">deco.gs</a> framework.
+In addition to these frameworks new applications like <a class="reference external" href="http://www.initializr.com">Initializr</a> help to get you started quickly.</p>
+<p>The deco.gs system uses a combination of two base CSS classes &#8221;.row&#8221; and &#8221;.cell&#8221; to acheive layout. The cells are supplemented by special <cite>position-</cite> and <cite>width-</cite> <tt class="docutils literal"><span class="pre">convenience</span> <span class="pre">classes</span></tt>, which determine <strong>where</strong> within a row a cell will be placed as well as <strong>how much space</strong> that cell takes up.</p>
+<p>In the example below we use two different cell widths <a class="footnote-reference" href="#id2" id="id1">[1]</a>, <cite>width-4</cite> and <cite>width-12</cite> to create our layout.</p>
+<div class="highlight-python"><pre>&lt;div class="row"&gt;
+      &lt;div class ="cell position-0 width-4"&gt;This cell is four units wide&lt;/div&gt;
+      &lt;div class ="cell position-4 width-12"&gt;This cell is twelve units wide&lt;/div&gt;
+&lt;/div&gt;</pre>
+</div>
+<p>The resulting layout:</p>
+<img alt="../_images/2deco-cells.png" src="../_images/2deco-cells.png" />
+<p>After looking at the mockup, we&#8217;ve determined that the UI could be divided into
+5 rows, each row will have a varied number of cells and the width of each cell will vary.</p>
+<img alt="../_images/mockup-grid.jpg" src="../_images/mockup-grid.jpg" />
+<p>If each row gets a unique id from row-1 to row-5 we could recreate the structure
+of the mockup with deco.gs using the following code.</p>
+<div class="highlight-python"><pre>&lt;div id="row-1" class="row"&gt;
+      &lt;div class ="cell position-0 width-3"&gt;logo&lt;/div&gt;
+      &lt;div class ="cell position-3 width-6"&gt;the menu&lt;/div&gt;
+      &lt;div class ="cell position-9 width-3"&gt;search&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="row-2" class="row"&gt;
+      &lt;div class ="cell position-0 width-3"&gt;submit a recipe&lt;/div&gt;
+      &lt;div class ="cell position-3 width-9"&gt;highlight recipes&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="row-3" class="row"&gt;
+      &lt;div class ="cell position-0 width-3"&gt;popular ingredients&lt;/div&gt;
+      &lt;div class ="cell position-3 width-4"&gt;new recipes box&lt;/div&gt;
+      &lt;div class ="cell position-7 width-5"&gt;popular recipes box&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="row-4" class="row"&gt;
+
+      &lt;div class ="cell position-3 width-9"&gt;Recipe Categories&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="row-5" class="row"&gt;
+      &lt;div class ="cell position-0 width-3"&gt;I heart Recipes&lt;/div&gt;
+      &lt;div class ="cell position-3 width-4"&gt;footer stuff&lt;/div&gt;
+      &lt;div class ="cell position-7 width-5"&gt;social stuff&lt;/div&gt;
+&lt;/div&gt;</pre>
+</div>
+<p>View <a class="reference external" href="http://dabblet.com/result/gist/1636270">the result of this code at dabblet</a></p>
+<p>Try <a class="reference external" href="http://dabblet.com/gist/1636270">the code at dabblet</a></p>
+<p>Get <a class="reference external" href="https://gist.github.com/1636270">the code from github.com</a></p>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>What might be some pros and cons to presenting the mockup in a &#8220;sketchy&#8221; style?</li>
+<li>The HTML snippets above are not complete HTML documents, what would we need to add to make them complete?</li>
+<li>Why use a css grid framework when you can hand code everything yourself?</li>
+<li>Most grid frameworks focus on organizing things into rows and cells, NOT rows and columns, what&#8217;s the difference?</li>
+<li>What does the term convenience class suggest?</li>
+<li>Look at the proposed html code, do you notice anything different about the contents of &#8216;row-4&#8217;?</li>
+</ul>
+</div>
+<div class="section" id="lab">
+<h2>Lab<a class="headerlink" href="#lab" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Using one of the tools mentioned above, create a mockup for a website.
+While making the mockup, try to think about how many rows will be needed if
+you were implementing the site using a grid framework.</li>
+<li>Using Deco.gs (or a framework of your choice), implement a rough HTML version of that mockup.</li>
+</ul>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Note that the cell convenience classes are added to the same div tag as the cell.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Part 1 - Planning and Mockups</a><ul>
+<li><a class="reference internal" href="#why-do-this">Why do this?</a></li>
+<li><a class="reference internal" href="#mockup-up-tools">Mockup up tools</a></li>
+<li><a class="reference internal" href="#the-design">The Design</a></li>
+<li><a class="reference internal" href="#layout-using-a-css-framework">Layout using a CSS Framework</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+<li><a class="reference internal" href="#lab">Lab</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Recipe Website Tutorials</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="setting-up-dev-environment.html"
+                        title="next chapter">Part 2 - Setting up your development environment and starting and application</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorials/planning-and-mockups.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="setting-up-dev-environment.html" title="Part 2 - Setting up your development environment and starting and application"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Recipe Website Tutorials"
+             >previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, David Bain.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

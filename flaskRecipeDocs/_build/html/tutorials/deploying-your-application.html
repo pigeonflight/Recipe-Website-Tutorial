@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Part 3 - Deploying your Application &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
+    <link rel="next" title="Part 4 - Organizing your Project / UI and Simple Templating" href="organizing-your-project.html" />
+    <link rel="prev" title="Part 2 - Setting up your development environment and starting and application" href="setting-up-dev-environment.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="organizing-your-project.html" title="Part 4 - Organizing your Project / UI and Simple Templating"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="setting-up-dev-environment.html" title="Part 2 - Setting up your development environment and starting and application"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="part-3-deploying-your-application">
+<span id="deploying-application-chapter"></span><span id="index-0"></span><h1>Part 3 - Deploying your Application<a class="headerlink" href="#part-3-deploying-your-application" title="Permalink to this headline">¶</a></h1>
+<p>Deployment may seem overly involved at first, just remember that the items noted as setup steps are almost never repeated. Those items noted as initial steps are done once for a project.</p>
+<div class="section" id="sign-up-with-fluxflex-and-create-a-new-project-setup-step">
+<h2>Sign up with Fluxflex and create a new project [setup step]<a class="headerlink" href="#sign-up-with-fluxflex-and-create-a-new-project-setup-step" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Register an account with <a class="reference external" href="http://fluxflex.com">http://fluxflex.com</a>,
+log in and &#8220;create a new project&#8221;.</li>
+</ol>
+<img alt="../_images/flux-new-project.png" src="../_images/flux-new-project.png" />
+<ol class="arabic" start="2">
+<li><p class="first">You can check out your new project by name using git. For example if your project is called <tt class="docutils literal"><span class="pre">yourprojectname</span></tt>:</p>
+<p>git clone <a class="reference external" href="ssh://git&#64;git.fluxflex.com:443/yourprojectname">ssh://git&#64;git.fluxflex.com:443/yourprojectname</a></p>
+</li>
+</ol>
+<blockquote>
+<div>To confirm the proper procedure, go to &#8220;Setup&#8221; &gt; &#8220;Git&#8221; and copy the code for downloading your project.</div></blockquote>
+<img alt="../_images/flux-gitsetup.png" src="../_images/flux-gitsetup.png" />
+</div>
+<div class="section" id="registering-a-public-ssh-key-setup-step">
+<h2>Registering a Public SSH Key [setup step]<a class="headerlink" href="#registering-a-public-ssh-key-setup-step" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>SSH Public Key based Authentication in a nutshell</strong>
+SSH Key based Authentication is an alternative to password based authentication.
+The methodology depends on the ssh protocol and public keys. A provider, such as Fluxflex.com, stores a list of
+<tt class="docutils literal"><span class="pre">Authorized</span> <span class="pre">Public</span> <span class="pre">Keys</span></tt> provided by an authorized user. When a user attempts to connect to the server a <tt class="docutils literal"><span class="pre">Challenge</span></tt> is sent by
+the server using an appropriate <tt class="docutils literal"><span class="pre">Public</span> <span class="pre">Key</span></tt>. Only a machine configured with the correct <tt class="docutils literal"><span class="pre">Private</span> <span class="pre">Key</span></tt> can send a suitable response.
+If a suitable <tt class="docutils literal"><span class="pre">Key</span> <span class="pre">Response</span></tt> is made authorization is allowed. Authorization is denied if there is no suitable response.</p>
+</div>
+<p>This step is done once per machine.
+If you haven&#8217;t done it before, or if you want to create a new key, use <tt class="docutils literal"><span class="pre">ssh-keygen</span></tt> to generate a public key.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span>
+</pre></div>
+</div>
+<p>Accept all the defaults.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you are on Windows, follow the information here: <a class="reference external" href="http://doc.fluxflex.com/pubkey">http://doc.fluxflex.com/pubkey</a></p>
+</div>
+<p>To view and copy your public key use the <tt class="docutils literal"><span class="pre">cat</span></tt> command to dump the contents of the public key to the terminal:</p>
+<div class="highlight-python"><pre>cat ~/.ssh/id_rsa.pub</pre>
+</div>
+<img alt="../_images/cat-ssh-rsapub.png" src="../_images/cat-ssh-rsapub.png" />
+<p>Then paste the resulting output to your fluxflex key list by going to &#8220;Plan &amp; Settings&#8221; &gt; &#8220;Public Keys&#8221; &gt; &#8220;SSH Public Keys List&#8221; and click &#8220;Save&#8221;.</p>
+<img alt="../_images/fluxflex-add-key.png" src="../_images/fluxflex-add-key.png" />
+</div>
+<div class="section" id="preparing-the-directory-for-publishing-to-fluxflex-initial-step">
+<h2>Preparing the directory for publishing to fluxflex [initial step]<a class="headerlink" href="#preparing-the-directory-for-publishing-to-fluxflex-initial-step" title="Permalink to this headline">¶</a></h2>
+<p>The flaskflex.py tool is a quick way to prepare a brand new fluxflex project for deployment as a flask application to fluxflex.</p>
+<p>1. Use git to download yourproject by name (eg. if it is called <cite>yourprojectname</cite> it may look like this</p>
+<div class="highlight-python"><pre>git clone ssh://git@git.fluxflex.com:443/yourprojectname</pre>
+</div>
+<p>The result will be a directory structure something like this:</p>
+<div class="highlight-python"><pre>.. image:: ../images/flux-checkout-after.png</pre>
+</div>
+<ol class="arabic simple" start="2">
+<li>You will need to activate the virtual environment that you&#8217;ve been using for your application.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>flaskflex.py generates a req.txt file which is based on your virtual environment
+so it is important that you activate your virtual environment!</p>
+<blockquote class="last">
+<div><img alt="../_images/activate.gif" src="../_images/activate.gif" />
+</div></blockquote>
+</div>
+<ol class="arabic" start="3">
+<li><p class="first">Download flaskflex.py to your fluxflex project directory and run flaskflex.py.
+flaskflex.py prepares your project for deployment to fluxflex:</p>
+<div class="highlight-python"><pre>cd yourprojectname
+wget http://dl.dropbox.com/u/1004432/flaskflex.py
+python flaskflex.py</pre>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>flaskflex.py adds the directory structure and
+files needed to deploy your application to fluxflex.
+You should now see the following files added to your project:</p>
+<div class="last highlight-python"><pre>.flx
+public_html
+    ├── .htaccess
+    └── dispatch.fcgi
+req.txt</pre>
+</div>
+</div>
+</div>
+<div class="section" id="add-your-application-to-the-fluxflex-project-initial-step">
+<h2>Add your application to the fluxflex project [initial step]<a class="headerlink" href="#add-your-application-to-the-fluxflex-project-initial-step" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">flaskflex.py</span></tt> follows the following conventions:</p>
+<ol class="arabic simple">
+<li>It expects your application to exist in a folder called <tt class="docutils literal"><span class="pre">application</span></tt> and to be called <tt class="docutils literal"><span class="pre">app.py</span></tt> (look at the public_html/dispatch.fcgi file for this information).</li>
+<li>It expects all the requirements for your application to be listed in req.txt</li>
+</ol>
+<p>The steps for deployment are as follows:</p>
+<ol class="arabic simple">
+<li>Copy your flask application to the fluxflex project folder, such that your application&#8217;s folder will be called <cite>application</cite>.</li>
+<li>If necessary rename the contained application to <cite>app.py</cite>.</li>
+</ol>
+<p>If your fluxflex project folder is called <cite>yourprojectname</cite> and your flask application is called <cite>yourflaskapplication</cite>, you might so something like this:</p>
+<div class="highlight-python"><pre>cp -r yourflaskapplication yourprojectname/application</pre>
+</div>
+<p>If the .py file in <cite>yourflaskapplication</cite> was named <cite>myapp.py</cite>, then you might do something like:</p>
+<div class="highlight-python"><pre>cd yourprojectname/application
+mv myapp.py app.py</pre>
+</div>
+</div>
+<div class="section" id="use-git-to-update-and-publish-your-application-initial-step">
+<h2>Use git to update and publish your application [initial step]<a class="headerlink" href="#use-git-to-update-and-publish-your-application-initial-step" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>git add .
+git commit -a -m 'initial deployment'
+git push</pre>
+</div>
+</div>
+<div class="section" id="visit-your-application-to-see-it-working">
+<h2>Visit your application to see it working<a class="headerlink" href="#visit-your-application-to-see-it-working" title="Permalink to this headline">¶</a></h2>
+<p>Allow 1 to 2 minutes for the application to be available online. You should be able to visit your new application at <cite>yourapplicationname</cite>.fluxflex.com.</p>
+</div>
+<div class="section" id="the-update-and-deploy-cycle">
+<h2>The Update and Deploy cycle<a class="headerlink" href="#the-update-and-deploy-cycle" title="Permalink to this headline">¶</a></h2>
+<p>New deployments are basically done after changes have been committed and a <cite>git push</cite> is
+initiated.</p>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fluxflex doesn&#8217;t use passwords for autWhat is the benefit have a standard directory structure?</li>
+<li>In what way do conventions make source code more maintainable?</li>
+<li>Any thoughts on what happens when you use virtualenv and the <cite>source bin/activate</cite> command?</li>
+<li>What do you think happens when you set the <cite>http_proxy</cite> environment variable.?</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Part 3 - Deploying your Application</a><ul>
+<li><a class="reference internal" href="#sign-up-with-fluxflex-and-create-a-new-project-setup-step">Sign up with Fluxflex and create a new project [setup step]</a></li>
+<li><a class="reference internal" href="#registering-a-public-ssh-key-setup-step">Registering a Public SSH Key [setup step]</a></li>
+<li><a class="reference internal" href="#preparing-the-directory-for-publishing-to-fluxflex-initial-step">Preparing the directory for publishing to fluxflex [initial step]</a></li>
+<li><a class="reference internal" href="#add-your-application-to-the-fluxflex-project-initial-step">Add your application to the fluxflex project [initial step]</a></li>
+<li><a class="reference internal" href="#use-git-to-update-and-publish-your-application-initial-step">Use git to update and publish your application [initial step]</a></li>
+<li><a class="reference internal" href="#visit-your-application-to-see-it-working">Visit your application to see it working</a></li>
+<li><a class="reference internal" href="#the-update-and-deploy-cycle">The Update and Deploy cycle</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="setting-up-dev-environment.html"
+                        title="previous chapter">Part 2 - Setting up your development environment and starting and application</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="organizing-your-project.html"
+                        title="next chapter">Part 4 - Organizing your Project / UI and Simple Templating</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorials/deploying-your-application.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="organizing-your-project.html" title="Part 4 - Organizing your Project / UI and Simple Templating"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="setting-up-dev-environment.html" title="Part 2 - Setting up your development environment and starting and application"
+             >previous</a> |</li>
+        <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, David Bain.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>
