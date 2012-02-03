@@ -18,6 +18,11 @@ such as:
 - login 
 - database connections
 
+We will need to be able to 
+
+#. upload and retrieve images
+#. create, read, update and delete recipes using some sort of a database
+
 When we come upon something that Flask cannot do we then import modules.
 For example if you need to provide third part authentication for facebook, twitter and google, Flask doesn't have that
 functionality built in.
@@ -92,6 +97,8 @@ XXX FIXME, hook up our project to a mysql database need
 Submitting and Displaying a recipe
 ---------------------------------------
 
+File upload
+Custom template
 XXX FIXME define the recipe content type
 
 Adding Third party Authentication to an Application
