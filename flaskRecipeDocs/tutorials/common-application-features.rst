@@ -24,7 +24,7 @@ We will need to be able to
 #. create, read, update and delete recipes using some sort of a database
 
 When we come upon something that Flask cannot do we then import modules.
-For example if you need to provide third part authentication for facebook, twitter and google, Flask doesn't have that
+For example if you need to provide third-party authentication for facebook, twitter and google, Flask doesn't have that
 functionality built in.
 For these additional features we will rely on third-party modules.
 
