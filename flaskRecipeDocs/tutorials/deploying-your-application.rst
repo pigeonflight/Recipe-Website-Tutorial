@@ -56,6 +56,8 @@ Registering a Public SSH Key [setup step]
 When we register a public key in our fluxflex account, we are telling fluxflex that a machine with the corresponding private key should be allowed to 
 update code on our fluxflex projects.
 
+.. note:: **Using Windows?** you may find TortoiseGit to be useful. Watch this `video demonstrating the configuration of tortoisegit to work with a proxy`_
+
 In this step we prepare our machine for ssh key based authentication by generating a public key and private key, this is done once per machine.
 If you already have a public and private key you should probably use those.
 If you haven't done it before, or if you want to create a new key, use ``ssh-keygen`` to generate a public key.
@@ -178,3 +180,4 @@ Discussion
 .. _bottle starter app: http://dl.dropbox.com/u/1004432/bottle-app.zip
 .. _discussion about App Engine charges: http://news.ycombinator.com/item?id=3431132
 .. _blog post about using bottle on GAE: http://www.joemartaganna.com/web-development/how-to-build-a-web-app-using-bottle-with-jinja2-in-google-app-engine/
+.. _video demonstrating the configuration of tortoisegit to work with a proxy: http://www.youtube.com/watch?v=NOVymyN7bwA
