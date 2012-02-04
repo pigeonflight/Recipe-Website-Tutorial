@@ -1,11 +1,10 @@
 .. _index:
 
-=================================================
 Recipe Website Tutorials
 =================================================
 
 Overview
-==============
+------------------------
 
 This is a series of tutorials which lay the foundation for using the `Flask` web application framework.
 We will work through the process of creating a
@@ -43,7 +42,7 @@ we will add supporting templates, CSS, JS and image files.
 All examples will be done on Unix/Linux and have not been thoroughly tested on Windows. If you want to use Windows there are notes available on :ref:`setting_up_windows_dev_chapter`.
 
 Tutorials
-=======================
+------------------------
 
 Each tutorial includes discussion questions. It should be possible to work through the tutorial within 30 - 35 minutes and then spend 15 to 20 minutes in discussion, guided by the discussion questions.
 
@@ -63,7 +62,7 @@ Each tutorial includes discussion questions. It should be possible to work throu
 
 
 Index and Glossary
-==================
+------------------------
 
 * :ref:`glossary`
 * :ref:`genindex`
