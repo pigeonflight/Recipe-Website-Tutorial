@@ -8,7 +8,7 @@
 Part 3 - Deploying your Application
 ===========================================
 
-Deployment may seem overly involved at first, just remember that the items noted as ``setup steps`` are almost never repeated. Those items noted as ``initial steps`` are done once for each new project.
+Initial Deployment involves a few more steps than day to day updates, just remember that the items noted as ``setup steps`` are almost never repeated. Those items noted as ``initial steps`` are done once for each new project.
 
 Once a project is initialized, the commands that you will use most regularly are as summarized below:
 
@@ -133,11 +133,11 @@ The steps for deployment are as follows:
 1. Copy your flask application to the fluxflex project folder, such that your application's folder will be called `application`. 
 2. If necessary rename the contained application to `app.py`.
 
-If your fluxflex project folder is called `yourprojectname` and your flask application is called `yourflaskapplication`, you might so something like this::
+If your fluxflex project folder is called `yourprojectname` and your flask application is called `yourflaskapplication`, you might move `yourflaskapplication` to `application`, something like the example below::
 
    cp -r yourflaskapplication yourprojectname/application
 
-If the .py file in `yourflaskapplication` was named `myapp.py`, then you might do something like::
+If the .py file in `yourflaskapplication` was named `myapp.py`, then you might do something like the example below::
 
   cd yourprojectname/application
   mv myapp.py app.py
