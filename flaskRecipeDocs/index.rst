@@ -53,6 +53,7 @@ Each tutorial includes discussion questions. It should be possible to work throu
    tutorials/setting-up-dev-environment
    tutorials/deploying-your-application
    tutorials/organizing-your-project
+   tutorials/jquery-and-ajax
    tutorials/common-application-features
    tutorials/deploying-on-google-appengine
 
