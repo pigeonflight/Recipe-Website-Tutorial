@@ -8,7 +8,7 @@
 Part 3 - Deploying your Application
 ===========================================
 
-Deployment may seem overly involved at first, just remember that the items noted as ``setup steps`` are almost never repeated. Those items noted as ``initial steps`` are done once for each new project.
+Initial Deployment involves a few more steps than day to day updates, just remember that the items noted as ``setup steps`` are almost never repeated. Those items noted as ``initial steps`` are done once for each new project.
 
 Once a project is initialized, the commands that you will use most regularly are as summarized below:
 
@@ -55,6 +55,8 @@ Registering a Public SSH Key [setup step]
 
 When we register a public key in our fluxflex account, we are telling fluxflex that a machine with the corresponding private key should be allowed to 
 update code on our fluxflex projects.
+
+.. note:: **Using Windows?** you may find TortoiseGit to be useful. Watch this `video demonstrating the configuration of tortoisegit to work with a proxy`_
 
 In this step we prepare our machine for ssh key based authentication by generating a public key and private key, this is done once per machine.
 If you already have a public and private key you should probably use those.
@@ -131,11 +133,11 @@ The steps for deployment are as follows:
 1. Copy your flask application to the fluxflex project folder, such that your application's folder will be called `application`. 
 2. If necessary rename the contained application to `app.py`.
 
-If your fluxflex project folder is called `yourprojectname` and your flask application is called `yourflaskapplication`, you might so something like this::
+If your fluxflex project folder is called `yourprojectname` and your flask application is called `yourflaskapplication`, you might move `yourflaskapplication` to `application`, something like the example below::
 
    cp -r yourflaskapplication yourprojectname/application
 
-If the .py file in `yourflaskapplication` was named `myapp.py`, then you might do something like::
+If the .py file in `yourflaskapplication` was named `myapp.py`, then you might do something like the example below::
 
   cd yourprojectname/application
   mv myapp.py app.py
@@ -178,3 +180,4 @@ Discussion
 .. _bottle starter app: http://dl.dropbox.com/u/1004432/bottle-app.zip
 .. _discussion about App Engine charges: http://news.ycombinator.com/item?id=3431132
 .. _blog post about using bottle on GAE: http://www.joemartaganna.com/web-development/how-to-build-a-web-app-using-bottle-with-jinja2-in-google-app-engine/
+.. _video demonstrating the configuration of tortoisegit to work with a proxy: http://www.youtube.com/watch?v=NOVymyN7bwA

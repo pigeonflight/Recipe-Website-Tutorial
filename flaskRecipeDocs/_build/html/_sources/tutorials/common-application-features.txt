@@ -5,7 +5,7 @@
 
 .. _common_features_chapter:
 
-Part 5 - Common Application Features/Adding Features to the Recipe Website 
+Part 6 - Common Application Features/Adding Features to the Recipe Website 
 ============================================================================
 
 Flask is a very simple micro-framework and as a result it is easy to get started quickly without having to learn
@@ -18,12 +18,20 @@ such as:
 - login 
 - database connections
 
+We will need to be able to 
+
+#. upload and retrieve images
+#. create, read, update and delete recipes using some sort of a database
+
 When we come upon something that Flask cannot do we then import modules.
-For example if you need to provide third part authentication for facebook, twitter and google, Flask doesn't have that
+For example if you need to provide third-party authentication for facebook, twitter and google, Flask doesn't have that
 functionality built in.
 For these additional features we will rely on third-party modules.
 
 We will use the following modules to implement:
+
+- Flask-SQLAlchmey
+XXX Fixme (complete this section)
 
 Reviewing the Recipe Page
 ----------------------------
@@ -49,15 +57,18 @@ Other properties might include:
 Working with Databases
 ----------------------------------------
 
-Our recipes will have the following features:
+Let's prepare a database to store our recipes.
+We'll use sqlite for development as it is much quicker than setting up a full production database like MySQL.
 
-We'll create some supporting files: `database.py` and `models.py`
+We'll create some supporting files: `database.py` to manage database connections and `models.py` to define 
+the items that will be modelled by our database.
 
 Install flask-sqlalchemy::
 
     source venv/bin/activate
     pip install flask-sqlalchemy
 
+Create a database.py file for setting up our sqlite database
 ::
 
 	from sqlalchemy import create_engine
@@ -86,6 +97,8 @@ XXX FIXME, hook up our project to a mysql database need
 Submitting and Displaying a recipe
 ---------------------------------------
 
+File upload
+Custom template
 XXX FIXME define the recipe content type
 
 Adding Third party Authentication to an Application

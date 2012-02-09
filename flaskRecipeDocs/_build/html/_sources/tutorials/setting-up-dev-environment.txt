@@ -85,6 +85,10 @@ On Windows the following is enough::
 
    venv\Scripts\activate
 
+When you need to leave your virtual environment just run the following command::
+
+   deactivate
+
 .. note::  
 
    Remember to activate your virtual environment!
@@ -94,6 +98,8 @@ On Windows the following is enough::
    things may deviate from behaviour outlined in this documentation
    for example you will get permission errors and other strange behaviour.
 
+   Use ``deactivate`` to leave your virtual environment.
+
 Trying out Flask
 -----------------
 
@@ -101,6 +107,7 @@ It's time to try out Flask in our new virtual environment (venv) created in the 
 
 .. note::   .. image:: ../images/activate.gif
    Remember to activate your virtual environment!
+   Use ``deactivate`` to leave your virtual environment.
 
 Let's see that everything is working.
 
@@ -116,7 +123,7 @@ To view the new application in your browser run the following command::
 
 .. warning:: sometimes this will fail because another service on your machine may already be running on the port  (you can change the port in the `app.py` file or stop the conflicting service).
 
-Visiting http://localhost:8080 in your browser will show the result of the code.
+Visiting http://localhost:5000 in your browser will show the result of the code.
 
 
 Building A Basic Application
@@ -127,7 +134,8 @@ Let's continue by building our first simple application. We'll borrow from a tut
 .. note::  .. image:: ../images/activate.gif
    Remember to activate your virtual environment!
    also review :ref:`dealing_with_proxies` for setting your http_proxy
-   environment variable
+   environment variable.
+   Use ``deactivate`` to leave your virtual environment.
 
 1. Download and unzip the Recipe tutorial 2 http://dl.dropbox.com/u/1004432/recipe_tut2.zip
 

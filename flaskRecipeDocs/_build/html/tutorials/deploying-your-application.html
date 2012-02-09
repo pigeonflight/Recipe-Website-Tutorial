@@ -53,7 +53,7 @@
             
   <div class="section" id="part-3-deploying-your-application">
 <span id="deploying-application-chapter"></span><span id="index-0"></span><h1>Part 3 - Deploying your Application<a class="headerlink" href="#part-3-deploying-your-application" title="Permalink to this headline">¶</a></h1>
-<p>Deployment may seem overly involved at first, just remember that the items noted as <tt class="docutils literal"><span class="pre">setup</span> <span class="pre">steps</span></tt> are almost never repeated. Those items noted as <tt class="docutils literal"><span class="pre">initial</span> <span class="pre">steps</span></tt> are done once for each new project.</p>
+<p>Initial Deployment involves a few more steps than day to day updates, just remember that the items noted as <tt class="docutils literal"><span class="pre">setup</span> <span class="pre">steps</span></tt> are almost never repeated. Those items noted as <tt class="docutils literal"><span class="pre">initial</span> <span class="pre">steps</span></tt> are done once for each new project.</p>
 <p>Once a project is initialized, the commands that you will use most regularly are as summarized below:</p>
 <p>When you modify source code:</p>
 <div class="highlight-python"><pre>git commit -a
@@ -98,6 +98,10 @@ If a suitable <tt class="docutils literal"><span class="pre">Key</span> <span cl
 </div>
 <p>When we register a public key in our fluxflex account, we are telling fluxflex that a machine with the corresponding private key should be allowed to
 update code on our fluxflex projects.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>Using Windows?</strong> you may find TortoiseGit to be useful. Watch this <a class="reference external" href="http://www.youtube.com/watch?v=NOVymyN7bwA">video demonstrating the configuration of tortoisegit to work with a proxy</a></p>
+</div>
 <p>In this step we prepare our machine for ssh key based authentication by generating a public key and private key, this is done once per machine.
 If you already have a public and private key you should probably use those.
 If you haven&#8217;t done it before, or if you want to create a new key, use <tt class="docutils literal"><span class="pre">ssh-keygen</span></tt> to generate a public key.</p>
@@ -171,10 +175,10 @@ req.txt</pre>
 <li>Copy your flask application to the fluxflex project folder, such that your application&#8217;s folder will be called <cite>application</cite>.</li>
 <li>If necessary rename the contained application to <cite>app.py</cite>.</li>
 </ol>
-<p>If your fluxflex project folder is called <cite>yourprojectname</cite> and your flask application is called <cite>yourflaskapplication</cite>, you might so something like this:</p>
+<p>If your fluxflex project folder is called <cite>yourprojectname</cite> and your flask application is called <cite>yourflaskapplication</cite>, you might move <cite>yourflaskapplication</cite> to <cite>application</cite>, something like the example below:</p>
 <div class="highlight-python"><pre>cp -r yourflaskapplication yourprojectname/application</pre>
 </div>
-<p>If the .py file in <cite>yourflaskapplication</cite> was named <cite>myapp.py</cite>, then you might do something like:</p>
+<p>If the .py file in <cite>yourflaskapplication</cite> was named <cite>myapp.py</cite>, then you might do something like the example below:</p>
 <div class="highlight-python"><pre>cd yourprojectname/application
 mv myapp.py app.py</pre>
 </div>

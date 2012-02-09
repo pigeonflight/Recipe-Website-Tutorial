@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Part 5 - Common Application Features/Adding Features to the Recipe Website &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    <title>Part 6 - Common Application Features/Adding Features to the Recipe Website &mdash; Recipe Website Tutorial 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
     <link rel="next" title="Part 6 - Deploying on Google App Engine" href="deploying-on-google-appengine.html" />
-    <link rel="prev" title="Part 4 - Organizing your Project / UI and Simple Templating" href="organizing-your-project.html" /> 
+    <link rel="prev" title="Part 5 - Jquery and Ajax" href="jquery-and-ajax.html" /> 
   </head>
   <body>
     <div class="related">
@@ -40,7 +40,7 @@
           <a href="deploying-on-google-appengine.html" title="Part 6 - Deploying on Google App Engine"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="organizing-your-project.html" title="Part 4 - Organizing your Project / UI and Simple Templating"
+          <a href="jquery-and-ajax.html" title="Part 5 - Jquery and Ajax"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -51,8 +51,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="part-5-common-application-features-adding-features-to-the-recipe-website">
-<span id="common-features-chapter"></span><span id="index-0"></span><h1>Part 5 - Common Application Features/Adding Features to the Recipe Website<a class="headerlink" href="#part-5-common-application-features-adding-features-to-the-recipe-website" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="part-6-common-application-features-adding-features-to-the-recipe-website">
+<span id="common-features-chapter"></span><span id="index-0"></span><h1>Part 6 - Common Application Features/Adding Features to the Recipe Website<a class="headerlink" href="#part-6-common-application-features-adding-features-to-the-recipe-website" title="Permalink to this headline">¶</a></h1>
 <p>Flask is a very simple micro-framework and as a result it is easy to get started quickly without having to learn
 lots of additional concepts. So far we have been able to manage with the functionality that Flask provides
 such as:</p>
@@ -63,11 +63,20 @@ such as:</p>
 <li>login</li>
 <li>database connections</li>
 </ul>
+<p>We will need to be able to</p>
+<ol class="arabic simple">
+<li>upload and retrieve images</li>
+<li>create, read, update and delete recipes using some sort of a database</li>
+</ol>
 <p>When we come upon something that Flask cannot do we then import modules.
-For example if you need to provide third part authentication for facebook, twitter and google, Flask doesn&#8217;t have that
+For example if you need to provide third-party authentication for facebook, twitter and google, Flask doesn&#8217;t have that
 functionality built in.
 For these additional features we will rely on third-party modules.</p>
 <p>We will use the following modules to implement:</p>
+<ul class="simple">
+<li>Flask-SQLAlchmey</li>
+</ul>
+<p>XXX Fixme (complete this section)</p>
 <div class="section" id="reviewing-the-recipe-page">
 <h2>Reviewing the Recipe Page<a class="headerlink" href="#reviewing-the-recipe-page" title="Permalink to this headline">¶</a></h2>
 <p>Let&#8217;s review the recipe page, here is the mockup.</p>
@@ -88,12 +97,15 @@ For these additional features we will rely on third-party modules.</p>
 </div>
 <div class="section" id="working-with-databases">
 <h2>Working with Databases<a class="headerlink" href="#working-with-databases" title="Permalink to this headline">¶</a></h2>
-<p>Our recipes will have the following features:</p>
-<p>We&#8217;ll create some supporting files: <cite>database.py</cite> and <cite>models.py</cite></p>
+<p>Let&#8217;s prepare a database to store our recipes.
+We&#8217;ll use sqlite for development as it is much quicker than setting up a full production database like MySQL.</p>
+<p>We&#8217;ll create some supporting files: <cite>database.py</cite> to manage database connections and <cite>models.py</cite> to define
+the items that will be modelled by our database.</p>
 <p>Install flask-sqlalchemy:</p>
 <div class="highlight-python"><pre>source venv/bin/activate
 pip install flask-sqlalchemy</pre>
 </div>
+<p>Create a database.py file for setting up our sqlite database</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">scoped_session</span><span class="p">,</span> <span class="n">sessionmaker</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
@@ -118,7 +130,9 @@ pip install flask-sqlalchemy</pre>
 </div>
 <div class="section" id="submitting-and-displaying-a-recipe">
 <h2>Submitting and Displaying a recipe<a class="headerlink" href="#submitting-and-displaying-a-recipe" title="Permalink to this headline">¶</a></h2>
-<p>XXX FIXME define the recipe content type</p>
+<p>File upload
+Custom template
+XXX FIXME define the recipe content type</p>
 </div>
 <div class="section" id="adding-third-party-authentication-to-an-application">
 <h2>Adding Third party Authentication to an Application<a class="headerlink" href="#adding-third-party-authentication-to-an-application" title="Permalink to this headline">¶</a></h2>
@@ -138,7 +152,7 @@ pip install flask-sqlalchemy</pre>
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Part 5 - Common Application Features/Adding Features to the Recipe Website</a><ul>
+<li><a class="reference internal" href="#">Part 6 - Common Application Features/Adding Features to the Recipe Website</a><ul>
 <li><a class="reference internal" href="#reviewing-the-recipe-page">Reviewing the Recipe Page</a></li>
 <li><a class="reference internal" href="#working-with-databases">Working with Databases</a></li>
 <li><a class="reference internal" href="#submitting-and-displaying-a-recipe">Submitting and Displaying a recipe</a></li>
@@ -149,8 +163,8 @@ pip install flask-sqlalchemy</pre>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="organizing-your-project.html"
-                        title="previous chapter">Part 4 - Organizing your Project / UI and Simple Templating</a></p>
+  <p class="topless"><a href="jquery-and-ajax.html"
+                        title="previous chapter">Part 5 - Jquery and Ajax</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="deploying-on-google-appengine.html"
                         title="next chapter">Part 6 - Deploying on Google App Engine</a></p>
@@ -186,7 +200,7 @@ pip install flask-sqlalchemy</pre>
           <a href="deploying-on-google-appengine.html" title="Part 6 - Deploying on Google App Engine"
              >next</a> |</li>
         <li class="right" >
-          <a href="organizing-your-project.html" title="Part 4 - Organizing your Project / UI and Simple Templating"
+          <a href="jquery-and-ajax.html" title="Part 5 - Jquery and Ajax"
              >previous</a> |</li>
         <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>

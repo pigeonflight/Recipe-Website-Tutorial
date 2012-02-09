@@ -31,10 +31,16 @@ According to the Flask documentation the following is the simplest Flask applica
 
                venv/bin/python helloflask.py
 
-	When you visit ``http://localhost:8080/hello/world`` in a browser, you will
+           or on Windows::
+     
+               venv\Scripts\python helloflask.py
+
+	When you visit ``http://localhost:5000/hello/world`` in a browser, you will
 	see the text ``Hello world!``.
 
         **Having trouble? Are you behind a proxy?** Read :ref:`dealing_with_proxies`
+        
+        **Using Windows?** here's an article about `bootstrapflask.py on Windows`_
 
 
 As our tasks become more complex
@@ -79,3 +85,4 @@ Index and Glossary
    foreword.rst
    latexindex.rst
 
+.. _bootstrapflask.py on Windows: http://pigeonflight.blogspot.com/2012/02/installing-flask-on-windows-using.html

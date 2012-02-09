@@ -122,6 +122,10 @@ When ever you need to use this environment it can be activated using the followi
 <p>On Windows the following is enough:</p>
 <div class="highlight-python"><pre>venv\Scripts\activate</pre>
 </div>
+<p>When you need to leave your virtual environment just run the following command:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">deactivate</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <dl class="docutils">
@@ -129,9 +133,10 @@ When ever you need to use this environment it can be activated using the followi
 <dd><img alt="../_images/activate.gif" class="first last" src="../_images/activate.gif" />
 </dd>
 </dl>
-<p class="last">If you don&#8217;t use an active virtual environment
+<p>If you don&#8217;t use an active virtual environment
 things may deviate from behaviour outlined in this documentation
 for example you will get permission errors and other strange behaviour.</p>
+<p class="last">Use <tt class="docutils literal"><span class="pre">deactivate</span></tt> to leave your virtual environment.</p>
 </div>
 </div>
 <div class="section" id="trying-out-flask">
@@ -140,7 +145,8 @@ for example you will get permission errors and other strange behaviour.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <img alt="../_images/activate.gif" src="../_images/activate.gif" />
-<p class="last">Remember to activate your virtual environment!</p>
+<p class="last">Remember to activate your virtual environment!
+Use <tt class="docutils literal"><span class="pre">deactivate</span></tt> to leave your virtual environment.</p>
 </div>
 <p>Let&#8217;s see that everything is working.</p>
 <p>Create a file called <cite>app.py</cite>
@@ -164,7 +170,7 @@ python app.py</pre>
 <p class="first admonition-title">Warning</p>
 <p class="last">sometimes this will fail because another service on your machine may already be running on the port  (you can change the port in the <cite>app.py</cite> file or stop the conflicting service).</p>
 </div>
-<p>Visiting <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> in your browser will show the result of the code.</p>
+<p>Visiting <a class="reference external" href="http://localhost:5000">http://localhost:5000</a> in your browser will show the result of the code.</p>
 </div>
 <div class="section" id="building-a-basic-application">
 <h2>Building A Basic Application<a class="headerlink" href="#building-a-basic-application" title="Permalink to this headline">¶</a></h2>
@@ -174,7 +180,8 @@ python app.py</pre>
 <img alt="../_images/activate.gif" src="../_images/activate.gif" />
 <p class="last">Remember to activate your virtual environment!
 also review <a class="reference internal" href="#dealing-with-proxies"><em>Dealing with on campus proxies</em></a> for setting your http_proxy
-environment variable</p>
+environment variable.
+Use <tt class="docutils literal"><span class="pre">deactivate</span></tt> to leave your virtual environment.</p>
 </div>
 <ol class="arabic">
 <li><p class="first">Download and unzip the Recipe tutorial 2 <a class="reference external" href="http://dl.dropbox.com/u/1004432/recipe_tut2.zip">http://dl.dropbox.com/u/1004432/recipe_tut2.zip</a></p>

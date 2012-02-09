@@ -49,8 +49,11 @@
             
   <div class="section" id="recipe-website-tutorials">
 <span id="index"></span><h1>Recipe Website Tutorials<a class="headerlink" href="#recipe-website-tutorials" title="Permalink to this headline">¶</a></h1>
-<p>This is a series of tutorials which lay the foundation for using the <cite>Flask</cite> web application framework
-to create a Recipe Website service.
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This is a series of tutorials which lay the foundation for using the <cite>Flask</cite> web application framework.
+We will work through the process of creating a
+Recipe Website which allows users to log in and share recipes.
 Learn more about Flask at <a class="reference external" href="http://flask.pocoo.org/">The Flask Website</a>.</p>
 <p>According to the Flask documentation the following is the simplest Flask application that you can make:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
@@ -78,15 +81,20 @@ Learn more about Flask at <a class="reference external" href="http://flask.pocoo
 <li><p class="first">Launch it. From the directory where you ran the bootstrap launch the helloflask.py program:</p>
 <div class="highlight-python"><pre>venv/bin/python helloflask.py</pre>
 </div>
+<p>or on Windows:</p>
+<div class="highlight-python"><pre>venv\Scripts\python helloflask.py</pre>
+</div>
 </li>
 </ol>
-<p>When you visit <tt class="docutils literal"><span class="pre">http://localhost:8080/hello/world</span></tt> in a browser, you will
+<p>When you visit <tt class="docutils literal"><span class="pre">http://localhost:5000/hello/world</span></tt> in a browser, you will
 see the text <tt class="docutils literal"><span class="pre">Hello</span> <span class="pre">world!</span></tt>.</p>
-<p class="last"><strong>Having trouble? Are you behind a proxy?</strong> Read <a class="reference internal" href="tutorials/setting-up-dev-environment.html#dealing-with-proxies"><em>Dealing with on campus proxies</em></a></p>
+<p><strong>Having trouble? Are you behind a proxy?</strong> Read <a class="reference internal" href="tutorials/setting-up-dev-environment.html#dealing-with-proxies"><em>Dealing with on campus proxies</em></a></p>
+<p class="last"><strong>Using Windows?</strong> try <a class="reference external" href="http://pigeonflight.blogspot.com/2012/02/installing-flask-on-windows-using.html">bootstrapflask.py on Windows</a></p>
 </div>
 <p>As our tasks become more complex
 we will add supporting templates, CSS, JS and image files.
 All examples will be done on Unix/Linux and have not been thoroughly tested on Windows. If you want to use Windows there are notes available on <a class="reference internal" href="windows/index.html#setting-up-windows-dev-chapter"><em>Installing Flask and Virtualenv on Windows behind the UWI proxy</em></a>.</p>
+</div>
 <div class="section" id="tutorials">
 <h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h2>
 <p>Each tutorial includes discussion questions. It should be possible to work through the tutorial within 30 - 35 minutes and then spend 15 to 20 minutes in discussion, guided by the discussion questions.</p>
@@ -132,7 +140,11 @@ All examples will be done on Unix/Linux and have not been thoroughly tested on W
 <li class="toctree-l2"><a class="reference internal" href="tutorials/organizing-your-project.html#discussion">Discussion</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/common-application-features.html">Part 5 - Common Application Features/Adding Features to the Recipe Website</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/jquery-and-ajax.html">Part 5 - Jquery and Ajax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/jquery-and-ajax.html#discussion">Discussion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/common-application-features.html">Part 6 - Common Application Features/Adding Features to the Recipe Website</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/common-application-features.html#reviewing-the-recipe-page">Reviewing the Recipe Page</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/common-application-features.html#working-with-databases">Working with Databases</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/common-application-features.html#submitting-and-displaying-a-recipe">Submitting and Displaying a recipe</a></li>
@@ -175,6 +187,7 @@ All examples will be done on Unix/Linux and have not been thoroughly tested on W
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Recipe Website Tutorials</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
 <li><a class="reference internal" href="#tutorials">Tutorials</a><ul>
 </ul>
 </li>
