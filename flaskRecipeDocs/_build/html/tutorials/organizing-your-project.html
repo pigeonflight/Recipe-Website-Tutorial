@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Part 4 - Organizing your Project / UI and Simple Templating &mdash; Recipe Website Tutorial 1.0 documentation</title>
+    <title>Part 6 - Organizing your Project / UI and Simple Templating &mdash; Recipe Website Tutorial 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -26,8 +26,8 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Recipe Website Tutorial 1.0 documentation" href="../index.html" />
-    <link rel="next" title="Part 5 - Common Application Features/Adding Features to the Recipe Website" href="common-application-features.html" />
-    <link rel="prev" title="Part 3 - Deploying your Application" href="deploying-your-application.html" /> 
+    <link rel="next" title="Part 7 - Jquery and Ajax" href="jquery-and-ajax.html" />
+    <link rel="prev" title="Part 5 - Databases and Forms" href="databases-and-forms.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,10 +37,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="common-application-features.html" title="Part 5 - Common Application Features/Adding Features to the Recipe Website"
+          <a href="jquery-and-ajax.html" title="Part 7 - Jquery and Ajax"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="deploying-your-application.html" title="Part 3 - Deploying your Application"
+          <a href="databases-and-forms.html" title="Part 5 - Databases and Forms"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -51,8 +51,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="part-4-organizing-your-project-ui-and-simple-templating">
-<span id="organizing-project-chapter"></span><span id="index-0"></span><h1>Part 4 - Organizing your Project / UI and Simple Templating<a class="headerlink" href="#part-4-organizing-your-project-ui-and-simple-templating" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="part-6-organizing-your-project-ui-and-simple-templating">
+<span id="organizing-project-chapter"></span><span id="index-0"></span><h1>Part 6  - Organizing your Project / UI and Simple Templating<a class="headerlink" href="#part-6-organizing-your-project-ui-and-simple-templating" title="Permalink to this headline">¶</a></h1>
 <p>At this point we have covered the following</p>
 <dl class="docutils">
 <dt><a class="reference internal" href="planning-and-mockups.html#planning-mockups-chapter"><em>Part 1 - Planning and Mockups</em></a></dt>
@@ -105,13 +105,11 @@ copy <cite>flask_starter</cite> to <cite>recipe_website</cite> this effectively 
 unzip flask_starter
 cp -r flask_starter recipe_website</pre>
 </div>
-<ol class="arabic">
-<li><p class="first">Enter the new <cite>recipe_website</cite> folder, bootstrap flask and activate your virtual environment:</p>
-<p>cd recipe_website
+<p>2. Enter the new <cite>recipe_website</cite> folder, bootstrap flask and activate your virtual environment</p>
+<div class="highlight-python"><pre>cd recipe_website
 python bootstrapflask.py
-source venv/bin/activate</p>
-</li>
-</ol>
+source venv/bin/activate</pre>
+</div>
 <p>The unzipped directory structure looks something like this (for the sake of simplicity, only the key files and folders are listed below):</p>
 <div class="highlight-python"><pre>recipe_website
 ├── app.py
@@ -125,7 +123,7 @@ source venv/bin/activate</p>
 <p>Check to see that everything is working by running the following:</p>
 <div class="highlight-python"><pre>python app.py</pre>
 </div>
-<p>Visit your browser at <a class="reference external" href="http://localhost:6543">http://localhost:6543</a>, you should see something like the
+<p>Visit your browser at <a class="reference external" href="http://localhost:5000">http://localhost:5000</a>, you should see something like the
 image below:</p>
 <img alt="../_images/scaffoldview.png" src="../_images/scaffoldview.png" />
 <p>If you are on a network with a proxy you will need to review <a class="reference internal" href="setting-up-dev-environment.html#dealing-with-proxies"><em>Dealing with on campus proxies</em></a> for setting your http_proxy environment variable.</p>
@@ -175,7 +173,7 @@ simple we will just put the phrase, &#8220;I am the recipe template&#8221;.</p>
 <p>Start the application:</p>
 <div class="highlight-python"><pre>python app.py</pre>
 </div>
-<p>Then visit localhost:6543/recipe, you should see something like the image below.</p>
+<p>Then visit localhost:5000/recipe, you should see something like the image below.</p>
 <blockquote>
 <div><img alt="../_images/recipetemplate.jpg" src="../_images/recipetemplate.jpg" />
 </div></blockquote>
@@ -261,9 +259,9 @@ based on the <cite>index.html</cite> template.</p>
 <div class="section" id="adding-ajax-to-the-template">
 <h2>Adding AJAX to the template<a class="headerlink" href="#adding-ajax-to-the-template" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div>XXX Fixme ... add notes about implementing ajax Let&#8217;s add some AJAX functionality.....</div></blockquote>
-<p>this will also introduce the jsonify and request methods
-XXX we could use the github style page load</p>
+<div>We are now going to add some ajax functionality. For this we&#8217;ll use jQuery.load() to load new page content without doing a full browser refresh.</div></blockquote>
+<p>The pjax library takes advantage of the HTML history api, specifically the pushState and is able to load new content using ajax.</p>
+<p>XXX we could use the github style page load</p>
 </div>
 <div class="section" id="discussion">
 <h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
@@ -284,7 +282,7 @@ XXX we could use the github style page load</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Part 4 - Organizing your Project / UI and Simple Templating</a><ul>
+<li><a class="reference internal" href="#">Part 6  - Organizing your Project / UI and Simple Templating</a><ul>
 <li><a class="reference internal" href="#setting-up-the-flask-starter-scaffold">Setting up the Flask Starter Scaffold</a></li>
 <li><a class="reference internal" href="#creating-the-views-for-our-recipewebsite-application">Creating the views for our RecipeWebsite application</a></li>
 <li><a class="reference internal" href="#adding-a-template-in-the-templates-folder">Adding a template in the <cite>templates</cite> folder</a></li>
@@ -299,11 +297,11 @@ XXX we could use the github style page load</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="deploying-your-application.html"
-                        title="previous chapter">Part 3 - Deploying your Application</a></p>
+  <p class="topless"><a href="databases-and-forms.html"
+                        title="previous chapter">Part 5 - Databases and Forms</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="common-application-features.html"
-                        title="next chapter">Part 5 - Common Application Features/Adding Features to the Recipe Website</a></p>
+  <p class="topless"><a href="jquery-and-ajax.html"
+                        title="next chapter">Part 7 - Jquery and Ajax</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/tutorials/organizing-your-project.txt"
@@ -333,10 +331,10 @@ XXX we could use the github style page load</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="common-application-features.html" title="Part 5 - Common Application Features/Adding Features to the Recipe Website"
+          <a href="jquery-and-ajax.html" title="Part 7 - Jquery and Ajax"
              >next</a> |</li>
         <li class="right" >
-          <a href="deploying-your-application.html" title="Part 3 - Deploying your Application"
+          <a href="databases-and-forms.html" title="Part 5 - Databases and Forms"
              >previous</a> |</li>
         <li><a href="../index.html">Recipe Website Tutorial 1.0 documentation</a> &raquo;</li> 
       </ul>

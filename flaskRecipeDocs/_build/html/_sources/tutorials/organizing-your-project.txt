@@ -4,7 +4,7 @@
 
 .. _organizing_project_chapter:
 
-Part 4 - Organizing your Project / UI and Simple Templating
+Part 6  - Organizing your Project / UI and Simple Templating
 ===============================================================
 
 At this point we have covered the following
@@ -61,11 +61,12 @@ copy `flask_starter` to `recipe_website` this effectively uses the flask_starter
    unzip flask_starter
    cp -r flask_starter recipe_website
 
-1. Enter the new `recipe_website` folder, bootstrap flask and activate your virtual environment::
+2. Enter the new `recipe_website` folder, bootstrap flask and activate your virtual environment
+::
 
-   cd recipe_website
-   python bootstrapflask.py
-   source venv/bin/activate
+    cd recipe_website
+    python bootstrapflask.py
+    source venv/bin/activate
 
 The unzipped directory structure looks something like this (for the sake of simplicity, only the key files and folders are listed below)::
 
@@ -82,7 +83,7 @@ Check to see that everything is working by running the following::
 
        python app.py
 
-Visit your browser at http://localhost:6543, you should see something like the
+Visit your browser at http://localhost:5000, you should see something like the
 image below:
 
 .. image:: ../images/scaffoldview.png
@@ -144,7 +145,7 @@ Start the application::
 
     python app.py
 
-Then visit localhost:6543/recipe, you should see something like the image below.
+Then visit localhost:5000/recipe, you should see something like the image below.
 
     .. image:: ../images/recipetemplate.jpg
 
@@ -246,8 +247,10 @@ Notice how the ``content`` block of the child, overrides the original content bl
 
 Adding AJAX to the template
 ---------------------------------
- XXX Fixme ... add notes about implementing ajax Let's add some AJAX functionality.....
-this will also introduce the jsonify and request methods
+ We are now going to add some ajax functionality. For this we'll use jQuery.load() to load new page content without doing a full browser refresh. 
+
+The pjax library takes advantage of the HTML history api, specifically the pushState and is able to load new content using ajax.
+
 XXX we could use the github style page load
 
 Discussion

@@ -58,6 +58,8 @@ Each tutorial includes discussion questions. It should be possible to work throu
    tutorials/planning-and-mockups
    tutorials/setting-up-dev-environment
    tutorials/deploying-your-application
+   tutorials/introducing-json
+   tutorials/databases-and-forms
    tutorials/organizing-your-project
    tutorials/jquery-and-ajax
    tutorials/common-application-features
