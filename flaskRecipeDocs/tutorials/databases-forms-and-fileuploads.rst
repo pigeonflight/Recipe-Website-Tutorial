@@ -3,9 +3,9 @@
    single: ajax
    single: jsonify
 
-.. _databases_and_forms_chapter:
+.. _databases_forms_and_file_uploads_chapter:
 
-Part 5 - Databases and Forms
+Part 5 - Databases, Forms and File Uploads
 ============================================================================
 
 In this section we look at Databases and Forms
