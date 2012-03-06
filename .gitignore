@@ -14,6 +14,7 @@ var
 sdist
 develop-eggs
 .installed.cfg
+_build
 
 # Installer logs
 pip-log.txt
