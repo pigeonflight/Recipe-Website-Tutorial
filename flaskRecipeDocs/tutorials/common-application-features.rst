@@ -5,7 +5,7 @@
 
 .. _common_features_chapter:
 
-Part 6 - Common Application Features/Adding Features to the Recipe Website 
+Part 10 - Common Application Features/Adding Features to the Recipe Website 
 ============================================================================
 
 Flask is a very simple micro-framework and as a result it is easy to get started quickly without having to learn

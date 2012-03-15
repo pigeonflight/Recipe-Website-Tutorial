@@ -7,6 +7,7 @@
 
 Part 5 - Databases, Forms and File Uploads
 ============================================================================
+.. warning:: Do not use the code from this tutorial in production applications, it does not implement any verification or user security. For a more thorough and secure approach to file uploads read: http://flask.pocoo.org/docs/patterns/fileuploads/
 
 In this section we look at Databases and Forms
 
@@ -82,7 +83,7 @@ Our application will do the following::
 The application
 --------------------
 Below we have a simple program which implements CRUD for the users.db database,
-We'll call it usercrud.py::
+We'll call it ``usercrud.py``::
 
     from flask import Flask, request, g,render_template, \ 
                url_for, redirect, flash
@@ -147,11 +148,12 @@ We'll call it usercrud.py::
         app.debug = True
         app.run(port=9000)
 
-.. note:: Notice that we use the ``request.form`` object to retrieve data from the form. Why do we have to use the POST method for create?
+.. note:: We are about to create a form in a template called ``users.html``. Notice that we use the ``request.form`` object to retrieve data from our form. Why do we have to use the POST method for create?
 
 The Form  and Template
 --------------------------
 Go to the ``templates`` folder and create a template called users.html.
+::
 
    cd templates
    cp index.html users.html
@@ -187,11 +189,15 @@ Make it look like this::
 
 Testing it out so far
 ----------------------------
+Start the application::
+
+    python usercrud.py
+
 Visit http://localhost:9000/
 
-1. Try adding a new entry, for the photo put a URL
-2. How could you get the photo to show?
-3. Why does the read() function have two routes?
+1. Try adding a new entry (for the photo put a URL e.g. http://blah.com/myimage.jpg)
+2. How would you modify the code so that photo is displayed?
+3. Why does the read() function have two @app.route() decorators?
 4. How would you get the images to display? Hint: <img src...
 5. What improvements do we need for this application?
    Hint: Think security, validation, user experience.
@@ -231,13 +237,13 @@ Update the create() method to look like this::
         flash('New entry was successfully posted')
         return redirect(url_for('read'))
 
+.. note:: ``request.files['photo']`` returns an object with additional properties and methods such as ``filename`` and ``save()``
 
 
-
-Questions
+**Questions**
 
 1. What happens if we don't have the enctype set properly?
-2. What is someone does not upload an image?
+2. What if  a user does not upload an image?
 
 Displaying Files
 ----------------------------------
@@ -257,11 +263,20 @@ Modify the template to make use of our new route::
 .. note:: Try visiting localhost:9000/uploads/{YOUR FILE NAME} and see what happens. If you've done everything and it still breaks, then make sure that you have imported 'send_from_directory' at the top in your imports
   
  
+More about Flask and Uploading
+--------------------------------
+For a more thorough and secure approach to file uploads read:
+http://flask.pocoo.org/docs/patterns/fileuploads/
+
+
+
 What Next?
 -------------
 What more features do we need?
 
 1. A way to standardize images
-2. We need a way to update and delete to complete the CRUD
+2. To make it a complete CRUD application, we need a way to update and delete.
 3. A way to enforce the file type
 4. A login/logout system and authentication
+
+Expect to solve these and other problems in the next lab.

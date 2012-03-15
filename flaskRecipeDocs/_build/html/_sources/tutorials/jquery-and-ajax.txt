@@ -5,7 +5,7 @@
 
 .. _jquery_ajax_chapter:
 
-Part 7 - Jquery and Ajax
+Part 9 - Jquery and Ajax
 ============================================================================
 
 In this section we look at working with jQuery and see how we can integrate it with Flask, we will review some important concepts such as:

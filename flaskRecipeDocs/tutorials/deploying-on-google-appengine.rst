@@ -5,7 +5,7 @@
 
 .. _setting_gae_chapter:
 
-Part 6 - Deploying on Google App Engine
+Part 7 - Deploying on Google App Engine
 ===========================================
 
 Google App Engine (GAE) is sometimes called a 

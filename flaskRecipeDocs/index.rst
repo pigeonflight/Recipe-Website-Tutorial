@@ -60,10 +60,11 @@ Each tutorial includes discussion questions. It should be possible to work throu
    tutorials/deploying-your-application
    tutorials/introducing-json
    tutorials/databases-forms-and-fileuploads
-   tutorials/organizing-your-project
+   tutorials/authenticating-against-a-user-database
+   tutorials/deploying-on-google-appengine
+   tutorials/layout-and-templating
    tutorials/jquery-and-ajax
    tutorials/common-application-features
-   tutorials/deploying-on-google-appengine
 
 
 Index and Glossary
