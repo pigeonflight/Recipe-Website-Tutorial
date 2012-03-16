@@ -63,19 +63,19 @@ For each application that you create on App Engine there is an ``Administration`
 Use Python 2.5 to bootstrap flask
 ------------------------------------
 
-To install flask  and virtualenv place bootstrapbot.py in the target folder of your choice and run, be sure
+To install flask  and virtualenv place ``bootstrapflask.py`` in the target folder of your choice and run, be sure
 to use Python 2.5::
 
    python2.5 bootstrapflask.py
 
 This creates a virtual environment called ``venv``.
-When ever you need to use this environment it can be activated using the following commands::
+When you need to use this environment it can be activated using the following commands::
 
    source venv/bin/activate
 
-.. warning:: Are you sure you used Python 2.5? There will be issues is you didn't!
+.. warning:: Are you sure you used Python 2.5? There will be issues if you didn't!
 
-Summary of develop/deploy cycle
+Running your application locally
 -------------------------------------
 
 Download the Flask GAE Scaffold to the target folder (the same one target folder used above) and unzip it.
@@ -96,13 +96,18 @@ Start in your target folder (the folder containing both venv and flask_gae).
        cd flask_gae/MyApp
        sh run.sh 
 
+Deploying your application to GAE
+-------------------------------------
+
 #. Edit the `app.yaml` file (ensure that the value for ``application`` matches your ``Application Identifier``.
 
 #. Deploy your application to Google App Engine 
 
         sh deploy.sh
 
-.. note:: Proxy issues? check out :ref:`dealing_with_proxies`
+.. note:: remember to `export http_proxy=scalpel:8080` or whatever your appropriate proxy settings are if you need to.
+
+.. note:: For more on proxy issues check out :ref:`dealing_with_proxies`
 
 app.yaml and App Engine Versions
 ----------------------------------
