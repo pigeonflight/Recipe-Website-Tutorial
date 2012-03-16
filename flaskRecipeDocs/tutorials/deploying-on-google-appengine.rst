@@ -68,6 +68,7 @@ The instructions below are for Unix, we assume that `flask_gae` and `venv` are i
 Start in your target folder (the folder containing both venv and flask_gae).
 
 ::
+
        wget http://dl.dropbox.com/u/1004432/flask_gae.zip
        unzip flask_gae.zip 
        cd flask_gae
@@ -92,7 +93,7 @@ Deploying your application to GAE
 
 #. Edit the `app.yaml` file (ensure that the value for ``application`` matches your ``Application Identifier``.
 
-#. Deploy your application to Google App Engine 
+#. Deploy your application to Google App Engine ::
 
         sh deploy.sh
 

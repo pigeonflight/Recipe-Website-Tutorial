@@ -46,8 +46,7 @@ What you will need:
 
 - An account with App Engine (visit http://appengine.google.com to sign up)
 - The Flask GAE Scaffold http://dl.dropbox.com/u/1004432/flask_gae.zip
-- Python 2.5 
-    Google App Engine is designed to work with Python 2.5 newer versions of Python are known to have issues. Ensure that you have this installed, on Windows you may consider using `Portable Python 2.5 <http://www.portablepython.com/wiki/PortablePython1.1Py2.5.4>`_.
+- Python 2.7 (2.6 might work) 
 - bootstrapflask.py http://dl.dropbox.com/u/1004432/bootstrapflask.py
 
 Sign up with App Engine
@@ -60,40 +59,33 @@ Visit http://appengine.google.com and sign up by creating a new application.
 For each application that you create on App Engine there is an ``Administration`` section where you can manage 
 ``Application Settings``. The most import setting for us is the ``Application Identifier``, we will need to know this name.
 
-Use Python 2.5 to bootstrap flask
+Setting up your application
 ------------------------------------
 
-To install flask  and virtualenv place ``bootstrapflask.py`` in the target folder of your choice and run, be sure
-to use Python 2.5::
-
-   python2.5 bootstrapflask.py
-
-This creates a virtual environment called ``venv``.
-When you need to use this environment it can be activated using the following commands::
-
-   source venv/bin/activate
-
-.. warning:: Are you sure you used Python 2.5? There will be issues if you didn't!
-
-Running your application locally
--------------------------------------
-
-Download the Flask GAE Scaffold to the target folder (the same one target folder used above) and unzip it.
+Download the Flask GAE Scaffold, unzip and create an application by copying the template. 
 
 The instructions below are for Unix, we assume that `flask_gae` and `venv` are in the same target folder.
 Start in your target folder (the folder containing both venv and flask_gae).
 
-#. Activate the Python 2.5 virtual environment
+::
 
-       venv/bin/activate
+       wget http://dl.dropbox.com/u/1004432/flask_gae.zip
+       unzip flask_gae.zip 
+       cd flask_gae
+       cp -r app_template my_app 
+       cd my_app
+       python bootstrapflask.py
+       source venv/bin/activate
 
-#. Copy `app_template` to `MyApp`::
 
-       cp -r flask_gae/app_template flask_gae/MyApp
+
+Running your application locally
+-------------------------------------
+
 
 #. Test that it is working by running the run.sh script::
 
-       cd flask_gae/MyApp
+       cd flask_gae/my_app
        sh run.sh 
 
 Deploying your application to GAE
@@ -101,7 +93,7 @@ Deploying your application to GAE
 
 #. Edit the `app.yaml` file (ensure that the value for ``application`` matches your ``Application Identifier``.
 
-#. Deploy your application to Google App Engine 
+#. Deploy your application to Google App Engine ::
 
         sh deploy.sh
 

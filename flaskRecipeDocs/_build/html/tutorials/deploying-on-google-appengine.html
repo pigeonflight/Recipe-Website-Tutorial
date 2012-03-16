@@ -90,19 +90,11 @@ The scaffold also includes the App Engine Software Development Kit (SDK).</p>
 </div>
 <p>It bundles the app engine deployment tools and provides two convenience scripts (run.sh and deploy.sh in the app_template)</p>
 <p>What you will need:</p>
-<ul>
-<li><p class="first">An account with App Engine (visit <a class="reference external" href="http://appengine.google.com">http://appengine.google.com</a> to sign up)</p>
-</li>
-<li><p class="first">The Flask GAE Scaffold <a class="reference external" href="http://dl.dropbox.com/u/1004432/flask_gae.zip">http://dl.dropbox.com/u/1004432/flask_gae.zip</a></p>
-</li>
-<li><dl class="first docutils">
-<dt>Python 2.5</dt>
-<dd><p class="first last">Google App Engine is designed to work with Python 2.5 newer versions of Python are known to have issues. Ensure that you have this installed, on Windows you may consider using <a class="reference external" href="http://www.portablepython.com/wiki/PortablePython1.1Py2.5.4">Portable Python 2.5</a>.</p>
-</dd>
-</dl>
-</li>
-<li><p class="first">bootstrapflask.py <a class="reference external" href="http://dl.dropbox.com/u/1004432/bootstrapflask.py">http://dl.dropbox.com/u/1004432/bootstrapflask.py</a></p>
-</li>
+<ul class="simple">
+<li>An account with App Engine (visit <a class="reference external" href="http://appengine.google.com">http://appengine.google.com</a> to sign up)</li>
+<li>The Flask GAE Scaffold <a class="reference external" href="http://dl.dropbox.com/u/1004432/flask_gae.zip">http://dl.dropbox.com/u/1004432/flask_gae.zip</a></li>
+<li>Python 2.7 (2.6 might work)</li>
+<li>bootstrapflask.py <a class="reference external" href="http://dl.dropbox.com/u/1004432/bootstrapflask.py">http://dl.dropbox.com/u/1004432/bootstrapflask.py</a></li>
 </ul>
 </div>
 <div class="section" id="sign-up-with-app-engine">
@@ -112,38 +104,25 @@ The scaffold also includes the App Engine Software Development Kit (SDK).</p>
 <p>For each application that you create on App Engine there is an <tt class="docutils literal"><span class="pre">Administration</span></tt> section where you can manage
 <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Settings</span></tt>. The most import setting for us is the <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Identifier</span></tt>, we will need to know this name.</p>
 </div>
-<div class="section" id="use-python-2-5-to-bootstrap-flask">
-<h2>Use Python 2.5 to bootstrap flask<a class="headerlink" href="#use-python-2-5-to-bootstrap-flask" title="Permalink to this headline">¶</a></h2>
-<p>To install flask  and virtualenv place <tt class="docutils literal"><span class="pre">bootstrapflask.py</span></tt> in the target folder of your choice and run, be sure
-to use Python 2.5:</p>
-<div class="highlight-python"><pre>python2.5 bootstrapflask.py</pre>
-</div>
-<p>This creates a virtual environment called <tt class="docutils literal"><span class="pre">venv</span></tt>.
-When you need to use this environment it can be activated using the following commands:</p>
-<div class="highlight-python"><pre>source venv/bin/activate</pre>
-</div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Are you sure you used Python 2.5? There will be issues if you didn&#8217;t!</p>
+<div class="section" id="setting-up-your-application">
+<h2>Setting up your application<a class="headerlink" href="#setting-up-your-application" title="Permalink to this headline">¶</a></h2>
+<p>Download the Flask GAE Scaffold, unzip and create an application by copying the template.</p>
+<p>The instructions below are for Unix, we assume that <cite>flask_gae</cite> and <cite>venv</cite> are in the same target folder.
+Start in your target folder (the folder containing both venv and flask_gae).</p>
+<div class="highlight-python"><pre>wget http://dl.dropbox.com/u/1004432/flask_gae.zip
+unzip flask_gae.zip
+cd flask_gae
+cp -r app_template my_app
+cd my_app
+python bootstrapflask.py
+source venv/bin/activate</pre>
 </div>
 </div>
 <div class="section" id="running-your-application-locally">
 <h2>Running your application locally<a class="headerlink" href="#running-your-application-locally" title="Permalink to this headline">¶</a></h2>
-<p>Download the Flask GAE Scaffold to the target folder (the same one target folder used above) and unzip it.</p>
-<p>The instructions below are for Unix, we assume that <cite>flask_gae</cite> and <cite>venv</cite> are in the same target folder.
-Start in your target folder (the folder containing both venv and flask_gae).</p>
 <ol class="arabic">
-<li><p class="first">Activate the Python 2.5 virtual environment</p>
-<blockquote>
-<div><p>venv/bin/activate</p>
-</div></blockquote>
-</li>
-<li><p class="first">Copy <cite>app_template</cite> to <cite>MyApp</cite>:</p>
-<div class="highlight-python"><pre>cp -r flask_gae/app_template flask_gae/MyApp</pre>
-</div>
-</li>
 <li><p class="first">Test that it is working by running the run.sh script:</p>
-<div class="highlight-python"><pre>cd flask_gae/MyApp
+<div class="highlight-python"><pre>cd flask_gae/my_app
 sh run.sh</pre>
 </div>
 </li>
@@ -155,9 +134,8 @@ sh run.sh</pre>
 <li><p class="first">Edit the <cite>app.yaml</cite> file (ensure that the value for <tt class="docutils literal"><span class="pre">application</span></tt> matches your <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Identifier</span></tt>.</p>
 </li>
 <li><p class="first">Deploy your application to Google App Engine</p>
-<blockquote>
-<div><p>sh deploy.sh</p>
-</div></blockquote>
+<div class="highlight-python"><pre>sh deploy.sh</pre>
+</div>
 </li>
 </ol>
 <div class="admonition note">
@@ -210,7 +188,7 @@ features that Flask does not provide, specifically:</p>
 <li><a class="reference internal" href="#">Part 7 - Deploying on Google App Engine</a><ul>
 <li><a class="reference internal" href="#setting-up-the-flask-gae-scaffold">Setting up the Flask GAE Scaffold</a></li>
 <li><a class="reference internal" href="#sign-up-with-app-engine">Sign up with App Engine</a></li>
-<li><a class="reference internal" href="#use-python-2-5-to-bootstrap-flask">Use Python 2.5 to bootstrap flask</a></li>
+<li><a class="reference internal" href="#setting-up-your-application">Setting up your application</a></li>
 <li><a class="reference internal" href="#running-your-application-locally">Running your application locally</a></li>
 <li><a class="reference internal" href="#deploying-your-application-to-gae">Deploying your application to GAE</a></li>
 <li><a class="reference internal" href="#app-yaml-and-app-engine-versions">app.yaml and App Engine Versions</a></li>
