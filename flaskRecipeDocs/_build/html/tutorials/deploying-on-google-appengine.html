@@ -66,6 +66,10 @@ platform as a service (PAAS) because it provides specific utilities for things l
 <p class="last">If you don&#8217;t mind following &#8220;the App Engine way&#8221; the benefit is a free platform for deploying webscale applications on infrastructure managed by Google. App Engine has a threshold at which point you will need to pay about USD $9 per month, this fee increases as you consume more resources.</p>
 </div>
 <p>While App Engine is great for some application there has been <a class="reference external" href="http://news.ycombinator.com/item?id=3431132">discussion about App Engine charges</a> which suggest some applications are not economical on GAE.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">How is the PAAS approach different from normal webhosting?  Do you know of any other PAAS systems? Also, it might be a good exercise to read about IAAS and SAAS.</p>
+</div>
 <div class="section" id="setting-up-the-flask-gae-scaffold">
 <h2>Setting up the Flask GAE Scaffold<a class="headerlink" href="#setting-up-the-flask-gae-scaffold" title="Permalink to this headline">¶</a></h2>
 <p>For working with App Engine we will use
@@ -88,50 +92,81 @@ The scaffold also includes the App Engine Software Development Kit (SDK).</p>
 │   └── tools
 └── licenses</pre>
 </div>
-<p>It bundles the app engine deployment tools and provides two convenience scripts (run.sh and deploy.sh in the app_template)</p>
-<p>What you will need:</p>
+<p>It bundles the app engine deployment tools and provides onvenience scripts:</p>
+<dl class="docutils">
+<dt><strong>run.sh</strong></dt>
+<dd>run the application locally</dd>
+<dt><strong>deploy.sh</strong></dt>
+<dd>deploy to app engine</dd>
+</dl>
+<p>The windows equivalents are provided as <strong>run.bat</strong> and <strong>deploy.bat</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you are using Windows make sure that you have setup python to be in your path</p>
+<p class="last"><tt class="docutils literal"><span class="pre">set</span> <span class="pre">PATH=%PATH%;C:\Python27</span></tt></p>
+</div>
+</div>
+<div class="section" id="what-you-will-need">
+<h2>What you will need<a class="headerlink" href="#what-you-will-need" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>An account with App Engine (visit <a class="reference external" href="http://appengine.google.com">http://appengine.google.com</a> to sign up)</li>
 <li>The Flask GAE Scaffold <a class="reference external" href="http://dl.dropbox.com/u/1004432/flask_gae.zip">http://dl.dropbox.com/u/1004432/flask_gae.zip</a></li>
-<li>Python 2.7 (2.6 might work)</li>
-<li>bootstrapflask.py <a class="reference external" href="http://dl.dropbox.com/u/1004432/bootstrapflask.py">http://dl.dropbox.com/u/1004432/bootstrapflask.py</a></li>
+<li>Python 2.7 (2.6 actually works, though we won&#8217;t promise)</li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When deployed, our application will use Python 2.7, however during development Python 2.6 works in all our tests (If you suspect problems with your local development, get a copy of Python 2.7). To check what version of Python you have use the command <cite>python -V</cite></p>
+</div>
 </div>
 <div class="section" id="sign-up-with-app-engine">
 <h2>Sign up with App Engine<a class="headerlink" href="#sign-up-with-app-engine" title="Permalink to this headline">¶</a></h2>
 <p>Visit <a class="reference external" href="http://appengine.google.com">http://appengine.google.com</a> and sign up by creating a new application.</p>
 <img alt="../_images/appenginestart.png" src="../_images/appenginestart.png" />
 <p>For each application that you create on App Engine there is an <tt class="docutils literal"><span class="pre">Administration</span></tt> section where you can manage
-<tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Settings</span></tt>. The most import setting for us is the <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Identifier</span></tt>, we will need to know this name.</p>
+<tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Settings</span></tt>.</p>
+<p>The most import setting for us is the <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Identifier</span></tt>, we will need to know this name.</p>
 </div>
 <div class="section" id="setting-up-your-application">
 <h2>Setting up your application<a class="headerlink" href="#setting-up-your-application" title="Permalink to this headline">¶</a></h2>
-<p>Download the Flask GAE Scaffold, unzip and create an application by copying the template.</p>
-<p>The instructions below are for Unix, we assume that <cite>flask_gae</cite> and <cite>venv</cite> are in the same target folder.
-Start in your target folder (the folder containing both venv and flask_gae).</p>
+<p>Download the Flask GAE Scaffold, unzip and create an application by copying the template, running bootstrapflask.py and activating the virtual environment.</p>
+<p>The instructions below are for Unix (OS X, Linux etc.).</p>
 <div class="highlight-python"><pre>wget http://dl.dropbox.com/u/1004432/flask_gae.zip
 unzip flask_gae.zip
 cd flask_gae
 cp -r app_template my_app
 cd my_app
-python bootstrapflask.py
-source venv/bin/activate</pre>
+sh run.sh</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">bootstrapping is used to create a local virtual environment, it is optional when using the flask gae. This is because flask gae looks for packages in the <tt class="docutils literal"><span class="pre">packages</span></tt> folder. If you still want to use a virtual environment the bootstrapflask.py is provided.</p>
 </div>
 </div>
 <div class="section" id="running-your-application-locally">
 <h2>Running your application locally<a class="headerlink" href="#running-your-application-locally" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic">
-<li><p class="first">Test that it is working by running the run.sh script:</p>
+<p>Test that it is working by running the run.sh script:</p>
 <div class="highlight-python"><pre>cd flask_gae/my_app
 sh run.sh</pre>
 </div>
-</li>
-</ol>
+</div>
+<div class="section" id="working-with-an-http-proxy">
+<h2>Working with an HTTP Proxy<a class="headerlink" href="#working-with-an-http-proxy" title="Permalink to this headline">¶</a></h2>
+<p>When you are ready to deploy you will need to make use of the <tt class="docutils literal"><span class="pre">deploy.sh</span></tt> script. If a proxy is defined in the <tt class="docutils literal"><span class="pre">https_proxy</span></tt> environment variable then requests will be redirected via that proxy.</p>
+<p>On unix you can set the proxy like this:</p>
+<div class="highlight-python"><pre>export https_proxy=scalpel:8080</pre>
+</div>
+<p>On Windows the <tt class="docutils literal"><span class="pre">deploy.bat</span></tt> script is used and the proxy is set as follows:</p>
+<div class="highlight-python"><pre>set https_proxy=scalpel:8080</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For deploying to GAE it is only necessary to set the <tt class="docutils literal"><span class="pre">https_proxy</span></tt> and not the <tt class="docutils literal"><span class="pre">http_proxy</span></tt>, why do you think this is so?</p>
+</div>
 </div>
 <div class="section" id="deploying-your-application-to-gae">
 <h2>Deploying your application to GAE<a class="headerlink" href="#deploying-your-application-to-gae" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">Edit the <cite>app.yaml</cite> file (ensure that the value for <tt class="docutils literal"><span class="pre">application</span></tt> matches your <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Identifier</span></tt>.</p>
+<li><p class="first">Edit the <tt class="docutils literal"><span class="pre">app.yaml</span></tt> file (ensure that the value for <tt class="docutils literal"><span class="pre">application</span></tt> matches your <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Identifier</span></tt>.</p>
 </li>
 <li><p class="first">Deploy your application to Google App Engine</p>
 <div class="highlight-python"><pre>sh deploy.sh</pre>
@@ -140,7 +175,7 @@ sh run.sh</pre>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">remember to <cite>export http_proxy=scalpel:8080</cite> or whatever your appropriate proxy settings are if you need to.</p>
+<p class="last">As noted in the section above, remember to <cite>export https_proxy=scalpel:8080</cite> or whatever your appropriate proxy settings are if you need to.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -150,30 +185,56 @@ sh run.sh</pre>
 <div class="section" id="app-yaml-and-app-engine-versions">
 <h2>app.yaml and App Engine Versions<a class="headerlink" href="#app-yaml-and-app-engine-versions" title="Permalink to this headline">¶</a></h2>
 <p>Your applications can be given new version numbers by configuring them in the <tt class="docutils literal"><span class="pre">app.yaml</span></tt> file.</p>
-<p>After deploying a new version you will need to set it to be the default version, in order to see the changes.</p>
+<p>After deploying a new version you will need to set it to be the default version (this id done in the appengine control panel), if this is not done, visiting your appengine url will show the last version that was set to be the default.</p>
 <img alt="../_images/appengineversions.png" src="../_images/appengineversions.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">What would be the usefulness of App Engine&#8217;s application version management ability?</p>
 </div>
-<div class="section" id="taking-advantage-of-the-gae-users-api-and-datastore-api">
-<h2>Taking advantage of the GAE users api and Datastore api<a class="headerlink" href="#taking-advantage-of-the-gae-users-api-and-datastore-api" title="Permalink to this headline">¶</a></h2>
-<p>Since we will be deploying to GAE, we might as well take advantage of features that GAE provides, especially those
-features that Flask does not provide, specifically:</p>
+<p>The default <tt class="docutils literal"><span class="pre">app.yaml</span></tt> file as provided by the GAE Scaffolding:</p>
+<div class="highlight-python"><pre>application: application-identifier
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+default_expiration: "5d"
+
+builtins:
+- appstats: on
+- deferred: on
+- remote_api: on
+
+inbound_services:
+- warmup
+
+handlers:
+- url: /favicon.ico
+  static_files: application/static/img/favicon.ico
+  upload: application/static/img/favicon.ico
+
+- url: /robots.txt
+  static_files: application/static/robots.txt
+  upload: application/static/robots.txt
+
+- url: /static
+  static_dir: application/static
+
+- url: .*
+  script: main.app</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Change the <tt class="docutils literal"><span class="pre">application-identifier</span></tt> and, if necessary the <tt class="docutils literal"><span class="pre">version</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="next-lab">
+<h2>Next Lab<a class="headerlink" href="#next-lab" title="Permalink to this headline">¶</a></h2>
+<p>We will take advantage of some of the features provided by the appengine api including</p>
 <ul class="simple">
-<li>User account management (Authentication, Sessions, Login)</li>
-<li>Database backend</li>
+<li>The Users API - User account management (Authentication, Sessions, Login)</li>
+<li>The Datastore API (NDB) - Database backend</li>
 </ul>
-<p>We will use App Engine&#8217;s <tt class="docutils literal"><span class="pre">Datastore</span></tt> and <tt class="docutils literal"><span class="pre">Users</span></tt> API, read about both in <a class="reference external" href="http://code.google.com/appengine/docs/python/gettingstarted/">getting started with App Engine</a>.</p>
-</div>
-<div class="section" id="adding-third-party-auth">
-<h2>Adding Third Party Auth<a class="headerlink" href="#adding-third-party-auth" title="Permalink to this headline">¶</a></h2>
-<p>XXX Fixme discuss engineauth and the need for app engine python 2. 7 version</p>
-<p><a class="reference external" href="http://engineauth.readthedocs.org">http://engineauth.readthedocs.org</a></p>
-</div>
-<div class="section" id="discussion">
-<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>What does PAAS mean? How is a PAAS different from normal webhosting?</li>
-<li>One feature of App Engine is application version management. What would you use this for?</li>
-</ul>
+<p>You can read more about both in <a class="reference external" href="http://code.google.com/appengine/docs/python/gettingstarted/">getting started with App Engine</a>.</p>
 </div>
 </div>
 
@@ -187,14 +248,14 @@ features that Flask does not provide, specifically:</p>
   <ul>
 <li><a class="reference internal" href="#">Part 7 - Deploying on Google App Engine</a><ul>
 <li><a class="reference internal" href="#setting-up-the-flask-gae-scaffold">Setting up the Flask GAE Scaffold</a></li>
+<li><a class="reference internal" href="#what-you-will-need">What you will need</a></li>
 <li><a class="reference internal" href="#sign-up-with-app-engine">Sign up with App Engine</a></li>
 <li><a class="reference internal" href="#setting-up-your-application">Setting up your application</a></li>
 <li><a class="reference internal" href="#running-your-application-locally">Running your application locally</a></li>
+<li><a class="reference internal" href="#working-with-an-http-proxy">Working with an HTTP Proxy</a></li>
 <li><a class="reference internal" href="#deploying-your-application-to-gae">Deploying your application to GAE</a></li>
 <li><a class="reference internal" href="#app-yaml-and-app-engine-versions">app.yaml and App Engine Versions</a></li>
-<li><a class="reference internal" href="#taking-advantage-of-the-gae-users-api-and-datastore-api">Taking advantage of the GAE users api and Datastore api</a></li>
-<li><a class="reference internal" href="#adding-third-party-auth">Adding Third Party Auth</a></li>
-<li><a class="reference internal" href="#discussion">Discussion</a></li>
+<li><a class="reference internal" href="#next-lab">Next Lab</a></li>
 </ul>
 </li>
 </ul>
