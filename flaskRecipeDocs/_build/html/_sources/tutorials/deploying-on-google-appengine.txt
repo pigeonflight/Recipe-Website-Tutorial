@@ -179,12 +179,14 @@ The default ``app.yaml`` file as provided by the GAE Scaffolding::
 
 Next Lab
 ---------------------------------------------------------
-We will take advantage of some of the features provided by the appengine api including
+We will practice deploying a flask application to GAE. We will also take advantage of some of the features provided by the appengine api including:
 
 - The Users API - User account management (Authentication, Sessions, Login)
 - The Datastore API (NDB) - Database backend
 
 You can read more about both in `getting started with App Engine`_.
+
+
 
 
 .. _discussion about App Engine charges: http://news.ycombinator.com/item?id=3431132

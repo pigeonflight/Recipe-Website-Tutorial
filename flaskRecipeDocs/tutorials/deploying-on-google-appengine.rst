@@ -12,7 +12,7 @@ Google App Engine (GAE) is sometimes called a
 platform as a service (PAAS) because it provides specific utilities for things like data persistence, authentication and user management. 
 
 .. note:: If you don't mind following "the App Engine way" the benefit is a free platform for deploying webscale applications on infrastructure managed by Google. App Engine has a threshold at which point you will need to pay about USD $9 per month, this fee increases as you consume more resources.
-While App Engine is great for some application there has been `discussion about App Engine charges`_ which suggest some applications are not economical on GAE.
+While App Engine is great for some applications there has been `discussion about App Engine charges`_ which suggest some applications are not economical on GAE.
 
 .. note:: How is the PAAS approach different from normal webhosting?  Do you know of any other PAAS systems? Also, it might be a good exercise to read about IAAS and SAAS.
 
