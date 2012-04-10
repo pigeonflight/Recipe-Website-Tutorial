@@ -5,7 +5,7 @@
 
 .. _layout_and_templating_chapter:
 
-Part 8  - Layout and Templating
+Part 9  - Layout and Templating
 ===============================================================
 
 At this point we have covered the following

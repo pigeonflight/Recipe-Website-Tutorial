@@ -62,8 +62,8 @@ Each tutorial includes discussion questions. It should be possible to work throu
    tutorials/databases-forms-and-fileuploads
    tutorials/authenticating-against-a-user-database
    tutorials/deploying-on-google-appengine
-   tutorials/layout-and-templating
    tutorials/jquery-and-ajax
+   tutorials/html5-drag-and-drop-and-file-uploads
    tutorials/common-application-features
 
 
